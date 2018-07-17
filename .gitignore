@@ -1,0 +1,9 @@
+# Ignore .vs folder
+.vs/
+
+# Ignore .suo files
+*.suo
+
+# Ignore bin and obj folders
+*bin/
+*obj/
