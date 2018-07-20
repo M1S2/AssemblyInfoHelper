@@ -1,0 +1,19 @@
+# CHANGELOG 
+
+Project:  AssemblyInfoProject / AssemblyInfoHelper
+
+## [%version%] - %date%
+### Removed
+- AssemblyKnownIssues attribute removed. Report known issues in README.md
+- AssemblyChangeLog attribute removed. Use the CHANGELOG.md file instead.
+
+### Added
+- Use README.md file for description of the project.
+- Use CHANGELOG.md file for changelog of the project.
+- Markdig for displaying markdown syntax.
+
+## [1.0.0.0]
+This version of the AssemblyInfoHelper uses
+- the AssemblyDescription attribute for the description of the project.
+- a new attribute "AssemblyKnownIssues" for known issues.
+- a new attribute "AssemblyChangeLog" for change log entries.

@@ -19,7 +19,9 @@ namespace AssemblyInfoProject
 
         private void hilfeToolStripButton_Click(object sender, EventArgs e)
         {
-            AssemblyInfoHelper.FormAssemblyInfo form = new AssemblyInfoHelper.FormAssemblyInfo();
+            AssemblyInfoHelper.FormAssemblyInfo form = new AssemblyInfoHelper.FormAssemblyInfo(Application.StartupPath + @"\..\..\..\README.md", Application.StartupPath + @"\..\..\..\CHANGELOG.md");
+            //AssemblyInfoHelper.FormAssemblyInfo form = new AssemblyInfoHelper.FormAssemblyInfo();
+
             form.ShowDialog();
         }
     }

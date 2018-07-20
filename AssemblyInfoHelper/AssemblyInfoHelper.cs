@@ -180,44 +180,6 @@ namespace AssemblyInfoHelper
         }
 
         /// <summary>
-        /// Assembly change log string. This is created from the assembly change log attributes.
-        /// </summary>
-        public static string AssemblyChangeLogString
-        {
-            get
-            {
-                List<AssemblyInfoHelper.AssemblyChangeLogAttribute> changeLogAttributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyInfoHelper.AssemblyChangeLogAttribute), true).Cast<AssemblyInfoHelper.AssemblyChangeLogAttribute>().ToList();
-                changeLogAttributes = changeLogAttributes.OrderByDescending(a => a.ChangeLogVersionMajor).ThenByDescending(a => a.ChangeLogVersionMinor).ToList();
-
-                string changeLogStr = "";
-                foreach (AssemblyInfoHelper.AssemblyChangeLogAttribute changeLogAttribute in changeLogAttributes)
-                {
-                    changeLogStr += "Changelog " + changeLogAttribute.ChangeLogVersionMajor.ToString() + "." + changeLogAttribute.ChangeLogVersionMinor.ToString() + ":\n" +
-                                    new String('-' , 10 + changeLogAttribute.ChangeLogVersionMajor.ToString().Length + 1 + changeLogAttribute.ChangeLogVersionMinor.ToString().Length + 2)  + "\n" + 
-                                    changeLogAttribute.ChangeLogText + "\n\n";
-                }
-                return changeLogStr.TrimEnd('\n');
-            }
-        }
-
-        /// <summary>
-        /// Assembly known issues attribute
-        /// </summary>
-        public static string AssemblyKnownIssues
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyKnownIssuesAttribute), true);
-
-                if (assemblyObjects.Length > 0)
-                {
-                    return ((AssemblyKnownIssuesAttribute)assemblyObjects[0]).IssueText;
-                }
-                return "No issues known.";
-            }
-        }
-
-        /// <summary>
         /// Get the time of the last build of the assembly.
         /// </summary>
         /// <returns>last build time</returns>

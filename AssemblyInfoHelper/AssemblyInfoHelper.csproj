@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Markdig, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.15.1\lib\net40\Markdig.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -41,9 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyChangeLogAttribute.cs" />
     <Compile Include="AssemblyInfoHelper.cs" />
-    <Compile Include="AssemblyKnownIssuesAttribute.cs" />
     <Compile Include="FormAssemblyInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +57,9 @@
     <EmbeddedResource Include="FormAssemblyInfo.resx">
       <DependentUpon>FormAssemblyInfo.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
