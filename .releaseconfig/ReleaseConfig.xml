@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ReleaseConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <VersionFiles>
+    <VersionFile>
+      <Path>/AssemblyInfoHelper/Properties/AssemblyInfo.cs</Path>
+    </VersionFile>
+  </VersionFiles>
+  <BinaryFiles>
+    <BinaryFile>
+      <SourcePath>/AssemblyInfoHelper/bin/Debug/AssemblyInfoHelper.dll</SourcePath>
+      <DestinationPath>/bin/AssemblyInfoHelper.dll</DestinationPath>
+    </BinaryFile>
+	<BinaryFile>
+	  <SourcePath>/AssemblyInfoProject/bin/Debug/AssemblyInfoProject.exe</SourcePath>
+	  <DestinationPath>/bin/AssemblyInfoProject.exe</DestinationPath>
+	</BinaryFile>
+  </BinaryFiles>
+  <ReleaseBuildProcess>
+    <WorkDir>/</WorkDir>
+    <Executablepath>C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe</Executablepath>
+    <Arguments>AssemblyInfoProject.sln /p:Configuration=Debug</Arguments>
+  </ReleaseBuildProcess>
+  <RepositoryName>AssemblyInfoProject</RepositoryName>
+  <CreateBinaryRelease>true</CreateBinaryRelease>
+</ReleaseConfig>
