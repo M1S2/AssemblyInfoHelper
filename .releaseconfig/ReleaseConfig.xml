@@ -11,6 +11,10 @@
       <DestinationPath>/bin/AssemblyInfoHelper.dll</DestinationPath>
     </BinaryFile>
 	<BinaryFile>
+	  <SourcePath>/AssemblyInfoHelper/bin/Debug/Markdig.dll</SourcePath>
+	  <DestinationPath>/bin/Markdig.dll</DestinationPath>  
+	</BinaryFile>
+	<BinaryFile>
 	  <SourcePath>/AssemblyInfoProject/bin/Debug/AssemblyInfoProject.exe</SourcePath>
 	  <DestinationPath>/bin/AssemblyInfoProject.exe</DestinationPath>
 	</BinaryFile>
