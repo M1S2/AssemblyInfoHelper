@@ -3,6 +3,9 @@
 Project:  AssemblyInfoProject / AssemblyInfoHelper
 
 ## [%version%] - %date%
+
+
+## [v2.0] - 29.07.2018 14:32
 ### Removed
 - AssemblyKnownIssues attribute removed. Report known issues in README.md
 - AssemblyChangeLog attribute removed. Use the CHANGELOG.md file instead.
