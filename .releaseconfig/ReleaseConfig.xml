@@ -1,35 +1,39 @@
 <?xml version="1.0"?>
 <ReleaseConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RepositoryName>AssemblyInfoProject</RepositoryName>
+  <CreateBinaryRelease>true</CreateBinaryRelease>
+  <VersionReplacementString>%version%</VersionReplacementString>
+  <DateReplacementString>%date%</DateReplacementString>
   <VersionFiles>
     <VersionFile>
-      <Path>/AssemblyInfoHelper/Properties/AssemblyInfo.cs</Path>
+      <Path>/AssemblyInfoHelper_WPF/Properties/AssemblyInfo.cs</Path>
     </VersionFile>
-	<VersionFile>
-      <Path>/README.md</Path>	  
-	</VersionFile>
-	<VersionFile>
-	  <Path>/CHANGELOG.md</Path>
-	</VersionFile>
+    <VersionFile>
+      <Path>/README.md</Path>
+    </VersionFile>
+    <VersionFile>
+      <Path>/CHANGELOG.md</Path>
+    </VersionFile>
   </VersionFiles>
   <BinaryFiles>
     <BinaryFile>
-      <SourcePath>/AssemblyInfoHelper/bin/Debug/AssemblyInfoHelper.dll</SourcePath>
-      <DestinationPath>/bin/AssemblyInfoHelper.dll</DestinationPath>
+      <SourcePath>/AssemblyInfoHelper_WPF/bin/Release/AssemblyInfoHelper_WPF.dll</SourcePath>
+      <DestinationPath>/bin/AssemblyInfoHelper_WPF.dll</DestinationPath>
     </BinaryFile>
-	<BinaryFile>
-	  <SourcePath>/AssemblyInfoHelper/bin/Debug/Markdig.dll</SourcePath>
-	  <DestinationPath>/bin/Markdig.dll</DestinationPath>  
-	</BinaryFile>
-	<BinaryFile>
-	  <SourcePath>/AssemblyInfoProject/bin/Debug/AssemblyInfoProject.exe</SourcePath>
-	  <DestinationPath>/bin/AssemblyInfoProject.exe</DestinationPath>
-	</BinaryFile>
+    <BinaryFile>
+      <SourcePath>/AssemblyInfoHelper_WPF/bin/Release/Markdig.dll</SourcePath>
+      <DestinationPath>/bin/Markdig.dll</DestinationPath>
+    </BinaryFile>
+    <BinaryFile>
+      <SourcePath>/AssemblyInfoProject_WPF/bin/Release/AssemblyInfoProject_WPF.exe</SourcePath>
+      <DestinationPath>/bin/AssemblyInfoProject_WPF.exe</DestinationPath>
+    </BinaryFile>
   </BinaryFiles>
-  <ReleaseBuildProcess>
-    <WorkDir>/</WorkDir>
-    <Executablepath>C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe</Executablepath>
-    <Arguments>AssemblyInfoProject.sln /p:Configuration=Debug</Arguments>
-  </ReleaseBuildProcess>
-  <RepositoryName>AssemblyInfoProject</RepositoryName>
-  <CreateBinaryRelease>true</CreateBinaryRelease>
+  <ReleaseBuildProcesses>
+    <BuildProcess>
+      <Executablepath>C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe</Executablepath>
+      <Arguments>AssemblyInfoProject.sln /p:Configuration=Release</Arguments>
+      <WorkDir>\</WorkDir>
+    </BuildProcess>
+  </ReleaseBuildProcesses>
 </ReleaseConfig>

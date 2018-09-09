@@ -4,6 +4,7 @@ Project:  AssemblyInfoProject / AssemblyInfoHelper
 
 ## [%version%] - %date%
 
+- This version contains a WPF window and should be used with WPF applications.
 
 ## [v2.0] - 29.07.2018 14:32
 ### Removed
