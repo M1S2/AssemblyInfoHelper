@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Markdig;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System.IO;
 
 namespace AssemblyInfoHelper_WPF
@@ -21,8 +23,13 @@ namespace AssemblyInfoHelper_WPF
     /// <summary>
     /// Interaktionslogik für WindowAssemblyInfo.xaml
     /// </summary>
-    public partial class WindowAssemblyInfo : Window
+    public partial class WindowAssemblyInfo : MetroWindow
     {
+        public string AssemblyInfoHelperVersion
+        {
+            get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
+
         private string _readmePath;
         private string _changeLogPath;
 
@@ -77,6 +84,11 @@ namespace AssemblyInfoHelper_WPF
 
             webBrowser_Readme.NavigateToString(readmeText);
             webBrowser_Changelog.NavigateToString(changelogText);
+        }
+
+        private async void BtnAssemblyVerion_Click(object sender, RoutedEventArgs e)
+        {
+            await this.ShowMessageAsync("AssemblyInfoHelper Version", AssemblyInfoHelperVersion, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
         }
     }
 }
