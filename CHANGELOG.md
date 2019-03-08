@@ -2,7 +2,7 @@
 
 Project:  AssemblyInfoProject / AssemblyInfoHelper
 
-## [%version%] - %date%
+## [v4.0] - 08.03.2019 16:39
 
 - Using MahApps.Metro to get a Metro look for the WPF window
 

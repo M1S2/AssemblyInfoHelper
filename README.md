@@ -3,7 +3,7 @@
 |
 |---------|-----------------------------------------|
 |Project: | AssemblyInfoProject / AssemblyInfoHelper|
-|Version: | %version%                               |
+|Version: | v4.0                               |
 
 ### Purpose
 The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
