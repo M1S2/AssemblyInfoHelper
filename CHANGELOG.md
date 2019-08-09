@@ -1,6 +1,6 @@
 # CHANGELOG 
 
-Project:  AssemblyInfoProject / AssemblyInfoHelper
+Project: AssemblyInfoHelper
 
 ## [%version%] - %date%
 
