@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 
-namespace AssemblyInfoHelper_WPF
+namespace AssemblyInfoHelper
 {
     /// <summary>
     /// Get the values of the Assembly attributes

@@ -1,9 +1,6 @@
 # README
 
-|
-|---------|-----------------------------------------|
-|Project: | AssemblyInfoProject / AssemblyInfoHelper|
-|Version: | %version%                               |
+Version: %version%
 
 ### Purpose
 The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.

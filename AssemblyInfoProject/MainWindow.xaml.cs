@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
-namespace AssemblyInfoProject_WPF
+namespace AssemblyInfoProject
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -28,7 +28,7 @@ namespace AssemblyInfoProject_WPF
 
         private void btn_showAssemblyInfo_Click(object sender, RoutedEventArgs e)
         {
-            AssemblyInfoHelper_WPF.WindowAssemblyInfo window = new AssemblyInfoHelper_WPF.WindowAssemblyInfo(@"..\..\..\README.md", @"..\..\..\CHANGELOG.md");
+            AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo(@"..\..\..\README.md", @"..\..\..\CHANGELOG.md");
             window.ShowDialog();
         }
     }

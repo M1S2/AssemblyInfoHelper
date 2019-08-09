@@ -18,7 +18,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.IO;
 
-namespace AssemblyInfoHelper_WPF
+namespace AssemblyInfoHelper
 {
     /// <summary>
     /// Interaktionslogik für WindowAssemblyInfo.xaml
