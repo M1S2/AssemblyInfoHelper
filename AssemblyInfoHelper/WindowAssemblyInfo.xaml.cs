@@ -12,19 +12,43 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 using Markdig;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.IO;
+using Octokit;
 
 namespace AssemblyInfoHelper
 {
     /// <summary>
     /// Interaktionslogik für WindowAssemblyInfo.xaml
     /// </summary>
-    public partial class WindowAssemblyInfo : MetroWindow
+    public partial class WindowAssemblyInfo : MetroWindow, INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged implementation
+        /// <summary>
+        /// Raised when a property on this object has a new value.
+        /// </summary>
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// This method is called by the Set accessor of each property. The CallerMemberName attribute that is applied to the optional propertyName parameter causes the property name of the caller to be substituted as an argument.
+        /// </summary>
+        /// <param name="propertyName">Name of the property that is changed</param>
+        /// see: https://docs.microsoft.com/de-de/dotnet/framework/winforms/how-to-implement-the-inotifypropertychanged-interface
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        //##############################################################################################################################################################################################
+
         public string AssemblyInfoHelperVersion
         {
             get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
@@ -50,6 +74,25 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
+        private ObservableCollection<Release> _gitHubReleases = new ObservableCollection<Release>();
+        public ObservableCollection<Release> GitHubReleases
+        {
+            get { return _gitHubReleases; }
+            set { _gitHubReleases = value; OnPropertyChanged(); OnPropertyChanged("AreGitHubReleasesAvailable"); }
+        }
+
+        public bool AreGitHubReleasesAvailable
+        {
+            get { return GitHubReleases != null && GitHubReleases.Count > 0; }
+        }
+
+        private void GitHubReleases_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("AreGitHubReleasesAvailable");
+        }
+
+        //********************************************************************************************************************************************************************
+
         private string _readmePath;
         private string _changeLogPath;
 
@@ -62,9 +105,11 @@ namespace AssemblyInfoHelper
         /// <param name="changeLogPath">Path for the CHANGELOG.md file.</param>
         public WindowAssemblyInfo(string readmePath, string changeLogPath)
         {
+            GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             _readmePath = readmePath;
             _changeLogPath = changeLogPath;
+            this.DataContext = this;
         }
 
         //********************************************************************************************************************************************************************
@@ -74,17 +119,19 @@ namespace AssemblyInfoHelper
         /// </summary>
         public WindowAssemblyInfo()
         {
+            GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             string startupPath = System.AppDomain.CurrentDomain.BaseDirectory;
             _readmePath = startupPath + @"README.md";
             _changeLogPath = startupPath + @"CHANGELOG.md";
+            this.DataContext = this;
         }
 
         //********************************************************************************************************************************************************************
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Icon = Application.Current.MainWindow.Icon;
+            this.Icon = System.Windows.Application.Current.MainWindow.Icon;
 
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
@@ -114,6 +161,8 @@ namespace AssemblyInfoHelper
 
             webBrowser_Readme.NavigateToString(readmeText);
             webBrowser_Changelog.NavigateToString(changelogText);
+
+            GetAllGitHubReleases();
         }
 
         //********************************************************************************************************************************************************************
@@ -127,5 +176,18 @@ namespace AssemblyInfoHelper
         //    //e.Cancel = true;
         //    //if (e.Uri != null) { System.Diagnostics.Process.Start(e.Uri.AbsoluteUri); }
         //}
+
+        //********************************************************************************************************************************************************************
+
+        private void GetAllGitHubReleases()
+        {
+            if(AssemblyInfoHelperClass.GitHubRepo == null) { return; }
+
+            GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
+
+            GitHubReleases.Clear();
+            List<Release> releases = gitHubClient.Repository.Release.GetAll(AssemblyInfoHelperClass.GitHubRepo.RepoOwner, AssemblyInfoHelperClass.GitHubRepo.RepoName).Result.ToList();
+            foreach (Release release in releases) { GitHubReleases.Add(release); }
+        }
     }
 }

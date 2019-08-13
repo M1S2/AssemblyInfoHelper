@@ -229,5 +229,24 @@ namespace AssemblyInfoHelper
             }
         }
 
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// GitHubRepo attribute
+        /// </summary>
+        public static GitHubRepoInfo GitHubRepo
+        {
+            get
+            {
+                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(GitHubRepoAttribute), true);
+
+                if (assemblyObjects.Length > 0)
+                {
+                    return ((GitHubRepoAttribute)assemblyObjects[0]).RepoInfo;
+                }
+                return null;
+            }
+        }
+
     }
 }

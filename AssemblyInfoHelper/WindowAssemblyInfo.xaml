@@ -10,6 +10,10 @@
         mc:Ignorable="d"
         Title="Assembly info" Height="375" Width="800" MinHeight="400" Loaded="Window_Loaded" >
 
+    <MetroControls:MetroWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </MetroControls:MetroWindow.Resources>
+
     <MetroControls:MetroWindow.RightWindowCommands>
         <MetroControls:WindowCommands>
             <Button Command="{Binding AssemblyInfoHelperVersionCommand}" ToolTip="AssemblyInfoHelper version">
@@ -68,6 +72,15 @@
             </TabItem>
             <TabItem Header="Changelog">
                 <WebBrowser x:Name="webBrowser_Changelog"/>
+            </TabItem>
+            <TabItem Header="GitHub Releases" Visibility="{Binding AreGitHubReleasesAvailable, Converter={StaticResource BoolVisibilityConverter}}">
+                <ListView ItemsSource="{Binding GitHubReleases}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </TabItem>
         </MetroControls:MetroTabControl>
     </Grid>
