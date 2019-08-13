@@ -12,7 +12,7 @@
 
     <MetroControls:MetroWindow.RightWindowCommands>
         <MetroControls:WindowCommands>
-            <Button Click="BtnAssemblyVerion_Click" ToolTip="AssemblyInfoHelper version">
+            <Button Command="{Binding AssemblyInfoHelperVersionCommand}" ToolTip="AssemblyInfoHelper version">
                 <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" />
             </Button>
         </MetroControls:WindowCommands>
@@ -64,7 +64,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Readme">
-                <WebBrowser x:Name="webBrowser_Readme"/>
+                <WebBrowser x:Name="webBrowser_Readme"/> <!--Navigating="webBrowser_Readme_Navigating"-->
             </TabItem>
             <TabItem Header="Changelog">
                 <WebBrowser x:Name="webBrowser_Changelog"/>

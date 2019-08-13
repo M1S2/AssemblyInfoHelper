@@ -21,9 +21,7 @@ namespace AssemblyInfoHelper
             get
             {
                 object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
-
-                //object[] assemblyObjects = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
-
+                
                 if (assemblyObjects.Length > 0)
                 {
                     return ((AssemblyTitleAttribute)assemblyObjects[0]).Title;
@@ -31,6 +29,8 @@ namespace AssemblyInfoHelper
                 return "";
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Assembly description attribute
@@ -49,6 +49,8 @@ namespace AssemblyInfoHelper
             }
         }
 
+        //********************************************************************************************************************************************************************
+
         /// <summary>
         /// Assembly configuration attribute
         /// </summary>
@@ -65,6 +67,8 @@ namespace AssemblyInfoHelper
                 return "";
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Assembly company attribute
@@ -83,6 +87,8 @@ namespace AssemblyInfoHelper
             }
         }
 
+        //********************************************************************************************************************************************************************
+
         /// <summary>
         /// Assembly product attribute
         /// </summary>
@@ -99,6 +105,8 @@ namespace AssemblyInfoHelper
                 return "";
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Assembly copyright attribute
@@ -117,6 +125,8 @@ namespace AssemblyInfoHelper
             }
         }
 
+        //********************************************************************************************************************************************************************
+
         /// <summary>
         /// Assembly trademark attribute
         /// </summary>
@@ -133,6 +143,8 @@ namespace AssemblyInfoHelper
                 return "";
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Assembly culture attribute
@@ -151,6 +163,8 @@ namespace AssemblyInfoHelper
             }
         }
 
+        //********************************************************************************************************************************************************************
+
         /// <summary>
         /// Assembly version attribute
         /// </summary>
@@ -161,6 +175,8 @@ namespace AssemblyInfoHelper
                 return Assembly.GetEntryAssembly().GetName().Version.ToString();
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Assembly file version attribute
@@ -178,6 +194,8 @@ namespace AssemblyInfoHelper
                 return "";
             }
         }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Get the time of the last build of the assembly.

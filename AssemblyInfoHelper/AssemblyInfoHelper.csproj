@@ -78,6 +78,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="WindowAssemblyInfo.xaml.cs">
       <DependentUpon>WindowAssemblyInfo.xaml</DependentUpon>
     </Compile>

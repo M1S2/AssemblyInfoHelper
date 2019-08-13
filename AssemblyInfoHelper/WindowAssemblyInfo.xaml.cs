@@ -30,8 +30,30 @@ namespace AssemblyInfoHelper
             get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
         }
 
+        //********************************************************************************************************************************************************************
+
+        private ICommand _assemblyInfoHelperVersionCommand;
+        public ICommand AssemblyInfoHelperVersionCommand
+        {
+            get
+            {
+                if (_assemblyInfoHelperVersionCommand == null)
+                {
+                    _assemblyInfoHelperVersionCommand = new RelayCommand(async param =>
+                    {
+                        await this.ShowMessageAsync("AssemblyInfoHelper Version", AssemblyInfoHelperVersion, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
+                    });
+                }
+                return _assemblyInfoHelperVersionCommand;
+            }
+        }
+
+        //********************************************************************************************************************************************************************
+
         private string _readmePath;
         private string _changeLogPath;
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Show the WindowAssemblyInfo and get the README.md and CHANGELOG.md files from the given paths.
@@ -45,6 +67,8 @@ namespace AssemblyInfoHelper
             _changeLogPath = changeLogPath;
         }
 
+        //********************************************************************************************************************************************************************
+
         /// <summary>
         /// Show the WindowAssemblyInfo and get the readme and changelog content from the README.md and CHANGELOG.md files in the same folder as the executable. (Application.StartupPath)
         /// </summary>
@@ -56,12 +80,16 @@ namespace AssemblyInfoHelper
             _changeLogPath = startupPath + @"CHANGELOG.md";
         }
 
+        //********************************************************************************************************************************************************************
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Icon = Application.Current.MainWindow.Icon;
 
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+
             string readmeText = "<font face = \"calibri\">";
+            //string readmeText = "<!DOCTYPE html><html><head><meta http - equiv = \"X-UA-Compatible\" content = \"IE=Edge\"/></head><body><font face = \"calibri\">";
             string changelogText = "<font face = \"calibri\">";
 
             if (File.Exists(_readmePath))
@@ -82,13 +110,22 @@ namespace AssemblyInfoHelper
                 changelogText += "No changelog file found in: <br><br>" + Environment.NewLine + _changeLogPath;
             }
 
+            //readmeText += "</body></html>";
+
             webBrowser_Readme.NavigateToString(readmeText);
             webBrowser_Changelog.NavigateToString(changelogText);
         }
 
-        private async void BtnAssemblyVerion_Click(object sender, RoutedEventArgs e)
-        {
-            await this.ShowMessageAsync("AssemblyInfoHelper Version", AssemblyInfoHelperVersion, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
-        }
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Open links in the users default browser
+        /// </summary>
+        /// see: https://stackoverflow.com/questions/15847822/opening-web-browser-click-in-default-browser
+        //private void webBrowser_Readme_Navigating(object sender, NavigatingCancelEventArgs e)
+        //{
+        //    //e.Cancel = true;
+        //    //if (e.Uri != null) { System.Diagnostics.Process.Start(e.Uri.AbsoluteUri); }
+        //}
     }
 }
