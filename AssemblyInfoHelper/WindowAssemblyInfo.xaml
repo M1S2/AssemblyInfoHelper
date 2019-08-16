@@ -97,6 +97,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
+                    <!-- see: http://blog.jerrynixon.com/2011/07/showing-no-records-when-wpf-listbox-is.html-->
                     <ListView.Style>
                         <Style TargetType="{x:Type ListView}">
                             <Style.Triggers>

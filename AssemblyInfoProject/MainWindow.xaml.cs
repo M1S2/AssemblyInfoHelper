@@ -28,7 +28,7 @@ namespace AssemblyInfoProject
 
         private void btn_showAssemblyInfo_Click(object sender, RoutedEventArgs e)
         {
-            AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo(@"..\..\..\README.md", @"..\..\..\CHANGELOG.md");
+            AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();
             window.ShowDialog();
         }
     }
