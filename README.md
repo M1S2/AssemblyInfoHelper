@@ -23,3 +23,11 @@ The description is get from the README.md file in the path given when creating t
 The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo.
 
 The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
+
+## Usage / Installation
+
+...
+
+### GitHub releases
+
+...

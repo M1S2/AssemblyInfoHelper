@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using AssemblyInfoHelper.GitHubReleases;
 
 namespace AssemblyInfoHelper
 {
@@ -234,7 +235,7 @@ namespace AssemblyInfoHelper
         /// <summary>
         /// GitHubRepo attribute
         /// </summary>
-        public static GitHubRepoInfo GitHubRepo
+        public static string GitHubRepoUrl
         {
             get
             {
@@ -242,7 +243,7 @@ namespace AssemblyInfoHelper
 
                 if (assemblyObjects.Length > 0)
                 {
-                    return ((GitHubRepoAttribute)assemblyObjects[0]).RepoInfo;
+                    return ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl;
                 }
                 return null;
             }
