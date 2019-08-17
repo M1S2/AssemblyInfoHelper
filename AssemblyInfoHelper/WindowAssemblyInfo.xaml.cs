@@ -220,7 +220,8 @@ namespace AssemblyInfoHelper
                     Name = release.Name,
                     ReleaseTime = release.PublishedAt.Value.ToLocalTime(),
                     Version = stripInitialV(release.TagName),
-                    ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD))
+                    ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
+                    ReleaseURL = AssemblyInfoHelperClass.GitHubRepoUrl + "/releases/tag/" + release.TagName
                 });
             }
         }

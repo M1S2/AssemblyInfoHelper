@@ -13,5 +13,6 @@ namespace AssemblyInfoHelper.GitHubReleases
         public DateTimeOffset ReleaseTime { get; set; }
         public SemVersion Version { get; set; }
         public GitHubReleaseTypes ReleaseType { get; set; }
+        public string ReleaseURL { get; set; }
     }
 }

@@ -78,7 +78,8 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfoHelper.cs" />
+    <Compile Include="AssemblyInfoHelperClass.cs" />
+    <Compile Include="ExternalBrowserHyperlinkControl.cs" />
     <Compile Include="GitHubReleases\GitHubRelease.cs" />
     <Compile Include="GitHubReleases\GitHubReleaseTypes.cs" />
     <Compile Include="GitHubReleases\GitHubRepoAttribute.cs" />

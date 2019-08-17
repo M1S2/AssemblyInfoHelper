@@ -9,7 +9,7 @@
         xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:githubReleases="clr-namespace:AssemblyInfoHelper.GitHubReleases"
         mc:Ignorable="d"
-        Title="Assembly info" Height="375" Width="800" MinHeight="400" Loaded="Window_Loaded" >
+        Title="Assembly info" Height="600" Width="800" MinHeight="400" Loaded="Window_Loaded" >
 
     <MetroControls:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
@@ -26,7 +26,14 @@
 
     <Grid>
         <MetroControls:MetroTabControl MetroControls:TabControlHelper.Underlined="SelectedTabItem">
-            <TabItem Header="General infos">
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel LastChildFill="True">
+                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="Info" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <TextBlock Text="General infos" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -69,51 +76,124 @@
                     
                 </Grid>
             </TabItem>
-            <TabItem Header="Readme">
+            
+            <!-- ************************************************************************************************************************************************************************************************************************ -->
+            
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel LastChildFill="True">
+                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="File" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <TextBlock Text="Readme" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                
                 <WebBrowser x:Name="webBrowser_Readme"/> <!--Navigating="webBrowser_Readme_Navigating"-->
             </TabItem>
-            <TabItem Header="Changelog">
+
+            <!-- ************************************************************************************************************************************************************************************************************************ -->
+            
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel LastChildFill="True">
+                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="Diff" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <TextBlock Text="Changelog" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                
                 <WebBrowser x:Name="webBrowser_Changelog"/>
             </TabItem>
+
+            <!-- ************************************************************************************************************************************************************************************************************************ -->
+            
             <TabItem Visibility="{Binding IsGitHubRepoAssigned, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
-                    <MetroControls:Badged Badge="{Binding NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0">
-                        <TextBlock Text="GitHub Releases" Margin="0,0,20,0" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
-                    </MetroControls:Badged>
+                    <DockPanel LastChildFill="True">
+                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="MarkGithub" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+
+                        <MetroControls:Badged Badge="{Binding NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0" BadgeBackground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}">
+                            <TextBlock Text="GitHub Releases" Margin="0,0,20,0" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
+                        </MetroControls:Badged>
+                    </DockPanel>
                 </TabItem.Header>
-                <ListView ItemsSource="{Binding GitHubReleases}" Margin="5" BorderThickness="0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <MetroControls:Badged Margin="0,10,25,10" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseType, Converter={StaticResource ReleaseTypeBadgeTextConverter}}">
-                                    <iconPacks:PackIconMaterial Kind="Tag" Margin="15,5,20,5" Width="35" Height="Auto" Foreground="{DynamicResource AccentBaseColorBrush}"/>
-                                </MetroControls:Badged>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Name}" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
-                                    <TextBlock Text="{Binding ReleaseTime, StringFormat='Published: {0:dd.MM.yyyy HH:mm}'}" FontSize="16" Foreground="{DynamicResource GrayBrush3}"/>
-                                </StackPanel>
-                            </StackPanel>
 
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <DockPanel LastChildFill="True" Margin="10">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
+                        <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="Repository URL" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                        <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                            <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding Source={x:Static local:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}">
+                                <local:ExternalBrowserHyperlinkControl.Inlines>
+                                    <Run Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}" FontSize="20" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                </local:ExternalBrowserHyperlinkControl.Inlines>
+                            </local:ExternalBrowserHyperlinkControl>
+                        </TextBlock>
+                    </StackPanel>
 
-                    <!-- see: http://blog.jerrynixon.com/2011/07/showing-no-records-when-wpf-listbox-is.html-->
-                    <ListView.Style>
-                        <Style TargetType="{x:Type ListView}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate>
-                                                <TextBlock Text="No releases available" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource GrayBrush3}" FontSize="30"/>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.Style>
-                </ListView>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
+                        <iconPacks:PackIconMaterial Kind="Tag" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="Number of releases" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                        <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="New: {0}  /  Total: {1}">
+                                    <Binding Path="NumberNewReleasesString" />
+                                    <Binding Path="GitHubReleases.Count" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Separator DockPanel.Dock="Top" Margin="0,10,0,10"/>
+
+                    <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding GitHubReleases}" BorderThickness="1" BorderBrush="{DynamicResource AccentBaseColorBrush}" ScrollViewer.CanContentScroll="False" Margin="0,10,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <MetroControls:Badged Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Margin="0,10,35,10" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseType, Converter={StaticResource ReleaseTypeBadgeTextConverter}}">
+                                        <iconPacks:PackIconMaterial Kind="Tag" Margin="5,5,20,5" Width="35" Height="Auto" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                    </MetroControls:Badged>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ReleaseTime, StringFormat='Published: {0:dd.MM.yyyy HH:mm}'}" FontSize="16" Foreground="{DynamicResource GrayBrush3}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1">
+                                        <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding ReleaseURL}">
+                                            <local:ExternalBrowserHyperlinkControl.Inlines>
+                                                <Run Text="{Binding ReleaseURL}" FontSize="16" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                            </local:ExternalBrowserHyperlinkControl.Inlines>
+                                        </local:ExternalBrowserHyperlinkControl>
+                                    </TextBlock>
+
+                                    <Separator Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,10"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                        <!-- see: http://blog.jerrynixon.com/2011/07/showing-no-records-when-wpf-listbox-is.html-->
+                        <ListBox.Style>
+                            <Style TargetType="{x:Type ListBox}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="No releases available" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource GrayBrush3}" FontSize="30"/>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Style>
+                    </ListBox>
+                </DockPanel>
             </TabItem>
         </MetroControls:MetroTabControl>
     </Grid>
