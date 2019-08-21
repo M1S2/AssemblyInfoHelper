@@ -10,6 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInfoProject", "AssemblyInfoProject\AssemblyInfoProject.csproj", "{55BB509D-1B63-45C3-B1B7-7CA9915B2B19}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97B2DB9C-A5B5-42A9-8616-A9CDC8052D25} = {97B2DB9C-A5B5-42A9-8616-A9CDC8052D25}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInfoHelper", "AssemblyInfoHelper\AssemblyInfoHelper.csproj", "{97B2DB9C-A5B5-42A9-8616-A9CDC8052D25}"
 EndProject

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
 
 using Markdig;
 using MahApps.Metro.Controls;
@@ -114,12 +115,13 @@ namespace AssemblyInfoHelper
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            setWebBrowserVersion();
+
             this.Icon = System.Windows.Application.Current.MainWindow.Icon;
 
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
             string readmeText = "<font face = \"calibri\">";
-            //string readmeText = "<!DOCTYPE html><html><head><meta http - equiv = \"X-UA-Compatible\" content = \"IE=Edge\"/></head><body><font face = \"calibri\">";
             string changelogText = "<font face = \"calibri\">";
 
             if (File.Exists(_readmePath))
@@ -140,12 +142,28 @@ namespace AssemblyInfoHelper
                 changelogText += "No changelog file found in: <br><br>" + Environment.NewLine + _changeLogPath;
             }
 
-            //readmeText += "</body></html>";
-
             webBrowser_Readme.NavigateToString(readmeText);
             webBrowser_Changelog.NavigateToString(changelogText);
 
             await GetAllGitHubReleases();
+        }
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Set a registry key for the current user to use Internet Explorer 11 for rendering using the WebBrowser control
+        /// </summary>
+        //see: https://stackoverflow.com/questions/17922308/use-latest-version-of-internet-explorer-in-the-webbrowser-control
+        private void setWebBrowserVersion()
+        {
+            RegistryKey regKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", RegistryKeyPermissionCheck.ReadWriteSubTree);
+
+            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe";
+
+            if (regKey.GetValue(processName) == null)
+            {
+                regKey.SetValue(processName, 11001, RegistryValueKind.DWord);       //11001 = Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the !DOCTYPE directive.
+            }
         }
 
         //********************************************************************************************************************************************************************
