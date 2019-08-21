@@ -172,7 +172,7 @@ namespace AssemblyInfoHelper
         /// Open links in the users default browser
         /// </summary>
         /// see: https://stackoverflow.com/questions/15847822/opening-web-browser-click-in-default-browser
-        private void webBrowser_Readme_Navigating(object sender, NavigatingCancelEventArgs e)
+        private void webBrowser_Navigating(object sender, NavigatingCancelEventArgs e)
         {
             if (e.Uri != null)
             {
