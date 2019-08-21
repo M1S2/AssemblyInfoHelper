@@ -28,6 +28,8 @@ The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
 
 Include the [latest release](https://www.nuget.org/packages/AssemblyInfoHelper/) from nuget.org in your project.
 
+You can also use the Package Manager console with: `PM> Install-Package AssemblyInfoHelper`
+
 ## Usage
 
 Open the info window with: 
