@@ -23,6 +23,9 @@ using System.IO;
 using Octokit;
 using AssemblyInfoHelper.GitHubReleases;
 using Semver;
+using CefSharp;
+using System.Reflection;
+using CefSharp.Wpf;
 
 namespace AssemblyInfoHelper
 {
@@ -80,7 +83,7 @@ namespace AssemblyInfoHelper
         private string _changeLogPath;
 
         //********************************************************************************************************************************************************************
-
+        
         /// <summary>
         /// Show the WindowAssemblyInfo and get the README.md and CHANGELOG.md files from the given paths.
         /// </summary>
@@ -102,6 +105,9 @@ namespace AssemblyInfoHelper
         /// </summary>
         public WindowAssemblyInfo()
         {
+            AppDomain.CurrentDomain.AssemblyResolve += Resolver;
+            InitializeCefSharp();
+
             GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             string startupPath = System.AppDomain.CurrentDomain.BaseDirectory;
@@ -109,6 +115,38 @@ namespace AssemblyInfoHelper
             _changeLogPath = startupPath + @"CHANGELOG.md";
             this.DataContext = this;
         }
+        
+        #region CefSharp
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void InitializeCefSharp()
+        {
+            var settings = new CefSettings();
+
+            // Set BrowserSubProcessPath based on app bitness at runtime
+            settings.BrowserSubprocessPath = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, Environment.Is64BitProcess ? "x64" : "x86", "CefSharp.BrowserSubprocess.exe");
+
+            // Make sure you set performDependencyCheck false
+            Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
+        }
+
+        // Will attempt to load missing assembly from either x86 or x64 subdir
+        // Required by CefSharp to load the unmanaged dependencies when running using AnyCPU
+        private static Assembly Resolver(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.StartsWith("CefSharp"))
+            {
+                string assemblyName = args.Name.Split(new[] { ',' }, 2)[0] + ".dll";
+                string archSpecificPath = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, Environment.Is64BitProcess ? "x64" : "x86", assemblyName);
+
+                Assembly assembly = File.Exists(archSpecificPath) ? Assembly.LoadFile(archSpecificPath) : null;
+                return assembly;
+            }
+
+            return null;
+        }
+
+        #endregion
 
         //********************************************************************************************************************************************************************
 
@@ -141,8 +179,10 @@ namespace AssemblyInfoHelper
             }
 
             //readmeText += "</body></html>";
+            
+            //webBrowser_Readme.LoadHtml(readmeText);
 
-            webBrowser_Readme.NavigateToString(readmeText);
+            //webBrowser_Readme.NavigateToString(readmeText);
             webBrowser_Changelog.NavigateToString(changelogText);
 
             await GetAllGitHubReleases();
