@@ -186,17 +186,26 @@ namespace AssemblyInfoHelper
         #region GitHub releases
 
         private ObservableCollection<GitHubRelease> _gitHubReleases = new ObservableCollection<GitHubRelease>();
+        /// <summary>
+        /// List with all GitHub releases
+        /// </summary>
         public ObservableCollection<GitHubRelease> GitHubReleases
         {
             get { return _gitHubReleases; }
             set { _gitHubReleases = value; OnPropertyChanged(); OnPropertyChanged("NumberNewReleasesString"); }
         }
 
+        /// <summary>
+        /// Is a GitHubRepo attribute assigned or not
+        /// </summary>
         public bool IsGitHubRepoAssigned
         {
             get { return !string.IsNullOrEmpty(AssemblyInfoHelperClass.GitHubRepoUrl); }
         }
 
+        /// <summary>
+        /// String containing the number of new releases. Empty string if number equals 0
+        /// </summary>
         public string NumberNewReleasesString
         {
             get
@@ -213,6 +222,10 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
+        /// <summary>
+        /// Get all releases from the GitHub repository
+        /// </summary>
+        /// see: https://github.com/nixxquality/GitHubUpdate
         private async Task GetAllGitHubReleases()
         {
             GitHubReleases.Clear();
@@ -239,7 +252,7 @@ namespace AssemblyInfoHelper
                 GitHubReleases.Add(new GitHubRelease()
                 {
                     Name = release.Name,
-                    ReleaseTime = release.PublishedAt.Value.ToLocalTime(),
+                    ReleaseTime = release.CreatedAt.ToLocalTime(),
                     Version = stripInitialV(release.TagName),
                     ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
                     ReleaseURL = AssemblyInfoHelperClass.GitHubRepoUrl + "/releases/tag/" + release.TagName

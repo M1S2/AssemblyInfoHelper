@@ -140,7 +140,7 @@
                         </TextBlock>
                     </StackPanel>
 
-                    <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding GitHubReleases}" BorderThickness="1" BorderBrush="{DynamicResource AccentBaseColorBrush}" ScrollViewer.CanContentScroll="False" Margin="0,10,0,0">
+                    <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding GitHubReleases}" BorderThickness="1" BorderBrush="{DynamicResource AccentBaseColorBrush}" Background="{DynamicResource WhiteBrush}" ScrollViewer.CanContentScroll="False" Margin="0,10,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -157,7 +157,7 @@
                                     <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ToolTip="{Binding ReleaseURL}">
                                         <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding ReleaseURL}" Foreground="Transparent" Background="Transparent">
                                             <local:ExternalBrowserHyperlinkControl.Inlines>
-                                                <MetroControls:Badged Margin="0,10,35,10" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseType, Converter={StaticResource ReleaseTypeBadgeTextConverter}}">
+                                                <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseType, Converter={StaticResource ReleaseTypeBadgeTextConverter}}">
                                                     <iconPacks:PackIconMaterial Kind="Tag" Margin="5,5,20,5" Width="35" Height="Auto" Foreground="{DynamicResource AccentBaseColorBrush}"/>
                                                 </MetroControls:Badged>
                                             </local:ExternalBrowserHyperlinkControl.Inlines>
@@ -177,12 +177,12 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
                                             <StackPanel>
-                                                <Separator x:Name="Separator"/>
+                                                <Separator x:Name="SeparatorListBox"/>
                                                 <ContentPresenter/>
                                             </StackPanel>
                                             <ControlTemplate.Triggers>
                                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" TargetName="Separator" Value="Collapsed"/>
+                                                    <Setter Property="Visibility" TargetName="SeparatorListBox" Value="Collapsed"/>
                                                 </DataTrigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
