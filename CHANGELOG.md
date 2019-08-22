@@ -2,6 +2,8 @@
 
 ## [%version%] - %date%
 
+- New tab added for GitHub releases
+- Image display in Readme improved
 
 ## [v4.0.0] - 08.03.2019 16:39
 
