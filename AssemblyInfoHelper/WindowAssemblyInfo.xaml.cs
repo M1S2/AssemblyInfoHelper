@@ -211,7 +211,7 @@ namespace AssemblyInfoHelper
             get
             {
                 int numberNewReleases = GitHubReleases == null ? 0 : GitHubReleases.Where(r => r.ReleaseType == GitHubReleaseTypes.NEW).Count();
-                return numberNewReleases > 0 ? numberNewReleases.ToString() : ""; 
+                return numberNewReleases > 0 ? numberNewReleases.ToString() : "";
             }
         }
 
@@ -228,35 +228,43 @@ namespace AssemblyInfoHelper
         /// see: https://github.com/nixxquality/GitHubUpdate
         private async Task GetAllGitHubReleases()
         {
-            GitHubReleases.Clear();
-
-            if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
-
-            // example url: https://github.com/M1S2/AssemblyInfoHelper
-            string[] urlSplitted = AssemblyInfoHelperClass.GitHubRepoUrl.Split('/');
-            if(urlSplitted.Length < 5) { return; }
-            string repoOwner = urlSplitted[3];
-            string repoName = urlSplitted[4];
-
-            GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
-
-            GitHubReleases.Clear();
-            IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
-
-            SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion.Substring(0, AssemblyInfoHelperClass.AssemblyVersion.LastIndexOf('.')));
-
-            foreach (Release release in releases)
+            try
             {
-                SemVersion releaseVersion = stripInitialV(release.TagName);
+                GitHubReleases.Clear();
 
-                GitHubReleases.Add(new GitHubRelease()
+                if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
+
+                // example url: https://github.com/M1S2/AssemblyInfoHelper
+                string[] urlSplitted = AssemblyInfoHelperClass.GitHubRepoUrl.Split('/');
+                if (urlSplitted.Length < 5) { return; }
+                string repoOwner = urlSplitted[3];
+                string repoName = urlSplitted[4];
+
+                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
+
+                GitHubReleases.Clear();
+                IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
+
+                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion.Substring(0, AssemblyInfoHelperClass.AssemblyVersion.LastIndexOf('.')));
+
+                foreach (Release release in releases)
                 {
-                    Name = release.Name,
-                    ReleaseTime = release.CreatedAt.ToLocalTime(),
-                    Version = stripInitialV(release.TagName),
-                    ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
-                    ReleaseURL = AssemblyInfoHelperClass.GitHubRepoUrl + "/releases/tag/" + release.TagName
-                });
+                    SemVersion releaseVersion = stripInitialV(release.TagName);
+
+                    GitHubReleases.Add(new GitHubRelease()
+                    {
+                        Name = release.Name,
+                        ReleaseTime = release.CreatedAt.ToLocalTime(),
+                        Version = stripInitialV(release.TagName),
+                        ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
+                        ReleaseURL = AssemblyInfoHelperClass.GitHubRepoUrl + "/releases/tag/" + release.TagName
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                await this.ShowMessageAsync("Error loading GitHub releases", ex.Message + (ex.InnerException != null ? Environment.NewLine + Environment.NewLine + ex.InnerException.Message : ""), MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
+                GitHubReleases = null;
             }
         }
 

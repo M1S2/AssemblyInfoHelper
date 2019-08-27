@@ -15,185 +15,106 @@ namespace AssemblyInfoHelper
     public static class AssemblyInfoHelperClass
     {
         /// <summary>
-        /// Assembly title attribute
+        /// Types of assembly attributes
         /// </summary>
-        public static string AssemblyTitle
+        public enum AssemblyAttributeTypes
         {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
-                
-                if (assemblyObjects.Length > 0)
-                {
-                    return ((AssemblyTitleAttribute)assemblyObjects[0]).Title;
-                }
-                return "";
-            }
+            TITLE,
+            DESCRIPTION,
+            CONFIGURATION,
+            COMPANY,
+            PRODUCT,
+            COPYRIGHT,
+            TRADEMARK,
+            CULTURE,
+            FILEVERSION,
+            VERSION,
+            GITHUB_URL
         }
 
         //********************************************************************************************************************************************************************
 
         /// <summary>
-        /// Assembly description attribute
+        /// Get the specified attribute value from the given assembly
         /// </summary>
-        public static string AssemblyDescription
+        /// <param name="assembly">Assembly from which to get the attribute</param>
+        /// <param name="attributeType">Type of the attribute to get</param>
+        /// <returns>String with attribute value</returns>
+        public static string GetAttributeFromAssembly(Assembly assembly, AssemblyAttributeTypes attributeType)
         {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), true);
+            object[] assemblyObjects;
+            string attributeValue = "";
 
-                if (assemblyObjects.Length > 0)
+            switch (attributeType)
+            {
+                case AssemblyAttributeTypes.TITLE:
                 {
-                    return ((AssemblyDescriptionAttribute)assemblyObjects[0]).Description;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyTitleAttribute)assemblyObjects[0]).Title; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly configuration attribute
-        /// </summary>
-        public static string AssemblyConfiguration
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyConfigurationAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.DESCRIPTION:
                 {
-                    return ((AssemblyConfigurationAttribute)assemblyObjects[0]).Configuration;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyDescriptionAttribute)assemblyObjects[0]).Description; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly company attribute
-        /// </summary>
-        public static string AssemblyCompany
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.CONFIGURATION:
                 {
-                    return ((AssemblyCompanyAttribute)assemblyObjects[0]).Company;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyConfigurationAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyConfigurationAttribute)assemblyObjects[0]).Configuration; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly product attribute
-        /// </summary>
-        public static string AssemblyProduct
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.COMPANY:
                 {
-                    return ((AssemblyProductAttribute)assemblyObjects[0]).Product;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyCompanyAttribute)assemblyObjects[0]).Company; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly copyright attribute
-        /// </summary>
-        public static string AssemblyCopyright
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.PRODUCT:
                 {
-                    return ((AssemblyCopyrightAttribute)assemblyObjects[0]).Copyright;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyProductAttribute)assemblyObjects[0]).Product; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly trademark attribute
-        /// </summary>
-        public static string AssemblyTrademark
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyTrademarkAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.COPYRIGHT:
                 {
-                    return ((AssemblyTrademarkAttribute)assemblyObjects[0]).Trademark;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyCopyrightAttribute)assemblyObjects[0]).Copyright; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly culture attribute
-        /// </summary>
-        public static string AssemblyCulture
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCultureAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.TRADEMARK:
                 {
-                    return ((AssemblyCultureAttribute)assemblyObjects[0]).Culture;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyTrademarkAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyTrademarkAttribute)assemblyObjects[0]).Trademark; }
+                    break;
                 }
-                return "";
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly version attribute
-        /// </summary>
-        public static string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetEntryAssembly().GetName().Version.ToString();
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly file version attribute
-        /// </summary>
-        public static string AssemblyFileVersion
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
-
-                if (assemblyObjects.Length > 0)
+                case AssemblyAttributeTypes.CULTURE:
                 {
-                    return ((AssemblyFileVersionAttribute)assemblyObjects[0]).Version;
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyCultureAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyCultureAttribute)assemblyObjects[0]).Culture; }
+                    break;
                 }
-                return "";
+                case AssemblyAttributeTypes.FILEVERSION:
+                {
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyFileVersionAttribute)assemblyObjects[0]).Version; }
+                    break;
+                }
+                case AssemblyAttributeTypes.VERSION:
+                {
+                    attributeValue = Assembly.GetEntryAssembly().GetName().Version.ToString();
+                    break;
+                }
+                case AssemblyAttributeTypes.GITHUB_URL:
+                {
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(GitHubRepoAttribute), true);
+                    if (assemblyObjects.Length > 0) { attributeValue = ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl; }
+                    break;
+                }
             }
+
+            return attributeValue;
         }
 
         //********************************************************************************************************************************************************************
@@ -201,53 +122,115 @@ namespace AssemblyInfoHelper
         /// <summary>
         /// Get the time of the last build of the assembly.
         /// </summary>
+        /// <param name="assembly">Assembly from which to get the last linker time</param>
         /// <returns>last build time</returns>
         /// see: https://stackoverflow.com/questions/1600962/displaying-the-build-date?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        public static DateTime AssemblyLinkerTime
+        public static DateTime GetLinkerTimeFromAssembly(Assembly assembly)
         {
-            get
-            {
-                Assembly assembly = Assembly.GetEntryAssembly();
+            var filePath = assembly.Location;
+            const int c_PeHeaderOffset = 60;
+            const int c_LinkerTimestampOffset = 8;
 
-                var filePath = assembly.Location;
-                const int c_PeHeaderOffset = 60;
-                const int c_LinkerTimestampOffset = 8;
+            var buffer = new byte[2048];
 
-                var buffer = new byte[2048];
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                stream.Read(buffer, 0, 2048);
 
-                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                    stream.Read(buffer, 0, 2048);
+            var offset = BitConverter.ToInt32(buffer, c_PeHeaderOffset);
+            var secondsSince1970 = BitConverter.ToInt32(buffer, offset + c_LinkerTimestampOffset);
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-                var offset = BitConverter.ToInt32(buffer, c_PeHeaderOffset);
-                var secondsSince1970 = BitConverter.ToInt32(buffer, offset + c_LinkerTimestampOffset);
-                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var linkTimeUtc = epoch.AddSeconds(secondsSince1970);
 
-                var linkTimeUtc = epoch.AddSeconds(secondsSince1970);
+            var localTime = TimeZoneInfo.ConvertTimeFromUtc(linkTimeUtc, TimeZoneInfo.Local);
 
-                var localTime = TimeZoneInfo.ConvertTimeFromUtc(linkTimeUtc, TimeZoneInfo.Local);
-
-                return localTime;
-            }
+            return localTime;
         }
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly title attribute
+        /// </summary>
+        public static string AssemblyTitle => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.TITLE);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly description attribute
+        /// </summary>
+        public static string AssemblyDescription => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.DESCRIPTION);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly configuration attribute
+        /// </summary>
+        public static string AssemblyConfiguration => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.CONFIGURATION);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly company attribute
+        /// </summary>
+        public static string AssemblyCompany => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.COMPANY);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly product attribute
+        /// </summary>
+        public static string AssemblyProduct => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.PRODUCT);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly copyright attribute
+        /// </summary>
+        public static string AssemblyCopyright => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.COPYRIGHT);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly trademark attribute
+        /// </summary>
+        public static string AssemblyTrademark => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.TRADEMARK);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly culture attribute
+        /// </summary>
+        public static string AssemblyCulture => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.CULTURE);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly version attribute
+        /// </summary>
+        public static string AssemblyVersion => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.VERSION);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly file version attribute
+        /// </summary>
+        public static string AssemblyFileVersion => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.FILEVERSION);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Get the time of the last build of the assembly.
+        /// </summary>
+        /// <returns>last build time</returns>
+        public static DateTime AssemblyLinkerTime => GetLinkerTimeFromAssembly(Assembly.GetEntryAssembly());
 
         //********************************************************************************************************************************************************************
 
         /// <summary>
         /// GitHubRepo attribute
         /// </summary>
-        public static string GitHubRepoUrl
-        {
-            get
-            {
-                object[] assemblyObjects = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(GitHubRepoAttribute), true);
-
-                if (assemblyObjects.Length > 0)
-                {
-                    return ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl;
-                }
-                return null;
-            }
-        }
+        public static string GitHubRepoUrl => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.GITHUB_URL);
 
     }
 }
