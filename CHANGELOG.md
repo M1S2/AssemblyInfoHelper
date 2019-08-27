@@ -1,6 +1,6 @@
 # AssemblyInfoHelper
 
-## [%version%] - %date%
+## [v4.1.1] - 27.08.2019 21:39
 
 - GitHub release tab now doesn't crash without internet
 - AssemblyInfoHelperClass can also be used to get attributes from any assembly now

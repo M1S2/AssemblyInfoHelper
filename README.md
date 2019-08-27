@@ -1,6 +1,6 @@
 # AssemblyInfoHelper
 
-Version: %version%
+Version: v4.1.1
 
 [![nuget](https://img.shields.io/nuget/v/AssemblyInfoHelper.svg)](https://www.nuget.org/packages/AssemblyInfoHelper/)
 
