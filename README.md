@@ -26,7 +26,7 @@ The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
 
 ## Installation
 
-Include the [latest release](https://www.nuget.org/packages/AssemblyInfoHelper/) from nuget.org in your project.
+Include the [latest release from nuget.org](https://www.nuget.org/packages/AssemblyInfoHelper/) in your project.
 
 You can also use the Package Manager console with: `PM> Install-Package AssemblyInfoHelper`
 

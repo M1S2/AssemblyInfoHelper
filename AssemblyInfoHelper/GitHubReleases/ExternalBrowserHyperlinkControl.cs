@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Navigation;
 
-namespace AssemblyInfoHelper
+namespace AssemblyInfoHelper.GitHubReleases
 {
     /// <summary>
     /// Opens <see cref="Hyperlink.NavigateUri"/> in a default system browser
