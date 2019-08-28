@@ -10,7 +10,7 @@
     <iconUrl>https://github.com/M1S2/AssemblyInfoHelper/raw/master/AppIcon/Update.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Display informations gathered from the assembly info.</description>
-    <releaseNotes>Release v4.0.0</releaseNotes>
+    <releaseNotes>Release %version%</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>Assembly info</tags>
   </metadata>

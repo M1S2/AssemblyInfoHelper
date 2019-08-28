@@ -17,6 +17,9 @@
     <VersionFile>
       <Path>/AssemblyInfoProject/Properties/AssemblyInfo.cs</Path>
     </VersionFile>
+    <VersionFile>
+      <Path>\AssemblyInfoHelper\AssemblyInfoHelper.nuspec</Path>
+    </VersionFile>
   </VersionFiles>
   <BinaryObjects>
     <BinaryObject xsi:type="BinaryFolder">
