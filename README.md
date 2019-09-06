@@ -1,8 +1,9 @@
 # AssemblyInfoHelper
 
-Version: %version%
-
-[![nuget](https://img.shields.io/nuget/v/AssemblyInfoHelper.svg)](https://www.nuget.org/packages/AssemblyInfoHelper/)
+[![Nuget Version](https://img.shields.io/nuget/v/AssemblyInfoHelper.svg)](https://www.nuget.org/packages/AssemblyInfoHelper/)
+![GitHub Release Version](https://img.shields.io/github/v/release/M1S2/AssemblyInfoHelper)
+[![GitHub License](https://img.shields.io/github/license/M1S2/AssemblyInfoHelper)](LICENSE.md)
+![Nuget Downloads](https://img.shields.io/nuget/dt/AssemblyInfoHelper)
 
 ## Purpose
 
@@ -21,6 +22,8 @@ This contains the following informations:
 The description is get from the README.md file in the path given when creating the WindowAssemblyInfo.
 
 The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo.
+
+GitHub releases are taken from repository at the url given by the `GitHubRepo` attribute (see usage below). 
 
 The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
 
