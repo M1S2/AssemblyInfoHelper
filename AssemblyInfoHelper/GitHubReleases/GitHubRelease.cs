@@ -14,5 +14,6 @@ namespace AssemblyInfoHelper.GitHubReleases
         public SemVersion Version { get; set; }
         public GitHubReleaseTypes ReleaseType { get; set; }
         public string ReleaseURL { get; set; }
+        public string ReleaseNotes { get; set; }
     }
 }

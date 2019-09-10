@@ -24,6 +24,7 @@ using System.IO;
 using Octokit;
 using AssemblyInfoHelper.GitHubReleases;
 using Semver;
+using System.Net;
 
 namespace AssemblyInfoHelper
 {
@@ -55,6 +56,24 @@ namespace AssemblyInfoHelper
         public string AssemblyInfoHelperVersion
         {
             get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
+
+        //********************************************************************************************************************************************************************
+
+        private string _readmeMarkdown;
+        public string ReadmeMarkdown
+        {
+            get { return _readmeMarkdown; }
+            set { _readmeMarkdown = value; OnPropertyChanged(); }
+        }
+        
+        //********************************************************************************************************************************************************************
+
+        private string _changelogMarkdown;
+        public string ChangelogMarkdown
+        {
+            get { return _changelogMarkdown; }
+            set { _changelogMarkdown = value; OnPropertyChanged(); }
         }
 
         //********************************************************************************************************************************************************************
@@ -119,31 +138,26 @@ namespace AssemblyInfoHelper
 
             this.Icon = System.Windows.Application.Current.MainWindow.Icon;
 
-            MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-
-            string readmeText = "<font face = \"calibri\">";
-            string changelogText = "<font face = \"calibri\">";
+#warning Images not shown in FlowDocument (Batches)
+#warning FlowDocument in RichTextBox hyperlink not active
 
             if (File.Exists(_readmePath))
             {
-                readmeText += Markdig.Markdown.ToHtml(File.ReadAllText(_readmePath), pipeline);
+                ReadmeMarkdown = File.ReadAllText(_readmePath);
             }
             else
             {
-                readmeText += "No readme file found in: <br><br>" + _readmePath;
+                ReadmeMarkdown = "No readme file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
             }
 
             if (File.Exists(_changeLogPath))
             {
-                changelogText += Markdig.Markdown.ToHtml(File.ReadAllText(_changeLogPath), pipeline);
+                ChangelogMarkdown = File.ReadAllText(_changeLogPath);
             }
             else
             {
-                changelogText += "No changelog file found in: <br><br>" + Environment.NewLine + _changeLogPath;
+                ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
             }
-
-            webBrowser_Readme.NavigateToString(readmeText);
-            webBrowser_Changelog.NavigateToString(changelogText);
 
             await GetAllGitHubReleases();
         }
@@ -257,7 +271,8 @@ namespace AssemblyInfoHelper
                         ReleaseTime = release.CreatedAt.ToLocalTime(),
                         Version = stripInitialV(release.TagName),
                         ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
-                        ReleaseURL = AssemblyInfoHelperClass.GitHubRepoUrl + "/releases/tag/" + release.TagName
+                        ReleaseURL = release.HtmlUrl,
+                        ReleaseNotes = release.Body
                     });
                 }
             }

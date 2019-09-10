@@ -98,12 +98,17 @@ namespace AssemblyInfoHelper
                 case AssemblyAttributeTypes.FILEVERSION:
                 {
                     assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
-                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyFileVersionAttribute)assemblyObjects[0]).Version; }
+                    if (assemblyObjects.Length > 0)
+                    {
+                        attributeValue = ((AssemblyFileVersionAttribute)assemblyObjects[0]).Version;
+                        attributeValue = attributeValue.Substring(0, attributeValue.LastIndexOf("."));
+                    }
                     break;
                 }
                 case AssemblyAttributeTypes.VERSION:
                 {
                     attributeValue = Assembly.GetEntryAssembly().GetName().Version.ToString();
+                    attributeValue = attributeValue.Substring(0, attributeValue.LastIndexOf("."));
                     break;
                 }
                 case AssemblyAttributeTypes.GITHUB_URL:
