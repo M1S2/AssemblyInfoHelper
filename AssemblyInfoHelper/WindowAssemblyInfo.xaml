@@ -88,8 +88,8 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <local:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>
-                <!--<local:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+                <!--<local:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>-->
+                <local:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->

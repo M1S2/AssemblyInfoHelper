@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AssemblyInfoHelper"
              xmlns:markdown="clr-namespace:Neo.Markdig.Xaml;assembly=Neo.Markdig.Xaml"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              IsReadOnly="True" IsReadOnlyCaretVisible="True">
@@ -12,4 +13,12 @@
     <RichTextBox.CommandBindings>
         <CommandBinding Command="{x:Static markdown:MarkdownXaml.Hyperlink}" Executed="CommandBinding_Executed" />
     </RichTextBox.CommandBindings>
+
+    <RichTextBox.Document>
+        <FlowDocument>
+            <Paragraph>
+                <Image Source="{svgc:SvgImage http://img.shields.io/nuget/v/AssemblyInfoHelper.svg}"/>
+            </Paragraph>
+        </FlowDocument>
+    </RichTextBox.Document>
 </RichTextBox>

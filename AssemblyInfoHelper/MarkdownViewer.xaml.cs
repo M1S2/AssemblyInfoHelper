@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
 using Neo.Markdig.Xaml;
+using System.Text.RegularExpressions;
 
 namespace AssemblyInfoHelper
 {
@@ -40,9 +41,20 @@ namespace AssemblyInfoHelper
         {
             string markdownString = ((MarkdownViewer)sender).MarkdownString;
             if(markdownString == null) { return; }
-            FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
-            //string docXaml = MarkdownXaml.ToXaml(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
-            ((MarkdownViewer)sender).Document = doc;
+            //FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
+            string docXaml = MarkdownXaml.ToXaml(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
+
+            Match matchNamespaces = Regex.Match(docXaml, "<FlowDocument(.*?)>");
+            docXaml = docXaml.Replace(matchNamespaces.Value, "<FlowDocument" + matchNamespaces.Groups[1].Value + " xmlns:svgc=\"http://sharpvectors.codeplex.com/svgc/\">");
+
+            MatchCollection matches = Regex.Matches(docXaml, "Source=\"(.*?.svg)\"");
+            foreach (Match match in matches)
+            {
+                docXaml = docXaml.Replace(match.Value, "Source=\"{svgc:SvgImage " + match.Groups[1].Value.Replace("https", "http") + "}\"");
+            }
+
+            //FlowDocument doc = System.Windows.Markup.XamlReader.Parse(docXaml) as FlowDocument;
+            //((MarkdownViewer)sender).Document = doc;
         }
 
         //********************************************************************************************************************************************************************
