@@ -22,7 +22,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.IO;
 using Octokit;
-using AssemblyInfoHelper.GitHubReleases;
+using AssemblyInfoHelper.GitHub;
 using Semver;
 using System.Net;
 
@@ -108,7 +108,7 @@ namespace AssemblyInfoHelper
         /// <param name="changeLogPath">Path for the CHANGELOG.md file.</param>
         public WindowAssemblyInfo(string readmePath, string changeLogPath)
         {
-            GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
+            //GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             _readmePath = readmePath;
             _changeLogPath = changeLogPath;
@@ -122,7 +122,7 @@ namespace AssemblyInfoHelper
         /// </summary>
         public WindowAssemblyInfo()
         {
-            GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
+            //GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             string startupPath = System.AppDomain.CurrentDomain.BaseDirectory;
             _readmePath = startupPath + @"README.md";
@@ -159,7 +159,7 @@ namespace AssemblyInfoHelper
                 ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
             }
 
-            await GetAllGitHubReleases();
+            await GitHubUtils.Instance.GetAllGitHubReleases();
         }
 
         //********************************************************************************************************************************************************************
@@ -195,112 +195,5 @@ namespace AssemblyInfoHelper
             }
         }
 
-        //********************************************************************************************************************************************************************
-
-        #region GitHub releases
-
-        private ObservableCollection<GitHubRelease> _gitHubReleases = new ObservableCollection<GitHubRelease>();
-        /// <summary>
-        /// List with all GitHub releases
-        /// </summary>
-        public ObservableCollection<GitHubRelease> GitHubReleases
-        {
-            get { return _gitHubReleases; }
-            set { _gitHubReleases = value; OnPropertyChanged(); OnPropertyChanged("NumberNewReleasesString"); }
-        }
-
-        /// <summary>
-        /// Is a GitHubRepo attribute assigned or not
-        /// </summary>
-        public bool IsGitHubRepoAssigned
-        {
-            get { return !string.IsNullOrEmpty(AssemblyInfoHelperClass.GitHubRepoUrl); }
-        }
-
-        /// <summary>
-        /// String containing the number of new releases. Empty string if number equals 0
-        /// </summary>
-        public string NumberNewReleasesString
-        {
-            get
-            {
-                int numberNewReleases = GitHubReleases == null ? 0 : GitHubReleases.Where(r => r.ReleaseType == GitHubReleaseTypes.NEW).Count();
-                return numberNewReleases > 0 ? numberNewReleases.ToString() : "";
-            }
-        }
-
-        private void GitHubReleases_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged("NumberNewReleasesString");
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Get all releases from the GitHub repository
-        /// </summary>
-        /// see: https://github.com/nixxquality/GitHubUpdate
-        private async Task GetAllGitHubReleases()
-        {
-            try
-            {
-                GitHubReleases.Clear();
-
-                if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
-
-                // example url: https://github.com/M1S2/AssemblyInfoHelper
-                string[] urlSplitted = AssemblyInfoHelperClass.GitHubRepoUrl.Split('/');
-                if (urlSplitted.Length < 5) { return; }
-                string repoOwner = urlSplitted[3];
-                string repoName = urlSplitted[4];
-
-                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
-
-                GitHubReleases.Clear();
-                IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
-
-                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion.Substring(0, AssemblyInfoHelperClass.AssemblyVersion.LastIndexOf('.')));
-
-                foreach (Release release in releases)
-                {
-                    SemVersion releaseVersion = stripInitialV(release.TagName);
-
-                    GitHubReleases.Add(new GitHubRelease()
-                    {
-                        Name = release.Name,
-                        ReleaseTime = release.CreatedAt.ToLocalTime(),
-                        Version = stripInitialV(release.TagName),
-                        ReleaseType = (releaseVersion > currentVersion ? GitHubReleaseTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTypes.CURRENT : GitHubReleaseTypes.OLD)),
-                        ReleaseURL = release.HtmlUrl,
-                        ReleaseNotes = release.Body
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                await this.ShowMessageAsync("Error loading GitHub releases", ex.Message + (ex.InnerException != null ? Environment.NewLine + Environment.NewLine + ex.InnerException.Message : ""), MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
-                GitHubReleases = null;
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Strip the initial "v" from the version string if existing and parse the result to a SemVersion object.
-        /// </summary>
-        /// <param name="version">Version string</param>
-        /// <returns>SemVersion object</returns>
-        /// see: https://github.com/nixxquality/GitHubUpdate/blob/master/GitHubUpdate/Helper.cs
-        private SemVersion stripInitialV(string version)
-        {
-            if (version[0] == 'v')
-                version = version.Substring(1);
-
-            SemVersion result = SemVersion.Parse(version);
-
-            return result;
-        }
-
-        #endregion
     }
 }

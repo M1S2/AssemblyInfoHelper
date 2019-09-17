@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
-using AssemblyInfoHelper.GitHubReleases;
+using AssemblyInfoHelper.GitHub;
 
 namespace AssemblyInfoHelper
 {

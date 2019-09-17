@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:AssemblyInfoProject"
         xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -14,9 +15,14 @@
             <iconPacks:PackIconMaterial Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="2" Padding="4" Foreground="{DynamicResource IdealForegroundColorBrush}" Kind="Information" />
         </DataTemplate>
     </MetroControls:MetroWindow.IconTemplate>
-    
+
+    <MetroControls:MetroWindow.RightWindowCommands>
+        <MetroControls:WindowCommands>
+            <assemblyInfoHelper:AppInfoButton/>
+        </MetroControls:WindowCommands>
+    </MetroControls:MetroWindow.RightWindowCommands>
+
     <Grid>
         <Button x:Name="btn_showAssemblyInfo" Content="Show assembly info" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="128" Click="btn_showAssemblyInfo_Click"/>
-
     </Grid>
 </MetroControls:MetroWindow>

@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace AssemblyInfoHelper.GitHubReleases
+namespace AssemblyInfoHelper.GitHub
 {
     public class ReleaseTypeToBadgeTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            switch ((GitHubReleaseTypes)value)
+            switch ((GitHubReleaseTimeTypes)value)
             {
-                case GitHubReleaseTypes.NEW:
+                case GitHubReleaseTimeTypes.NEW:
                     return "New";
-                case GitHubReleaseTypes.CURRENT:
+                case GitHubReleaseTimeTypes.CURRENT:
                     return "Current";
                 default:
                     return "";

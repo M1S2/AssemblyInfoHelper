@@ -87,11 +87,16 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfoHelperClass.cs" />
-    <Compile Include="GitHubReleases\ExternalBrowserHyperlinkControl.cs" />
-    <Compile Include="GitHubReleases\GitHubRelease.cs" />
-    <Compile Include="GitHubReleases\GitHubReleaseTypes.cs" />
-    <Compile Include="GitHubReleases\GitHubRepoAttribute.cs" />
-    <Compile Include="GitHubReleases\ReleaseTypeToBadgeTextConverter.cs" />
+    <Compile Include="AppInfoButton.xaml.cs">
+      <DependentUpon>AppInfoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GitHub\ExternalBrowserHyperlinkControl.cs" />
+    <Compile Include="GitHub\GitHubRelease.cs" />
+    <Compile Include="GitHub\GitHubReleaseTypes.cs" />
+    <Compile Include="GitHub\GitHubReleaseTimeTypes.cs" />
+    <Compile Include="GitHub\GitHubRepoAttribute.cs" />
+    <Compile Include="GitHub\GitHubUtils.cs" />
+    <Compile Include="GitHub\ReleaseTypeToBadgeTextConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,6 +116,10 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AppInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MarkdownViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

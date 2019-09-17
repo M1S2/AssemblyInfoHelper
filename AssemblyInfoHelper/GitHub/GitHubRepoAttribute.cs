@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssemblyInfoHelper.GitHubReleases
+namespace AssemblyInfoHelper.GitHub
 {
     /// <summary>
     /// Attribute to assign informations about the GitHub repository
