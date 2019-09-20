@@ -120,6 +120,11 @@
                 </TabItem.Header>
 
                 <DockPanel LastChildFill="True" Margin="10">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{DynamicResource AccentBaseColorBrush}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}">
+                        <iconPacks:PackIconMaterial Margin="10" Width="30" Height="30" Kind="Alert" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                        <TextBlock Margin="10" FontSize="14" Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                    </StackPanel>
+                    
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
                         <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="Repository URL" Foreground="{DynamicResource AccentBaseColorBrush}"/>
                         <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">

@@ -10,36 +10,35 @@
              xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="90">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+    
     <Grid>
-        <Button Command="{Binding InfoCommand}">
-            <!--<MetroControls:Badged Badge="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0" BadgeBackground="{DynamicResource IdealForegroundColorBrush}" BadgeForeground="{DynamicResource AccentBaseColorBrush}">
-                <iconPacks:PackIconModern Width="22" Height="22" Margin="0,0,9,0" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-            </MetroControls:Badged>-->
-
-            <!--<StackPanel Orientation="Horizontal">
-                <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-                <Grid>
-                    <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-                    <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
-                </Grid>
-            </StackPanel>-->
-
+        <Button Command="{Binding InfoCommand}" ToolTip="Show App infos and releases">
             <ContentControl>
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
                         <Setter Property="Content">
                             <Setter.Value>
-                                <Grid>
-                                    <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-                                    <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
-                                </Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                                        <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                    </Grid>
+                                    <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                </StackPanel>
                             </Setter.Value>
                         </Setter>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleases}" Value="0">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                                            <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                        </StackPanel>
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>

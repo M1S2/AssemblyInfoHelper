@@ -114,6 +114,28 @@ namespace AssemblyInfoHelper.GitHub
             OnPropertyChanged("NumberNewReleasesString");
         }
 
+        //********************************************************************************************************************************************************************
+
+        private bool _errorOccuredWhileLoadingReleases;
+        /// <summary>
+        /// Is an error occured while loading the releases
+        /// </summary>
+        public bool ErrorOccuredWhileLoadingReleases
+        {
+            get { return _errorOccuredWhileLoadingReleases; }
+            private set { _errorOccuredWhileLoadingReleases = value; OnPropertyChanged(); }
+        }
+
+        private string _errorMessage;
+        /// <summary>
+        /// Error message if error is occured. Otherwise empty string.
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            private set { _errorMessage = value; OnPropertyChanged(); }
+        }
+
         //####################################################################################################################################################################
 
         public GitHubUtils()
@@ -132,6 +154,8 @@ namespace AssemblyInfoHelper.GitHub
         {
             try
             {
+                ErrorOccuredWhileLoadingReleases = false;
+                ErrorMessage = string.Empty;
                 GitHubReleases.Clear();
                 
                 if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
@@ -156,6 +180,8 @@ namespace AssemblyInfoHelper.GitHub
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 2, "Node2", "v2.0.0", "abcdeg", "Release v2.0.0", "Release 2", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 1, "Node1", "v1.0.0", "abcdef", "Release v1.0.0", "**TestNote**", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 SemVersion currentVersion = new SemVersion(2, 1, 0);
+
+                throw new Exception("Test exception", new Exception("Inner test exception"));
                 #endregion
 
                 
@@ -182,8 +208,8 @@ namespace AssemblyInfoHelper.GitHub
             }
             catch (Exception ex)
             {
-#warning Show Exception
-                //await this.ShowMessageAsync("Error loading GitHub releases", ex.Message + (ex.InnerException != null ? Environment.NewLine + Environment.NewLine + ex.InnerException.Message : ""), MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
+                ErrorOccuredWhileLoadingReleases = true;
+                ErrorMessage = ex.Message + (ex.InnerException != null ? Environment.NewLine + ex.InnerException.Message : "");
             }
         }
 

@@ -186,6 +186,10 @@ namespace AssemblyInfoHelper
             }
 
             await GitHubUtils.Instance.GetAllGitHubReleases();
+            if(GitHubUtils.Instance.ErrorOccuredWhileLoadingReleases)
+            {
+                await this.ShowMessageAsync("Error loading GitHub releases", GitHubUtils.Instance.ErrorMessage, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
+            }
         }
 
         //********************************************************************************************************************************************************************
