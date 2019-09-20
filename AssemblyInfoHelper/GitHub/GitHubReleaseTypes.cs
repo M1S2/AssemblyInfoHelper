@@ -24,6 +24,11 @@ namespace AssemblyInfoHelper.GitHub
         /// <summary>
         /// Patch version release
         /// </summary>
-        PATCH
+        PATCH,
+
+        /// <summary>
+        /// The release versions are equal
+        /// </summary>
+        NONE
     }
 }

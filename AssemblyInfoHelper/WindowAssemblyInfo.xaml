@@ -26,7 +26,7 @@
     </MetroControls:MetroWindow.RightWindowCommands>
 
     <Grid>
-        <MetroControls:MetroTabControl MetroControls:TabControlHelper.Underlined="SelectedTabItem">
+        <MetroControls:MetroTabControl MetroControls:TabControlHelper.Underlined="SelectedTabItem" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
             <TabItem>
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
@@ -161,7 +161,7 @@
                                     <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ToolTip="{Binding ReleaseURL}">
                                         <github:ExternalBrowserHyperlinkControl NavigateUri="{Binding ReleaseURL}" Foreground="Transparent" Background="Transparent">
                                             <github:ExternalBrowserHyperlinkControl.Inlines>
-                                                <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseTimeType, Converter={StaticResource ReleaseTypeBadgeTextConverter}}">
+                                                <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" Badge="{Binding ReleaseTimeType}">      <!--, Converter={StaticResource ReleaseTypeBadgeTextConverter}-->
                                                     <iconPacks:PackIconMaterial Kind="Tag" Margin="5,5,20,5" Width="35" Height="Auto" Foreground="{DynamicResource AccentBaseColorBrush}"/>
                                                 </MetroControls:Badged>
                                             </github:ExternalBrowserHyperlinkControl.Inlines>

@@ -47,8 +47,7 @@ namespace AssemblyInfoHelper.GitHub
         {
             if (Instance.AreNewReleasesAvailable)
             {
-#warning Open with GitHub tab opened
-                WindowAssemblyInfo window = new WindowAssemblyInfo();
+                WindowAssemblyInfo window = new WindowAssemblyInfo(WindowAssemblyInfoStartTab.GITHUB);
                 window.ShowDialog();
             }
         }
@@ -134,7 +133,7 @@ namespace AssemblyInfoHelper.GitHub
             try
             {
                 GitHubReleases.Clear();
-
+                
                 if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
 
                 // example url: https://github.com/M1S2/AssemblyInfoHelper
@@ -144,12 +143,23 @@ namespace AssemblyInfoHelper.GitHub
                 string repoName = urlSplitted[4];
 
                 GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
-                
-                IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
 
-                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
-#warning Remove test code
-                //currentVersion = new SemVersion(4, 1, 1);
+
+                //IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
+                //SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
+#warning TestCode !!! (Uncomment line above when ready)
+                #region TestCode
+                List<Release> releases = new List<Release>();
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 5, "Node5", "v3.0.0", "abcdej", "Release v3.0.0", "#5", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 4, "Node4", "v2.1.1", "abcdei", "Release v2.1.1", "#4", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 3, "Node3", "v2.1.0", "abcdeh", "Release v2.1.0", "Rel 3", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 2, "Node2", "v2.0.0", "abcdeg", "Release v2.0.0", "Release 2", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 1, "Node1", "v1.0.0", "abcdef", "Release v1.0.0", "**TestNote**", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                SemVersion currentVersion = new SemVersion(2, 1, 0);
+                #endregion
+
+                
+                SemVersion previousVersion = new SemVersion(0, 0, 0);
 
                 foreach (Release release in releases)
                 {
@@ -159,16 +169,20 @@ namespace AssemblyInfoHelper.GitHub
                     {
                         Name = release.Name,
                         ReleaseTime = release.CreatedAt.ToLocalTime(),
-                        Version = stripInitialV(release.TagName),
+                        Version = releaseVersion,
                         ReleaseTimeType = (releaseVersion > currentVersion ? GitHubReleaseTimeTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTimeTypes.CURRENT : GitHubReleaseTimeTypes.OLD)),
                         ReleaseURL = release.HtmlUrl,
-                        ReleaseNotes = release.Body
-#warning Set and use ReleaseType property (maybe "M", "m" and "P" in tag icon)
+                        ReleaseNotes = release.Body,
+                        ReleaseType = getReleaseTypeFromVersions(releaseVersion, previousVersion)
+#warning Use ReleaseType property (maybe "M", "m" and "P" in tag icon)
                     });
+
+                    previousVersion = releaseVersion;
                 }
             }
             catch (Exception ex)
             {
+#warning Show Exception
                 //await this.ShowMessageAsync("Error loading GitHub releases", ex.Message + (ex.InnerException != null ? Environment.NewLine + Environment.NewLine + ex.InnerException.Message : ""), MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
             }
         }
@@ -189,6 +203,34 @@ namespace AssemblyInfoHelper.GitHub
             SemVersion result = SemVersion.Parse(version);
 
             return result;
+        }
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Compare the two versions and determine if it's a major, minor or patch release
+        /// </summary>
+        /// <param name="version1">Version 1</param>
+        /// <param name="version2">Version 2</param>
+        /// <returns>Release type</returns>
+        private GitHubReleaseTypes getReleaseTypeFromVersions(SemVersion version1, SemVersion version2)
+        {
+            if(version1.Major != version2.Major)
+            {
+                return GitHubReleaseTypes.MAJOR;
+            }
+            else if(version1.Minor != version2.Minor)
+            {
+                return GitHubReleaseTypes.MINOR;
+            }
+            else if(version1.Patch != version2.Patch)
+            {
+                return GitHubReleaseTypes.PATCH;
+            }
+            else
+            {
+                return GitHubReleaseTypes.NONE;
+            }
         }
     }
 }

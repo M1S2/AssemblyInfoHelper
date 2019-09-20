@@ -18,7 +18,7 @@
 
     <MetroControls:MetroWindow.RightWindowCommands>
         <MetroControls:WindowCommands>
-            <assemblyInfoHelper:AppInfoButton/>
+            <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
         </MetroControls:WindowCommands>
     </MetroControls:MetroWindow.RightWindowCommands>
 

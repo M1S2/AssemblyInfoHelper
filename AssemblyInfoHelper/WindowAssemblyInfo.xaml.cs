@@ -78,6 +78,15 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
+        private int _selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get { return _selectedTabIndex; }
+            set { _selectedTabIndex = value; OnPropertyChanged(); }
+        }
+
+        //********************************************************************************************************************************************************************
+
         private ICommand _assemblyInfoHelperVersionCommand;
         public ICommand AssemblyInfoHelperVersionCommand
         {
@@ -106,12 +115,29 @@ namespace AssemblyInfoHelper
         /// </summary>
         /// <param name="readmePath">Path for the README.md file.</param>
         /// <param name="changeLogPath">Path for the CHANGELOG.md file.</param>
-        public WindowAssemblyInfo(string readmePath, string changeLogPath)
+        /// <param name="startTab">Tab that is shown at startup</param>
+        public WindowAssemblyInfo(string readmePath, string changeLogPath, WindowAssemblyInfoStartTab startTab)
         {
-            //GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             _readmePath = readmePath;
             _changeLogPath = changeLogPath;
+            SelectedTabIndex = (int)startTab;
+            this.DataContext = this;
+        }
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Show the WindowAssemblyInfo and get the readme and changelog content from the README.md and CHANGELOG.md files in the same folder as the executable. (Application.StartupPath)
+        /// </summary>
+        /// <param name="startTab">Tab that is shown at startup</param>
+        public WindowAssemblyInfo(WindowAssemblyInfoStartTab startTab)
+        {
+            InitializeComponent();
+            string startupPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            _readmePath = startupPath + @"README.md";
+            _changeLogPath = startupPath + @"CHANGELOG.md";
+            SelectedTabIndex = (int)startTab;
             this.DataContext = this;
         }
 
@@ -122,11 +148,11 @@ namespace AssemblyInfoHelper
         /// </summary>
         public WindowAssemblyInfo()
         {
-            //GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             InitializeComponent();
             string startupPath = System.AppDomain.CurrentDomain.BaseDirectory;
             _readmePath = startupPath + @"README.md";
             _changeLogPath = startupPath + @"CHANGELOG.md";
+            SelectedTabIndex = (int)WindowAssemblyInfoStartTab.GENERAL_INFOS;
             this.DataContext = this;
         }
 
@@ -177,21 +203,6 @@ namespace AssemblyInfoHelper
             if (regKey.GetValue(processName) == null)
             {
                 regKey.SetValue(processName, 11001, RegistryValueKind.DWord);       //11001 = Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the !DOCTYPE directive.
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Open links in the users default browser
-        /// </summary>
-        /// see: https://stackoverflow.com/questions/15847822/opening-web-browser-click-in-default-browser
-        private void webBrowser_Navigating(object sender, NavigatingCancelEventArgs e)
-        {
-            if (e.Uri != null)
-            {
-                e.Cancel = true;
-                System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
             }
         }
 

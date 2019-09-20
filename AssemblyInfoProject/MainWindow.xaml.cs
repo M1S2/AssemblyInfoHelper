@@ -24,12 +24,6 @@ namespace AssemblyInfoProject
         public MainWindow()
         {
             InitializeComponent();
-            this.ContentRendered += MainWindow_ContentRendered; ;
-        }
-
-        private void MainWindow_ContentRendered(object sender, EventArgs e)
-        {
-            AssemblyInfoHelper.GitHub.GitHubUtils.CheckAndDisplayNewReleases();
         }
 
         private void btn_showAssemblyInfo_Click(object sender, RoutedEventArgs e)

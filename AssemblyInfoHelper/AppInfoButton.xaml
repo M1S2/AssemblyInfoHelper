@@ -12,9 +12,41 @@
              d:DesignHeight="30" d:DesignWidth="90">
     <Grid>
         <Button Command="{Binding InfoCommand}">
-            <MetroControls:Badged Badge="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0" BadgeBackground="{DynamicResource IdealForegroundColorBrush}" BadgeForeground="{DynamicResource AccentBaseColorBrush}">
+            <!--<MetroControls:Badged Badge="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0" BadgeBackground="{DynamicResource IdealForegroundColorBrush}" BadgeForeground="{DynamicResource AccentBaseColorBrush}">
                 <iconPacks:PackIconModern Width="22" Height="22" Margin="0,0,9,0" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-            </MetroControls:Badged>
+            </MetroControls:Badged>-->
+
+            <!--<StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                <Grid>
+                    <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                    <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                </Grid>
+            </StackPanel>-->
+
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Grid>
+                                    <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                                    <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                </Grid>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleases}" Value="0">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
         </Button>
     </Grid>
 </UserControl>

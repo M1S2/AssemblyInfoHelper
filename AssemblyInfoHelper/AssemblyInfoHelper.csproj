@@ -114,6 +114,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="WindowAssemblyInfo.xaml.cs">
       <DependentUpon>WindowAssemblyInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowAssemblyInfoStartTab.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="AppInfoButton.xaml">
