@@ -169,9 +169,11 @@ namespace AssemblyInfoHelper.GitHub
                 GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
 
 
-                //IReadOnlyList<Release> releases = await gitHubClient.Repository.Release.GetAll(repoOwner, repoName);
-                //SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
-#warning TestCode !!! (Uncomment line above when ready)
+                List<Release> releases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
+                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
+                
+                /*
+                #warning TestCode !!! (Uncomment line above when ready)
                 #region TestCode
                 List<Release> releases = new List<Release>();
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 5, "Node5", "v3.0.0", "abcdej", "Release v3.0.0", "#5", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
@@ -181,17 +183,20 @@ namespace AssemblyInfoHelper.GitHub
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 1, "Node1", "v1.0.0", "abcdef", "Release v1.0.0", "**TestNote**", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 SemVersion currentVersion = new SemVersion(2, 1, 0);
 
-                throw new Exception("Test exception", new Exception("Inner test exception"));
+                //throw new Exception("Test exception", new Exception("Inner test exception"));
                 #endregion
-
+                */
                 
                 SemVersion previousVersion = new SemVersion(0, 0, 0);
+                releases.Reverse();
+
+                List<GitHubRelease> tmpGitHubReleases = new List<GitHubRelease>();
 
                 foreach (Release release in releases)
                 {
                     SemVersion releaseVersion = stripInitialV(release.TagName);
 
-                    GitHubReleases.Add(new GitHubRelease()
+                    tmpGitHubReleases.Add(new GitHubRelease()
                     {
                         Name = release.Name,
                         ReleaseTime = release.CreatedAt.ToLocalTime(),
@@ -200,11 +205,13 @@ namespace AssemblyInfoHelper.GitHub
                         ReleaseURL = release.HtmlUrl,
                         ReleaseNotes = release.Body,
                         ReleaseType = getReleaseTypeFromVersions(releaseVersion, previousVersion)
-#warning Use ReleaseType property (maybe "M", "m" and "P" in tag icon)
                     });
 
                     previousVersion = releaseVersion;
                 }
+
+                tmpGitHubReleases.Reverse();
+                foreach(GitHubRelease r in tmpGitHubReleases) { GitHubReleases.Add(r); }
             }
             catch (Exception ex)
             {

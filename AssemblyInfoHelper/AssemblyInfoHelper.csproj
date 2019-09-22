@@ -92,6 +92,9 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     </Compile>
     <Compile Include="GitHub\ExternalBrowserHyperlinkControl.cs" />
     <Compile Include="GitHub\GitHubRelease.cs" />
+    <Compile Include="GitHub\GitHubReleasesControl.xaml.cs">
+      <DependentUpon>GitHubReleasesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GitHub\GitHubReleaseTypes.cs" />
     <Compile Include="GitHub\GitHubReleaseTimeTypes.cs" />
     <Compile Include="GitHub\GitHubRepoAttribute.cs" />
@@ -118,6 +121,10 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
   </ItemGroup>
   <ItemGroup>
     <Page Include="AppInfoButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GitHub\GitHubReleasesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
