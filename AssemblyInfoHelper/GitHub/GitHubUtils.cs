@@ -169,14 +169,14 @@ namespace AssemblyInfoHelper.GitHub
                 GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
 
 
-                List<Release> releases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
-                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
+                //List<Release> releases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
+                //SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
                 
-                /*
+                
                 #warning TestCode !!! (Uncomment line above when ready)
                 #region TestCode
                 List<Release> releases = new List<Release>();
-                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 5, "Node5", "v3.0.0", "abcdej", "Release v3.0.0", "#5", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 5, "Node5", "v3.0.0", "abcdej", "Release v3.0.0", "#5<br/>*Line2*<br/>`CodeBlock`", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 4, "Node4", "v2.1.1", "abcdei", "Release v2.1.1", "#4", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 3, "Node3", "v2.1.0", "abcdeh", "Release v2.1.0", "Rel 3", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 2, "Node2", "v2.0.0", "abcdeg", "Release v2.0.0", "Release 2", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
@@ -185,7 +185,7 @@ namespace AssemblyInfoHelper.GitHub
 
                 //throw new Exception("Test exception", new Exception("Inner test exception"));
                 #endregion
-                */
+                
                 
                 SemVersion previousVersion = new SemVersion(0, 0, 0);
                 releases.Reverse();

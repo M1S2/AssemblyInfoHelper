@@ -7,6 +7,7 @@
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
+             xmlns:markdigWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -120,6 +121,7 @@
                             </Expander.HeaderTemplate>
                             
                             <!--<assemblyInfoHelper:WebBrowserMarkdown MarkdownString="{Binding ReleaseNotes}" Height="Auto"/>-->
+                            <!--<markdigWpf:MarkdownViewer Markdown="{Binding ReleaseNotes}" BorderBrush="Transparent" PreviewMouseWheel="MarkdownViewer_PreviewMouseWheel"/>--> <!--Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>-->
                             <assemblyInfoHelper:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
                     </Grid>

@@ -8,6 +8,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
+        xmlns:markdigWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
         mc:Ignorable="d"
         Title="Assembly info" Height="600" Width="800" MinHeight="400" Loaded="Window_Loaded">
 
@@ -87,8 +88,9 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <local:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>
-                <!--<local:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+                <!--<local:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>-->
+                <!--<markdigWpf:MarkdownViewer x:Name="markdownViewerReadme" Markdown="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>-->
+                <local:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
@@ -101,8 +103,9 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <local:WebBrowserMarkdown MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>
-                <!--<local:MarkdownViewer MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+                <!--<local:WebBrowserMarkdown MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>-->
+                <!--<markdigWpf:MarkdownViewer Markdown="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>-->
+                <local:MarkdownViewer MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->

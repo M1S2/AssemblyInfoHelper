@@ -40,7 +40,7 @@ namespace AssemblyInfoHelper
         {
             string markdownString = ((MarkdownViewer)sender).MarkdownString;
             if(markdownString == null) { return; }
-            FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
+            FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build());
             //string docXaml = MarkdownXaml.ToXaml(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
             ((MarkdownViewer)sender).Document = doc;
         }

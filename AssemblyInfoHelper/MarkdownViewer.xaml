@@ -7,7 +7,8 @@
              xmlns:markdown="clr-namespace:Neo.Markdig.Xaml;assembly=Neo.Markdig.Xaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             IsReadOnly="True" IsReadOnlyCaretVisible="True">
+             IsReadOnly="True" IsReadOnlyCaretVisible="True"
+             IsDocumentEnabled="True">
 
     <RichTextBox.CommandBindings>
         <CommandBinding Command="{x:Static markdown:MarkdownXaml.Hyperlink}" Executed="CommandBinding_Executed" />

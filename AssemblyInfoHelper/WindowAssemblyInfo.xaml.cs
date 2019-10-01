@@ -167,6 +167,8 @@ namespace AssemblyInfoHelper
 #warning Images not shown in FlowDocument (Batches)
 #warning FlowDocument in RichTextBox hyperlink not active
 
+            //markdownViewerReadme.Pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseAutoLinks().Build();
+
             if (File.Exists(_readmePath))
             {
                 ReadmeMarkdown = File.ReadAllText(_readmePath);
@@ -182,8 +184,14 @@ namespace AssemblyInfoHelper
             }
             else
             {
-                ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
+                ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _changeLogPath;
             }
+
+            //FlowDocument flowDoc = markdownViewerReadme.Document;
+            //foreach(Block block in flowDoc.Blocks)
+            //{
+            //    List<Hyperlink> hyperLinks = block.FindChildren<Hyperlink>().ToList();
+            //}
 
             await GitHubUtils.Instance.GetAllGitHubReleases();
             if(GitHubUtils.Instance.ErrorOccuredWhileLoadingReleases)
