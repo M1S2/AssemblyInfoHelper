@@ -103,6 +103,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="GitHub\GitHubRepoAttribute.cs" />
     <Compile Include="GitHub\GitHubUtils.cs" />
     <Compile Include="GitHub\ReleaseTypeToBadgeTextConverter.cs" />
+    <Compile Include="Markdown\FlowDocumentExtension.cs" />
     <Compile Include="Markdown\MarkdownViewer.xaml.cs">
       <DependentUpon>MarkdownViewer.xaml</DependentUpon>
     </Compile>

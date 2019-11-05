@@ -14,5 +14,94 @@
     <RichTextBox.CommandBindings>
         <CommandBinding Command="{x:Static markdown:MarkdownXaml.Hyperlink}" Executed="CommandBinding_Executed" />
     </RichTextBox.CommandBindings>
-    
+
+    <RichTextBox.Resources>
+        <StackPanel x:Key="LoadingTemplate" Orientation="Horizontal">
+            <MetroControls:ProgressRing Margin="30"  Foreground="{DynamicResource AccentBaseColorBrush}"/>
+            <TextBlock Text="Loading..." VerticalAlignment="Center" Margin="20" FontSize="30" Foreground="{DynamicResource GrayBrush3}"/>
+        </StackPanel>
+    </RichTextBox.Resources>
+
+    <!--<FlowDocument Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.DocumentStyleKey}}" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xmarkdig="clr-namespace:Neo.Markdig.Xaml;assembly=Neo.Markdig.Xaml">
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.Heading1StyleKey}}">AssemblyInfoHelper</Paragraph>
+        <Paragraph>
+            <Hyperlink Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.HyperlinkStyleKey}}" NavigateUri="https://www.nuget.org/packages/AssemblyInfoHelper/" ToolTipService.ToolTip="https://www.nuget.org/packages/AssemblyInfoHelper/">
+                <Image Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.ImageStyleKey}}" Source="https://img.shields.io/nuget/v/AssemblyInfoHelper.svg" />
+            </Hyperlink>
+            <Image Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.ImageStyleKey}}" Source="https://img.shields.io/github/v/release/M1S2/AssemblyInfoHelper" />
+            <Hyperlink Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.HyperlinkStyleKey}}" NavigateUri="LICENSE.md" ToolTipService.ToolTip="LICENSE.md">
+                <Image Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.ImageStyleKey}}" Source="https://img.shields.io/github/license/M1S2/AssemblyInfoHelper" />
+            </Hyperlink>
+            <Image Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.ImageStyleKey}}" Source="https://img.shields.io/nuget/dt/AssemblyInfoHelper" />
+        </Paragraph>
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.Heading2StyleKey}}">Purpose</Paragraph>
+        <Paragraph>The
+            <Bold>AssemblyInfoHelper</Bold> gets and displays the assembly info of the assembly that calls this functions. This contains the following informations:
+        </Paragraph>
+        <List MarkerStyle="Disc">
+            <ListItem>
+                <Paragraph>AssemblyTitle</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyCompany</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyProduct</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyCopyright</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyTrademark</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyCulture</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyVersion</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyFileVersion</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>AssemblyLinkerTime</Paragraph>
+            </ListItem>
+        </List>
+        <Paragraph>The description is get from the README.md file in the path given when creating the WindowAssemblyInfo.</Paragraph>
+        <Paragraph>The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo.</Paragraph>
+        <Paragraph>GitHub releases are taken from repository at the url given by the
+            <Span Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.CodeStyleKey}}">
+                <Run>GitHubRepo</Run>
+            </Span>
+            <Run xml:space="preserve"> attribute (see usage below).</Run>
+        </Paragraph>
+        <Paragraph>The
+            <Bold>AssemblyInfoProject</Bold> is used to test the AssemblyInfoHelper.
+        </Paragraph>
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.Heading2StyleKey}}">Installation</Paragraph>
+        <Paragraph>Include the
+            <Hyperlink Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.HyperlinkStyleKey}}" NavigateUri="https://www.nuget.org/packages/AssemblyInfoHelper/" ToolTipService.ToolTip="https://www.nuget.org/packages/AssemblyInfoHelper/">latest release from nuget.org</Hyperlink> in your project.
+        </Paragraph>
+        <Paragraph>You can also use the Package Manager console with:
+            <Span Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.CodeStyleKey}}">
+                <Run>PM&gt; Install-Package AssemblyInfoHelper</Run>
+            </Span>
+        </Paragraph>
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.Heading2StyleKey}}">Usage</Paragraph>
+        <Paragraph>Open the info window with:</Paragraph>
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.CodeBlockStyleKey}}">
+            <Run>AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();</Run>
+            <LineBreak />
+            <Run>window.ShowDialog();</Run>
+        </Paragraph>
+        <Paragraph>To show all releases from GitHub add the
+            <Span Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.CodeStyleKey}}">
+                <Run>GitHubRepo</Run>
+            </Span>
+            <Run xml:space="preserve"> attribute to the AssemblyInfo.cs file:</Run>
+        </Paragraph>
+        <Paragraph Style="{StaticResource {x:Static xmarkdig:MarkdownXaml.CodeBlockStyleKey}}">
+            <Run>[assembly: AssemblyInfoHelper.GitHubReleases.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]</Run>
+        </Paragraph>
+    </FlowDocument>-->
 </RichTextBox>
