@@ -26,6 +26,9 @@ namespace AssemblyInfoHelper.Markdown
     /// </summary>
     public partial class MarkdownViewer : RichTextBox
     {
+#warning Images not shown in FlowDocument (Batches) (Image size = 0 ?)
+#warning Loading markdown with images is very slow
+
         /// <summary>
         /// Markdown that is displayed in this control
         /// </summary>

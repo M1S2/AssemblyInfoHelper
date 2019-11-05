@@ -170,9 +170,6 @@ namespace AssemblyInfoHelper
                 await this.ShowMessageAsync("Error loading GitHub releases", GitHubUtils.Instance.ErrorMessage, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
             }
 
-#warning Images not shown in FlowDocument (Batches) (Image size = 0 ?)
-#warning Loading markdown with images is very slow
-
             await Task.Run(() =>
             {
                 if (File.Exists(_readmePath))

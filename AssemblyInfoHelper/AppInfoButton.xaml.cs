@@ -65,11 +65,11 @@ namespace AssemblyInfoHelper
         /// <summary>
         /// This function is called when the user control was rendered (was already visible)
         /// </summary>
-        private void PresentationSource_ContentRendered(object sender, EventArgs e)
+        private async void PresentationSource_ContentRendered(object sender, EventArgs e)
         {
             ((PresentationSource)sender).ContentRendered -= PresentationSource_ContentRendered;         // Don't forget to unsubscribe from the event
 
-            GitHub.GitHubUtils.CheckAndDisplayNewReleases();
+            await GitHub.GitHubUtils.CheckAndDisplayNewReleases();
         }
     }
 }

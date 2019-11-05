@@ -89,8 +89,8 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <!--<markdown:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>-->
-                <markdown:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <markdown:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>
+                <!--<markdown:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
@@ -103,8 +103,8 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <!--<markdown:WebBrowserMarkdown MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>-->
-                <markdown:MarkdownViewer MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <markdown:WebBrowserMarkdown MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>
+                <!--<markdown:MarkdownViewer MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
