@@ -20,7 +20,11 @@ namespace AssemblyInfoHelper
     /// </summary>
     public partial class AppInfoButton : UserControl
     {
-        public bool EnableNewVersionNotification { get; set; } = true;
+        public bool EnableNewVersionNotification
+        {
+            get { return GitHub.GitHubUtils.Instance.AppEnableDisableReleaseNotification; }
+            set { GitHub.GitHubUtils.Instance.AppEnableDisableReleaseNotification = value; }
+        }
 
         //********************************************************************************************************************************************************************
 
@@ -46,6 +50,7 @@ namespace AssemblyInfoHelper
         public AppInfoButton()
         {
             InitializeComponent();
+            EnableNewVersionNotification = true;
             this.DataContext = this;
             this.Loaded += AppInfoButton_Loaded;
         }
@@ -64,7 +69,7 @@ namespace AssemblyInfoHelper
         {
             ((PresentationSource)sender).ContentRendered -= PresentationSource_ContentRendered;         // Don't forget to unsubscribe from the event
 
-            if (EnableNewVersionNotification) { GitHub.GitHubUtils.CheckAndDisplayNewReleases(); }
+            GitHub.GitHubUtils.CheckAndDisplayNewReleases();
         }
     }
 }

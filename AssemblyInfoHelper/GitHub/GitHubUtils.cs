@@ -45,7 +45,7 @@ namespace AssemblyInfoHelper.GitHub
         /// </summary>
         public static void CheckAndDisplayNewReleases()
         {
-            if (Instance.AreNewReleasesAvailable)
+            if (Instance.AreNewReleasesAvailable && Instance.UserEnableDisableReleaseNotification && Instance.AppEnableDisableReleaseNotification)
             {
                 WindowAssemblyInfo window = new WindowAssemblyInfo(WindowAssemblyInfoStartTab.GITHUB);
                 window.ShowDialog();
@@ -136,10 +136,30 @@ namespace AssemblyInfoHelper.GitHub
             private set { _errorMessage = value; OnPropertyChanged(); }
         }
 
+        //********************************************************************************************************************************************************************
+
+        private bool _appEnableDisableReleaseNotification;
+        public bool AppEnableDisableReleaseNotification
+        {
+            get { return _appEnableDisableReleaseNotification; }
+            set { _appEnableDisableReleaseNotification = value; OnPropertyChanged(); }
+        }
+
+        public bool UserEnableDisableReleaseNotification
+        {
+            get { return _settingsHelper.GetAppSetting<bool>("UserEnableDisableReleaseNotification", true); }
+            set { _settingsHelper.SetOrCreateAppSetting("UserEnableDisableReleaseNotification", value); OnPropertyChanged(); }
+        }
+
+        //####################################################################################################################################################################
+
+        private SettingsHelper _settingsHelper;
+
         //####################################################################################################################################################################
 
         public GitHubUtils()
         {
+            _settingsHelper = new SettingsHelper(this.GetType().Assembly);
             GitHubReleases.CollectionChanged += GitHubReleases_CollectionChanged;
             Task.Run(async() => await GetAllGitHubReleases());
         }
@@ -177,7 +197,7 @@ namespace AssemblyInfoHelper.GitHub
                 #region TestCode
                 List<Release> releases = new List<Release>();
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 5, "Node5", "v3.0.0", "abcdej", "Release v3.0.0", "#5<br/>*Line2*<br/>`CodeBlock`", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
-                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 4, "Node4", "v2.1.1", "abcdei", "Release v2.1.1", "#4", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
+                releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 4, "Node4", "v2.1.1", "abcdei", "Release v2.1.1", "#4\n www.google.de", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 3, "Node3", "v2.1.0", "abcdeh", "Release v2.1.0", "Rel 3", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 2, "Node2", "v2.0.0", "abcdeg", "Release v2.0.0", "Release 2", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));
                 releases.Add(new Release("www.google.de", "www.google.de", "www.google.de", "www.google.de", 1, "Node1", "v1.0.0", "abcdef", "Release v1.0.0", "**TestNote**", false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), "", "", null));

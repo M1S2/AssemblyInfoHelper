@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
 
-namespace AssemblyInfoHelper
+namespace AssemblyInfoHelper.Markdown
 {
     /// <summary>
     /// Interaktionslogik für WebBrowserMarkdown.xaml
@@ -40,7 +40,7 @@ namespace AssemblyInfoHelper
             string markdownString = ((WebBrowserMarkdown)sender).MarkdownString;
             if (markdownString == null) { return; }
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-            string htmlString = "<font face = \"calibri\">" + Markdown.ToHtml(markdownString, pipeline);
+            string htmlString = "<font face = \"calibri\">" + Markdig.Markdown.ToHtml(markdownString, pipeline);
             ((WebBrowserMarkdown)sender).webBrowserMarkdown.NavigateToString(htmlString);
         }
             

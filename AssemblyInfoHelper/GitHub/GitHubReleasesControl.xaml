@@ -8,13 +8,20 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
              xmlns:markdigWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
+             xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
-        <local:ReleaseTypeToBadgeTextConverter x:Key="ReleaseTypeBadgeTextConverter"/>
-        <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+            <local:ReleaseTypeToBadgeTextConverter x:Key="ReleaseTypeBadgeTextConverter"/>
+            <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ToggleSwitch.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True" Margin="10">
@@ -54,6 +61,10 @@
             </Grid>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
         </StackPanel>
+
+        <!-- ########## Switch on/off new version notification ######################################################################################################################################################################################## -->
+
+        <MetroControls:ToggleSwitch DockPanel.Dock="Bottom" Margin="10" OnLabel="Notify about new releases" OffLabel="Don't notify about new releases" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UserEnableDisableReleaseNotification}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=AppEnableDisableReleaseNotification, Converter={StaticResource BoolVisibilityConverter}}"/>
 
         <!-- ########## Releases List ######################################################################################################################################################################################## -->
 
@@ -119,10 +130,8 @@
                                     </TextBlock>
                                 </DataTemplate>
                             </Expander.HeaderTemplate>
-                            
-                            <!--<assemblyInfoHelper:WebBrowserMarkdown MarkdownString="{Binding ReleaseNotes}" Height="Auto"/>-->
-                            <!--<markdigWpf:MarkdownViewer Markdown="{Binding ReleaseNotes}" BorderBrush="Transparent" PreviewMouseWheel="MarkdownViewer_PreviewMouseWheel"/>--> <!--Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>-->
-                            <assemblyInfoHelper:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
+
+                            <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
                     </Grid>
                 </DataTemplate>

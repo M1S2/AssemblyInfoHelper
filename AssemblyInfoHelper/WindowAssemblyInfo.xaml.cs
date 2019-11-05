@@ -164,40 +164,35 @@ namespace AssemblyInfoHelper
 
             this.Icon = System.Windows.Application.Current.MainWindow.Icon;
 
-#warning Images not shown in FlowDocument (Batches)
-#warning FlowDocument in RichTextBox hyperlink not active
-
-            //markdownViewerReadme.Pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseAutoLinks().Build();
-
-            if (File.Exists(_readmePath))
-            {
-                ReadmeMarkdown = File.ReadAllText(_readmePath);
-            }
-            else
-            {
-                ReadmeMarkdown = "No readme file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
-            }
-
-            if (File.Exists(_changeLogPath))
-            {
-                ChangelogMarkdown = File.ReadAllText(_changeLogPath);
-            }
-            else
-            {
-                ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _changeLogPath;
-            }
-
-            //FlowDocument flowDoc = markdownViewerReadme.Document;
-            //foreach(Block block in flowDoc.Blocks)
-            //{
-            //    List<Hyperlink> hyperLinks = block.FindChildren<Hyperlink>().ToList();
-            //}
-
             await GitHubUtils.Instance.GetAllGitHubReleases();
-            if(GitHubUtils.Instance.ErrorOccuredWhileLoadingReleases)
+            if (GitHubUtils.Instance.ErrorOccuredWhileLoadingReleases)
             {
                 await this.ShowMessageAsync("Error loading GitHub releases", GitHubUtils.Instance.ErrorMessage, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
             }
+
+#warning Images not shown in FlowDocument (Batches) (Image size = 0 ?)
+#warning Loading markdown with images is very slow
+
+            await Task.Run(() =>
+            {
+                if (File.Exists(_readmePath))
+                {
+                    ReadmeMarkdown = File.ReadAllText(_readmePath);
+                }
+                else
+                {
+                    ReadmeMarkdown = "No readme file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
+                }
+
+                if (File.Exists(_changeLogPath))
+                {
+                    ChangelogMarkdown = File.ReadAllText(_changeLogPath);
+                }
+                else
+                {
+                    ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _changeLogPath;
+                }
+            });
         }
 
         //********************************************************************************************************************************************************************

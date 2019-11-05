@@ -14,14 +14,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
 using Neo.Markdig.Xaml;
+using System.Windows.Threading;
+using System.Reflection;
+using System.Collections;
+using System.Threading;
 
-namespace AssemblyInfoHelper
+namespace AssemblyInfoHelper.Markdown
 {
     /// <summary>
     /// Interaktionslogik für MarkdownViewer.xaml
     /// </summary>
     public partial class MarkdownViewer : RichTextBox
     {
+        /// <summary>
+        /// Markdown that is displayed in this control
+        /// </summary>
         public string MarkdownString
         {
             get { return (string)this.GetValue(MarkdownStringProperty); }
@@ -36,13 +43,21 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
+        /// <summary>
+        /// Create a new FlowDocument whenever the MarkdownString property changed. The document is created in an separate thread to keep the UI reactive.
+        /// </summary>
+        /// see: https://stackoverflow.com/questions/5579415/wpf-richtextbox-document-creation-threading-issue
+        /// see: https://turecki.net/flowdocument-from-a-different-thread
         private static void MarkdownStringChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            string markdownString = ((MarkdownViewer)sender).MarkdownString;
-            if(markdownString == null) { return; }
-            FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build());
-            //string docXaml = MarkdownXaml.ToXaml(markdownString, new MarkdownPipelineBuilder().UseXamlSupportedExtensions().Build());
-            ((MarkdownViewer)sender).Document = doc;
+            MarkdownViewer viewer = (MarkdownViewer)sender;
+
+            string markdownString = viewer.MarkdownString;
+            if (markdownString == null) { return; }
+
+            MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+            FlowDocument doc = MarkdownXaml.ToFlowDocument(markdownString, pipeline);
+            viewer.Document = doc;
         }
 
         //********************************************************************************************************************************************************************
@@ -58,5 +73,6 @@ namespace AssemblyInfoHelper
                 System.Diagnostics.Process.Start(e.Parameter.ToString());
             }
         }
+
     }
 }

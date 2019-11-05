@@ -103,7 +103,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="GitHub\GitHubRepoAttribute.cs" />
     <Compile Include="GitHub\GitHubUtils.cs" />
     <Compile Include="GitHub\ReleaseTypeToBadgeTextConverter.cs" />
-    <Compile Include="MarkdownViewer.xaml.cs">
+    <Compile Include="Markdown\MarkdownViewer.xaml.cs">
       <DependentUpon>MarkdownViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,7 +114,8 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="MultiplyConverter.cs" />
-    <Compile Include="WebBrowserMarkdown.xaml.cs">
+    <Compile Include="SettingsHelper.cs" />
+    <Compile Include="Markdown\WebBrowserMarkdown.xaml.cs">
       <DependentUpon>WebBrowserMarkdown.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowAssemblyInfo.xaml.cs">
@@ -131,11 +132,11 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MarkdownViewer.xaml">
+    <Page Include="Markdown\MarkdownViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="WebBrowserMarkdown.xaml">
+    <Page Include="Markdown\WebBrowserMarkdown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
