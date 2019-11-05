@@ -35,15 +35,25 @@ You can also use the Package Manager console with: `PM> Install-Package Assembly
 
 ## Usage
 
-Open the info window with: 
-
-```
-AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();
-window.ShowDialog();
-```
-
 To show all releases from GitHub add the `GitHubRepo` attribute to the AssemblyInfo.cs file: 
 
 ```
 [assembly: AssemblyInfoHelper.GitHubReleases.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
+```
+
+
+The simplest way to show the WindowAssemblyInfo is to add a `AppInfoButton` control to the application. Everything is done inside this control.
+
+```
+xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
+...
+<assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
+```
+
+
+Or you can open the info window with: 
+
+```
+AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();
+window.ShowDialog();
 ```

@@ -219,14 +219,14 @@ namespace AssemblyInfoHelper.GitHub
 
                 tmpGitHubReleases.Reverse();
                 foreach(GitHubRelease r in tmpGitHubReleases) { GitHubReleases.Add(r); }
-                
-                SemaphoreGetReleases.Release();
+
+                if (SemaphoreGetReleases.CurrentCount == 0) { SemaphoreGetReleases.Release(); }
             }
             catch (Exception ex)
             {
                 ErrorOccuredWhileLoadingReleases = true;
                 ErrorMessage = ex.Message + (ex.InnerException != null ? Environment.NewLine + ex.InnerException.Message : "");
-                SemaphoreGetReleases.Release();
+                if (SemaphoreGetReleases.CurrentCount == 0) { SemaphoreGetReleases.Release(); }
             }
         }
 

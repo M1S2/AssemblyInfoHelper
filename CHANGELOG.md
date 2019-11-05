@@ -2,6 +2,10 @@
 
 ## [%version%] - %date%
 
+- Show release notes
+- AppInfoButton control added for simpler usage of the AssemblyInfoHelper
+- Switch added to disable notification of new versions
+- Show release type (major, minor, patch) in tag icon
 
 ## [v4.1.1] - 27.08.2019 21:39
 
