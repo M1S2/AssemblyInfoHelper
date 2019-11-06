@@ -1,6 +1,9 @@
 # AssemblyInfoHelper
 
 ## [%version%] - %date%
+ 
+
+## [v4.2.0] - 05.11.2019 22:04
 
 - Show release notes
 - AppInfoButton control added for simpler usage of the AssemblyInfoHelper
