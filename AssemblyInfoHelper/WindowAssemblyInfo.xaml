@@ -9,7 +9,6 @@
         xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
         xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
-        xmlns:markdigWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
         mc:Ignorable="d"
         Title="Assembly info" Height="600" Width="800" MinHeight="400" Loaded="Window_Loaded">
 

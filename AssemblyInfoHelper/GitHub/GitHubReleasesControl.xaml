@@ -7,7 +7,6 @@
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
-             xmlns:markdigWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
