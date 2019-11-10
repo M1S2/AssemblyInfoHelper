@@ -38,7 +38,7 @@ You can also use the Package Manager console with: `PM> Install-Package Assembly
 To show all releases from GitHub add the `GitHubRepo` attribute to the AssemblyInfo.cs file: 
 
 ```
-[assembly: AssemblyInfoHelper.GitHubReleases.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
+[assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 ```
 
 
