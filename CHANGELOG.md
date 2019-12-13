@@ -1,6 +1,6 @@
 # AssemblyInfoHelper
 
-## [%version%] - %date%
+## [v4.2.1] - 13.12.2019 20:01
  
 - Unnecessary dependencies removed
 - Color of Expander arrow in GitHub Releases Tab corrected (was always black)
