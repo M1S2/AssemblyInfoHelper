@@ -2,6 +2,8 @@
 
 ## [%version%] - %date%
  
+- Unnecessary dependencies removed
+- Color of Expander arrow in GitHub Releases Tab corrected (was always black)
 
 ## [v4.2.0] - 05.11.2019 22:04
 

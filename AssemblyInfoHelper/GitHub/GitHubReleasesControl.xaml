@@ -121,15 +121,7 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
                         <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding ReleaseTime, StringFormat='Published: {0:dd.MM.yyyy HH:mm}'}" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource GrayBrush3}"/>
-                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Header="Release Notes" Background="Transparent" BorderBrush="Transparent">
-                            <Expander.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Foreground="{DynamicResource BlackBrush}">
-                                        <ContentPresenter Content="{Binding}"/>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </Expander.HeaderTemplate>
-
+                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Header="Release Notes" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="Transparent">
                             <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
                     </Grid>
