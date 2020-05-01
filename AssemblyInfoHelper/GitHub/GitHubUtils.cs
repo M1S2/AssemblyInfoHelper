@@ -5,9 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using MahApps.Metro.Controls.Dialogs;
 using Semver;
 using Octokit;
-using System.Collections.ObjectModel;
+using Onova;
+using Onova.Services;
+using Onova.Models;
+using System.IO;
+using System.Diagnostics;
 
 namespace AssemblyInfoHelper.GitHub
 {
@@ -140,16 +147,50 @@ namespace AssemblyInfoHelper.GitHub
         //********************************************************************************************************************************************************************
 
         private bool _appEnableDisableReleaseNotification;
+        /// <summary>
+        /// If this is set to false, no notifications about new releases are shown. The user has no option to enable or disable notification about new releases.
+        /// </summary>
         public bool AppEnableDisableReleaseNotification
         {
             get { return _appEnableDisableReleaseNotification; }
             set { _appEnableDisableReleaseNotification = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// Has the user enabled the notification about new releases or not
+        /// </summary>
         public bool UserEnableDisableReleaseNotification
         {
             get { return _settingsHelper.GetAppSetting<bool>("UserEnableDisableReleaseNotification", true); }
             set { _settingsHelper.SetOrCreateAppSetting("UserEnableDisableReleaseNotification", value); OnPropertyChanged(); }
+        }
+
+        //********************************************************************************************************************************************************************
+
+        private UpdateStatusInfo _updateStatus = new UpdateStatusInfo();
+        /// <summary>
+        /// Status of the GitHub update feature (is update running, update progress)
+        /// </summary>
+        public UpdateStatusInfo UpdateStatus
+        {
+            get { return _updateStatus; }
+            private set { _updateStatus = value; OnPropertyChanged(); }
+        }
+
+        private ICommand _updateCommand;
+        /// <summary>
+        /// Command to update (or downgrade) to the version assigned as command parameter
+        /// </summary>
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                if (_updateCommand == null)
+                {
+                    _updateCommand = new RelayCommand(async param => await RunUpdate((GitHubRelease)param), ret => !UpdateStatus.IsUpdateRunning);
+                }
+                return _updateCommand;
+            }
         }
 
         //####################################################################################################################################################################
@@ -168,6 +209,141 @@ namespace AssemblyInfoHelper.GitHub
         }
 
         //####################################################################################################################################################################
+
+        /// <summary>
+        /// Update the application to the given target release. This can also be a downgrade (lower version) or repair (same version).
+        /// </summary>
+        /// <param name="targetRelease">New version after update</param>
+        private async Task RunUpdate(GitHubRelease targetRelease)
+        {
+            if (!IsGitHubRepoAssigned) { return; }
+
+            WindowAssemblyInfo windowAssemblyInfo = System.Windows.Application.Current.Windows.OfType<MahApps.Metro.Controls.MetroWindow>().OfType<WindowAssemblyInfo>().FirstOrDefault();
+            Version targetVersion = new Version(targetRelease.Version.ToString());
+            try
+            {
+                UpdateStatus.FromVersion = new SemVersion(new Version(AssemblyInfoHelperClass.AssemblyVersion));
+                UpdateStatus.ToVersion = targetRelease.Version;
+                UpdateStatus.IsUpdateRunning = true;
+
+                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync("Confirm update", "Do you really want to " + UpdateStatus.UpdateText, MessageDialogStyle.AffirmativeAndNegative);
+                if(messageResult == MessageDialogResult.Negative) { UpdateStatus.IsUpdateRunning = false; return; }
+
+#warning Use GitHubPackageResolver
+                //UpdateManager manager = new UpdateManager(new LocalPackageResolver(@"C:\Users\masc107\Desktop\Test\AssemblyInfoTestReleases", "*.zip"), new ZipPackageExtractor());
+
+                // example url: https://github.com/M1S2/AssemblyInfoHelper
+                string[] urlSplitted = AssemblyInfoHelperClass.GitHubRepoUrl.Split('/');
+                if (urlSplitted.Length < 5) { return; }
+                string repoOwner = urlSplitted[3];
+                string repoName = urlSplitted[4];
+#warning System.Buffer 4.0.2 not found ???!!!
+                UpdateManager manager = new UpdateManager(new GithubPackageResolver(repoOwner, repoName, "*.zip"), new ZipPackageExtractor());
+
+                GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
+#warning Maybe step back to .NET v4.5.2??!!
+                List<Release> releases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
+                Release release = releases.Where(r => r.Name.Contains(targetVersion.ToString())).FirstOrDefault();
+                //release.Assets.Where(a => a.Name)
+
+                IProgress<double> updateProgress = new Progress<double>(progress => 
+                {
+                    UpdateStatus.UpdateProgress = (int)(progress * 100);
+                });
+
+                // Get the path to the downloaded package
+                string onovaApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Onova", AssemblyInfoHelperClass.AssemblyTitle);
+                string packagePath = Path.Combine(onovaApplicationPath, targetVersion.ToString());
+                string binFolderPath = Path.Combine(packagePath, "bin");
+#warning older versions of SpotifyRecorder are using bin_Setup_Spotify_Recorder as name ...
+                string binSetupFolderPath = Path.Combine(packagePath, "bin_Setup");
+                bool useBinFolder = false, useBinSetupFolder = false;
+
+                /*await Task.Run(() =>
+                {
+                    if (File.Exists(Path.Combine(onovaApplicationPath, targetVersion.ToString() + ".onv"))) { File.Delete(Path.Combine(onovaApplicationPath, targetVersion.ToString() + ".onv")); }
+                    if (File.Exists(Path.Combine(onovaApplicationPath, "Onova.lock"))) { File.Delete(Path.Combine(onovaApplicationPath, "Onova.lock")); }
+                    if (Directory.Exists(packagePath)) { Directory.Delete(packagePath, true); }
+                });*/
+
+                await manager.PrepareUpdateAsync(targetVersion, updateProgress);    // Prepare an update by downloading and extracting the package
+
+                if(Directory.Exists(binFolderPath) && !Directory.Exists(binSetupFolderPath))            // If only bin folder exists, use this as update source
+                {
+                    useBinFolder = true;
+                }
+                else if (!Directory.Exists(binFolderPath) && Directory.Exists(binSetupFolderPath))      // If only bin_Setup folder exists, use the installer for update
+                {
+                    useBinSetupFolder = true;
+                }
+                else if (Directory.Exists(binFolderPath) && Directory.Exists(binSetupFolderPath))       // If both bin and bin_Setup folder exist, let the user choose the update source
+                {
+                    messageResult = await windowAssemblyInfo.ShowMessageAsync("Choose update source", "There are multiple options to update this version. Choose one of the options below.", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = "Use binary folder", NegativeButtonText = "Use Installer", DefaultButtonFocus = MessageDialogResult.Affirmative });
+                    if (messageResult == MessageDialogResult.Affirmative) { useBinFolder = true; }
+                    else { useBinSetupFolder = true; }
+                }
+                
+                double deleteProgressMaxValueBinFolder = 0.25;          // Maximum value for delete progress when useBinFolder is true (because the remaining progress is then filled up while copying files)
+
+                await Task.Run(() =>
+                {
+                    // Cleanup as much files from the application directory as possible. Some files are used by the application and can't be deleted.
+                    List<string> filePaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.*", SearchOption.AllDirectories).Where(p => Path.GetExtension(p) != ".exe.config").ToList();
+                    int filesDeleted = 0;
+                    foreach (string filePath in filePaths)
+                    {
+                        try { File.Delete(filePath); }
+                        catch (Exception) { /* Nothing to do here. Files that can't be deleted, are currently used by the application. They are overwritten by the updater later. */ }
+                        filesDeleted++;
+                        updateProgress.Report(((double)filesDeleted / filePaths.Count) * (useBinFolder ? deleteProgressMaxValueBinFolder : 1));
+                    }
+                    DeleteEmptyFolders(AppDomain.CurrentDomain.BaseDirectory);
+                });
+
+                if (!useBinFolder && !useBinSetupFolder)
+                {
+                    manager.LaunchUpdater(targetVersion);           // Launch an executable that will apply the update and restart the application afterwards
+                }
+                else if(useBinSetupFolder)
+                {
+                    Process.Start(Path.Combine(packagePath, "bin_Setup", "setup.exe"));
+                }
+                else if(useBinFolder)
+                {
+                    await Task.Run(() =>
+                    {
+                        string[] files = Directory.GetFiles(binFolderPath, "*.*", SearchOption.AllDirectories);
+                        // Copy all files from bin folder one folder higher (outside bin folder), see: https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp
+                        foreach (string dirPath in Directory.GetDirectories(binFolderPath, "*", SearchOption.AllDirectories)) { Directory.CreateDirectory(dirPath.Replace(binFolderPath, packagePath)); }
+                        int filesCopied = 0;
+                        foreach (string newPath in files)
+                        {
+                            File.Move(newPath, newPath.Replace(binFolderPath, packagePath));
+                            filesCopied++;
+                            updateProgress.Report(deleteProgressMaxValueBinFolder + ((double)filesCopied / files.Length) * (1 - deleteProgressMaxValueBinFolder));
+                        }
+
+                        Directory.Delete(binFolderPath, true);
+                        if (Directory.Exists(binSetupFolderPath)) { Directory.Delete(binSetupFolderPath, true); }
+                    });
+
+                    manager.LaunchUpdater(targetVersion);           // Launch an executable that will apply the update and restart the application afterwards
+                }
+
+                if (useBinSetupFolder) { await windowAssemblyInfo.ShowMessageAsync("Update", "To finish the update, the application is closed now. Please use the started installer to reinstall the application.", MessageDialogStyle.Affirmative); }
+                else { await windowAssemblyInfo.ShowMessageAsync("Update", "To finish the update, the application is closed now. This may take some time. After the update is finished, the application is restarted.", MessageDialogStyle.Affirmative); }
+
+                manager.Dispose();
+                Environment.Exit(0);                            // Terminate the running application so that the updater/installer can overwrite files
+            }
+            catch (Exception ex)
+            {
+                await windowAssemblyInfo?.ShowMessageAsync("Error while update", ex.Message);
+                UpdateStatus.IsUpdateRunning = false;
+            }
+        }
+
+        //********************************************************************************************************************************************************************
 
         /// <summary>
         /// Get all releases from the GitHub repository
@@ -192,6 +368,19 @@ namespace AssemblyInfoHelper.GitHub
                 GitHubClient gitHubClient = new GitHubClient(new ProductHeaderValue("AssemblyInfoHelper-UpdateCheck"));
 
                 List<Release> releases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
+                
+#warning Remove TestCode
+                /*List<Release> releases = new List<Release>();
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 0, "0", "v1.0.0", "", "Release v1.0.0", "Hallo1", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 1, "1", "v2.0.0", "", "Release v2.0.0", "Hallo2", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 2, "2", "v3.0.0", "", "Release v3.0.0", "Hallo3", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 3, "3", "v4.0.0", "", "Release v4.0.0", "Hallo4", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 4, "4", "v4.1.0", "", "Release v4.1.0", "Hallo5", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 5, "5", "v4.1.1", "", "Release v4.1.1", "Hallo6", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 6, "6", "v4.2.0", "", "Release v4.2.0", "Hallo7", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                releases.Add(new Release("abc", "https://www.google.de", "ghi", "jkl", 7, "7", "v4.2.1", "", "Release v4.2.1", "Hallo8", false, false, DateTime.Now, DateTime.Now, new Author(), "", "", null));
+                */
+
                 SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);
                 
                 SemVersion previousVersion = new SemVersion(0, 0, 0);
@@ -275,5 +464,27 @@ namespace AssemblyInfoHelper.GitHub
                 return GitHubReleaseTypes.NONE;
             }
         }
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// This function deletes all empty folders in the given path.
+        /// </summary>
+        /// <param name="startFolder">The folder to start from.</param>
+        /// see: https://stackoverflow.com/questions/2811509/c-sharp-remove-all-empty-subdirectories
+        private void DeleteEmptyFolders(string startFolder)
+        {
+            if (!Directory.Exists(startFolder)) { return; }
+
+            foreach (string directory in Directory.GetDirectories(startFolder))
+            {
+                DeleteEmptyFolders(directory);
+                if (Directory.GetFiles(directory).Length == 0 && Directory.GetDirectories(directory).Length == 0)
+                {
+                    Directory.Delete(directory, false);
+                }
+            }
+        }
+
     }
 }

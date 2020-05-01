@@ -53,6 +53,9 @@ namespace AssemblyInfoHelper
 
         //##############################################################################################################################################################################################
 
+        /// <summary>
+        /// Get the version of the AssemblyInfoHelper
+        /// </summary>
         public string AssemblyInfoHelperVersion
         {
             get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
@@ -61,6 +64,9 @@ namespace AssemblyInfoHelper
         //********************************************************************************************************************************************************************
 
         private string _readmeMarkdown;
+        /// <summary>
+        /// Markdown string containing the content of the Readme file
+        /// </summary>
         public string ReadmeMarkdown
         {
             get { return _readmeMarkdown; }
@@ -70,6 +76,9 @@ namespace AssemblyInfoHelper
         //********************************************************************************************************************************************************************
 
         private string _changelogMarkdown;
+        /// <summary>
+        /// Markdown string containing the content of the Changelog file
+        /// </summary>
         public string ChangelogMarkdown
         {
             get { return _changelogMarkdown; }
@@ -79,6 +88,9 @@ namespace AssemblyInfoHelper
         //********************************************************************************************************************************************************************
 
         private int _selectedTabIndex;
+        /// <summary>
+        /// Index of the selected Tab (General infos, Readme, Changelog, Github releases)
+        /// </summary>
         public int SelectedTabIndex
         {
             get { return _selectedTabIndex; }
@@ -88,6 +100,9 @@ namespace AssemblyInfoHelper
         //********************************************************************************************************************************************************************
 
         private ICommand _assemblyInfoHelperVersionCommand;
+        /// <summary>
+        /// Command to show the version of the AssemblyInfoHelper
+        /// </summary>
         public ICommand AssemblyInfoHelperVersionCommand
         {
             get
@@ -105,8 +120,8 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
-        private string _readmePath;
-        private string _changeLogPath;
+        private string _readmePath;         // Path to the Readme file
+        private string _changeLogPath;      // Path to the Changelog file
 
         //********************************************************************************************************************************************************************
 
