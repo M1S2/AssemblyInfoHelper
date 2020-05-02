@@ -16,6 +16,7 @@
             <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
             <local:ReleaseTypeToBadgeTextConverter x:Key="ReleaseTypeBadgeTextConverter"/>
             <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
+            <local:GitHubReleaseToUpdateButtonStyleConverter x:Key="GitHubReleaseUpdateButtonConverter"/>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ToggleSwitch.xaml" />
@@ -29,7 +30,7 @@
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{DynamicResource AccentBaseColorBrush}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}">
             <iconPacks:PackIconMaterial Margin="10" Width="30" Height="30" Kind="Alert" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-            <TextBlock Margin="10" FontSize="14" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+            <TextBlock Margin="10" FontSize="14" MaxHeight="100" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
         </StackPanel>
 
         <!-- ########## Project URL ######################################################################################################################################################################################## -->
@@ -45,9 +46,9 @@
             </TextBlock>
         </StackPanel>
 
-        <!-- ########## Number of releases (New, Total) ######################################################################################################################################################################################## -->
+        <!-- ########## Number of releases (New, Total), Update progress ######################################################################################################################################################################################## -->
 
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,10,0,10">
             <Grid ToolTip="Number new releases">
                 <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource AccentBaseColorBrush}"/>
                 <iconPacks:PackIconModern Kind="New" Margin="40,0,0,0" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBaseColorBrush}"/>
@@ -59,7 +60,16 @@
                 <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBaseColorBrush}"/>
             </Grid>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
-        </StackPanel>
+
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.IsUpdateRunning, Converter={StaticResource BoolVisibilityConverter} }">
+                <Grid>
+                    <MetroControls:ProgressRing/>
+                    <TextBlock Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.UpdateProgress, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                </Grid>
+
+                <TextBlock Margin="15,0,10,0" VerticalAlignment="Center" FontSize="16" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.UpdateText}"/>
+            </StackPanel>
+        </DockPanel>
 
         <!-- ########## Switch on/off new version notification ######################################################################################################################################################################################## -->
 
@@ -80,6 +90,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ToolTip="{Binding ReleaseURL}">
@@ -121,7 +132,8 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
                         <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding ReleaseTime, StringFormat='Published: {0:dd.MM.yyyy HH:mm}'}" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource GrayBrush3}"/>
-                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Header="Release Notes" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="Transparent">
+                        <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource AccentBaseColorBrush}" BorderThickness="0" Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}"/>
+                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="Release Notes" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="Transparent">
                             <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
                     </Grid>

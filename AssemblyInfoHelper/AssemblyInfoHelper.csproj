@@ -75,6 +75,8 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -100,6 +102,8 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="GitHub\GitHubRepoAttribute.cs" />
     <Compile Include="GitHub\GitHubUtils.cs" />
     <Compile Include="GitHub\ReleaseTypeToBadgeTextConverter.cs" />
+    <Compile Include="GitHub\GitHubReleaseToUpdateButtonStyleConverter.cs" />
+    <Compile Include="GitHub\UpdateStatusInfo.cs" />
     <Compile Include="Markdown\MarkdownViewer.xaml.cs">
       <DependentUpon>MarkdownViewer.xaml</DependentUpon>
     </Compile>
@@ -115,6 +119,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="Markdown\WebBrowserMarkdown.xaml.cs">
       <DependentUpon>WebBrowserMarkdown.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Update\UpdateUtils.cs" />
     <Compile Include="WindowAssemblyInfo.xaml.cs">
       <DependentUpon>WindowAssemblyInfo.xaml</DependentUpon>
     </Compile>
@@ -160,5 +165,13 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
   <ItemGroup>
     <Resource Include="Update.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/AssemblyInfoHelper.Updater.exe">
+      <Link>Updater.exe</Link>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
