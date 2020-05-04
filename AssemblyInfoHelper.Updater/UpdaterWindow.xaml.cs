@@ -46,6 +46,9 @@ namespace AssemblyInfoHelper.Updater
         //####################################################################################################################################################################
 
         private double _updateProgress;
+        /// <summary>
+        /// Update Progress in percent (0 ... 100)
+        /// </summary>
         public double UpdateProgress
         {
             get { return _updateProgress; }
@@ -53,6 +56,9 @@ namespace AssemblyInfoHelper.Updater
         }
 
         private bool _updateProgressIndeterminate;
+        /// <summary>
+        /// Should the progressbar be indeterminate (true) or show the UpdateProgress (false)
+        /// </summary>
         public bool UpdateProgressIndeterminate
         {
             get { return _updateProgressIndeterminate; }
@@ -60,6 +66,9 @@ namespace AssemblyInfoHelper.Updater
         }
 
         private string _updateStatus;
+        /// <summary>
+        /// Text representing the update status
+        /// </summary>
         public string UpdateStatus
         {
             get { return _updateStatus; }
@@ -107,7 +116,7 @@ namespace AssemblyInfoHelper.Updater
 
             // Copy over the package contents
             UpdateStatus = "Copying package contents...";
-            await FileDirectoryExtensions.CopyDirectory(_packageContentDirPath, updateeDirPath);
+            await FileDirectoryExtensions.CopyDirectory(_packageContentDirPath, updateeDirPath, _updateProgress);
 
             // Restart updatee if requested
             if (_restartUpdatee)
@@ -129,13 +138,12 @@ namespace AssemblyInfoHelper.Updater
                 
                 if (File.Exists(startInfo.FileName))
                 {
-                    Process restartedUpdateeProcess = Process.Start(startInfo);
-                    UpdateStatus = $"Restarted as pid:{restartedUpdateeProcess?.Id}.";
+                    Process.Start(startInfo);
                 }
             }
             
             // Delete package content directory
-            UpdateStatus = "Delete package";
+            UpdateStatus = "Delete package content directory...";
             await FileDirectoryExtensions.DeleteDirectory(_packageContentDirPath, false, true, _updateProgress);
             await FileDirectoryExtensions.DeleteEmptyFolders(Directory.GetParent(_packageContentDirPath).FullName);
             Environment.Exit(0);

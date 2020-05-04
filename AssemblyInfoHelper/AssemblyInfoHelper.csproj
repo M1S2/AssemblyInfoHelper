@@ -119,7 +119,7 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"</PostBuildEvent>
     <Compile Include="Markdown\WebBrowserMarkdown.xaml.cs">
       <DependentUpon>WebBrowserMarkdown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Update\UpdateUtils.cs" />
+    <Compile Include="GitHub\UpdateUtils.cs" />
     <Compile Include="WindowAssemblyInfo.xaml.cs">
       <DependentUpon>WindowAssemblyInfo.xaml</DependentUpon>
     </Compile>

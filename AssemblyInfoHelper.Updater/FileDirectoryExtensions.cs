@@ -34,36 +34,25 @@ namespace AssemblyInfoHelper.Updater
         /// </summary>
         /// <param name="sourceDirPath">Source directory</param>
         /// <param name="destDirPath">Destination directory</param>
+        /// <param name="progress">Interface for progress reporting</param>
         /// <param name="overwrite">Allow to overwrite files</param>
-        /// see: https://github.com/Tyrrrz/Onova/blob/master/Onova.Updater/Internal/DirectoryEx.cs
-        public async static Task CopyDirectory(string sourceDirPath, string destDirPath, bool overwrite = true)
+        /// see: see: https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp
+        public async static Task CopyDirectory(string sourceDirPath, string destDirPath, IProgress<double> progress, bool overwrite = true)
         {
-#warning Report progress while copying
-            await Task.Run(async() =>
+            await Task.Run(() =>
             {
-                Directory.CreateDirectory(destDirPath);
-
-                // Get all files in source directory
-                var sourceFilePaths = Directory.EnumerateFiles(sourceDirPath);
-
-                // Copy them
-                foreach (var sourceFilePath in sourceFilePaths)
+                foreach (string dirPath in Directory.GetDirectories(sourceDirPath, "*", SearchOption.AllDirectories))
                 {
-                    // Get destination file path
-                    var destFileName = Path.GetFileName(sourceFilePath);
-                    var destFilePath = Path.Combine(destDirPath, destFileName);
-                    File.Copy(sourceFilePath, destFilePath, overwrite);
+                    Directory.CreateDirectory(dirPath.Replace(sourceDirPath, destDirPath));
                 }
 
-                // Get all subdirectories in source directory
-                var sourceSubDirPaths = Directory.EnumerateDirectories(sourceDirPath);
-
-                // Recursively copy them
-                foreach (var sourceSubDirPath in sourceSubDirPaths)
+                string[] fileNames = Directory.GetFiles(sourceDirPath, "*.*", SearchOption.AllDirectories);
+                int filesCopied = 0;
+                foreach (string fileName in fileNames)
                 {
-                    var destSubDirName = Path.GetFileName(sourceSubDirPath);
-                    var destSubDirPath = Path.Combine(destDirPath, destSubDirName);
-                    await CopyDirectory(sourceSubDirPath, destSubDirPath, overwrite);
+                    File.Copy(fileName, fileName.Replace(sourceDirPath, destDirPath), overwrite);
+                    filesCopied++;
+                    progress.Report((double)filesCopied / fileNames.Length);
                 }
             });
         }
@@ -91,7 +80,6 @@ namespace AssemblyInfoHelper.Updater
                     {
                         if (!ignoreDeleteErrors) { throw ex; }
                     }
-
                     filesDeleted++;
                     progress.Report(((double)filesDeleted / filePaths.Count));
                 }

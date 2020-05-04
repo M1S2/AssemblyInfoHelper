@@ -61,13 +61,13 @@
             </Grid>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource BlackBrush}"/>
 
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.IsUpdateRunning, Converter={StaticResource BoolVisibilityConverter} }">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=IsUpdateRunning, Converter={StaticResource BoolVisibilityConverter} }">
                 <Grid>
                     <MetroControls:ProgressRing/>
-                    <TextBlock Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.UpdateProgress, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                    <TextBlock Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateProgress, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
                 </Grid>
 
-                <TextBlock Margin="15,0,10,0" VerticalAlignment="Center" FontSize="16" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateStatus.UpdateText}"/>
+                <TextBlock Margin="15,0,10,0" VerticalAlignment="Center" FontSize="16" Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateText}"/>
             </StackPanel>
         </DockPanel>
 
@@ -136,6 +136,11 @@
                         <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="Release Notes" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="Transparent">
                             <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
+
+                        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
+                            <iconPacks:PackIconOcticons Width="18" Height="Auto" VerticalAlignment="Top" Kind="FileZip" Foreground="{DynamicResource AccentBaseColorBrush}" Visibility="{Binding BinAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="Binary release is available for this version"/>
+                            <iconPacks:PackIconEntypo Width="18" Height="Auto" Margin="30,3,0,0" VerticalAlignment="Top" Kind="Install" Foreground="{DynamicResource AccentBaseColorBrush}" Visibility="{Binding InstallerAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="Installer release is available for this version"/>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
