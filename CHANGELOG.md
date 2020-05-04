@@ -2,6 +2,7 @@
 
 ## [%version%] - %date%
 
+- Update feature added
 
 ## [v4.2.1] - 13.12.2019 20:01
  

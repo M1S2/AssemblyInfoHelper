@@ -38,7 +38,7 @@ namespace AssemblyInfoHelper.GitHub
                 UpdateStatus.ToVersion = targetRelease.Version;
                 UpdateStatus.IsUpdateRunning = true;
 
-                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync("Confirm update", "Do you really want to " + UpdateStatus.UpdateText, MessageDialogStyle.AffirmativeAndNegative);
+                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync("Confirm update", "Do you really want to " + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion > UpdateStatus.ToVersion) ? Environment.NewLine + Environment.NewLine + "For downgrades to lower versions, this update feature may not be available anymore! You have to download manually then!" : ""), MessageDialogStyle.AffirmativeAndNegative);
                 if (messageResult == MessageDialogResult.Negative) { UpdateStatus.IsUpdateRunning = false; return; }
 
                 bool useBinaries = false, useInstaller = false;

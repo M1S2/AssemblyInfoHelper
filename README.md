@@ -57,3 +57,8 @@ Or you can open the info window with:
 AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();
 window.ShowDialog();
 ```
+
+## Update Feature
+
+You can see and download all releases available on GitHub on the GitHub releases tab.
+To Upgrade/Repair/Downgrade click on the button beside the corresponding release. The release is downloaded from GitHub and installed automatically depending if an installer or binaries are available.
