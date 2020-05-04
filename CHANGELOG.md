@@ -1,6 +1,6 @@
 # AssemblyInfoHelper
 
-## [%version%] - %date%
+## [v4.3.0] - 04.05.2020 22:18
 
 - Update feature added
 
