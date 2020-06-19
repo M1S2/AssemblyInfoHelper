@@ -58,7 +58,7 @@ namespace AssemblyInfoHelper
         /// </summary>
         public string AssemblyInfoHelperVersion
         {
-            get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+            get { return AssemblyInfoHelperClass.GetAttributeFromAssembly(System.Reflection.Assembly.GetExecutingAssembly(), AssemblyInfoHelperClass.AssemblyAttributeTypes.FILEVERSION); }
         }
 
         //********************************************************************************************************************************************************************
@@ -99,27 +99,6 @@ namespace AssemblyInfoHelper
 
         //********************************************************************************************************************************************************************
 
-        private ICommand _assemblyInfoHelperVersionCommand;
-        /// <summary>
-        /// Command to show the version of the AssemblyInfoHelper
-        /// </summary>
-        public ICommand AssemblyInfoHelperVersionCommand
-        {
-            get
-            {
-                if (_assemblyInfoHelperVersionCommand == null)
-                {
-                    _assemblyInfoHelperVersionCommand = new RelayCommand(async param =>
-                    {
-                        await this.ShowMessageAsync("AssemblyInfoHelper Version", AssemblyInfoHelperVersion, MessageDialogStyle.Affirmative, new MetroDialogSettings() { OwnerCanCloseWithDialog = true });
-                    });
-                }
-                return _assemblyInfoHelperVersionCommand;
-            }
-        }
-
-        //********************************************************************************************************************************************************************
-
         private string _readmePath;         // Path to the Readme file
         private string _changeLogPath;      // Path to the Changelog file
 
@@ -154,6 +133,8 @@ namespace AssemblyInfoHelper
             _changeLogPath = startupPath + @"CHANGELOG.md";
             SelectedTabIndex = (int)startTab;
             this.DataContext = this;
+
+            this.Title = "Assembly info     v" + AssemblyInfoHelperVersion;
         }
 
         //********************************************************************************************************************************************************************

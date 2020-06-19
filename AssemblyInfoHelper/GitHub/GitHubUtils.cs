@@ -212,7 +212,7 @@ namespace AssemblyInfoHelper.GitHub
             {
                 ErrorOccuredWhileLoadingReleases = false;
                 ErrorMessage = string.Empty;
-                GitHubReleases.Clear();
+                GitHubReleases?.Clear();
                 
                 if (!IsGitHubRepoAssigned) { GitHubReleases = null; return; }
 
@@ -226,7 +226,7 @@ namespace AssemblyInfoHelper.GitHub
 
                 List<Release> originalReleases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
 
-                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);                
+                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);      
                 SemVersion previousVersion = new SemVersion(0, 0, 0);
                 originalReleases.Reverse();
 

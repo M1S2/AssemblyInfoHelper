@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
+using System.IO;
 
 namespace AssemblyInfoHelper.Markdown
 {
@@ -41,7 +42,8 @@ namespace AssemblyInfoHelper.Markdown
             if (markdownString == null) { return; }
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             string htmlString = "<font face = \"calibri\">" + Markdig.Markdown.ToHtml(markdownString, pipeline);
-            ((WebBrowserMarkdown)sender).webBrowserMarkdown.NavigateToString(htmlString);
+            Stream htmlStream = new MemoryStream(System.Text.Encoding.Default.GetBytes(htmlString));            // Convert to stream to show german ä,ö,ü correctly
+            ((WebBrowserMarkdown)sender).webBrowserMarkdown.NavigateToStream(htmlStream);       //NavigateToString(htmlString);
         }
             
         //********************************************************************************************************************************************************************

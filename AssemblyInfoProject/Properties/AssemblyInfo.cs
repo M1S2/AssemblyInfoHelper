@@ -8,12 +8,12 @@ using System.Windows;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("AssemblyInfoProject")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("Test project for AssemblyInfoHelper")]
+[assembly: AssemblyConfiguration("Config")]
+[assembly: AssemblyCompany("Markus Scheich")]
 [assembly: AssemblyProduct("AssemblyInfoProject")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyTrademark("TM")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 

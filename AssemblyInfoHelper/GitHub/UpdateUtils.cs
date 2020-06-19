@@ -156,7 +156,7 @@ namespace AssemblyInfoHelper.GitHub
 
         private static async Task ExtractManifestResourceAsync(Assembly assembly, string resourceName, string destFilePath)
         {
-            using (Stream input = assembly.GetManifestResourceStream(resourceName) ?? throw new Exception($"Could not find resource [{resourceName}]."))
+            using (Stream input = assembly.GetManifestResourceStream(resourceName)) // ?? throw new Exception($"Could not find resource [{resourceName}]."))
             {
                 using (FileStream output = File.Create(destFilePath))
                 {

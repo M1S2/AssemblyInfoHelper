@@ -24,10 +24,10 @@
                             <Setter.Value>
                                 <StackPanel Orientation="Horizontal">
                                     <Grid>
-                                        <iconPacks:PackIconEntypo Width="25" Height="22" Kind="ArrowBoldUp" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-                                        <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+                                        <iconPacks:PackIconMaterial Width="35" Height="25" Kind="Triangle" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                        <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                                     </Grid>
-                                    <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                    <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
                                 </StackPanel>
                             </Setter.Value>
                         </Setter>
@@ -36,8 +36,8 @@
                                 <Setter Property="Content">
                                     <Setter.Value>
                                         <StackPanel Orientation="Horizontal">
-                                            <iconPacks:PackIconModern Width="22" Height="22" Kind="InformationCircle" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-                                            <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource IdealForegroundColorBrush}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                            <iconPacks:PackIconOcticons Width="22" Height="22" Kind="Info" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                            <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
                                         </StackPanel>
                                     </Setter.Value>
                                 </Setter>
