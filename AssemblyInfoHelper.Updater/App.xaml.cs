@@ -21,7 +21,7 @@ namespace AssemblyInfoHelper.Updater
             string packageContentDirPath = (e.Args.Length >= 2 ? e.Args[1] : "");
             bool restartUpdatee = (e.Args.Length >= 3 ? bool.Parse(e.Args[2]) : true);
             string routedArgs = (e.Args.Length >= 4 ? Encoding.UTF8.GetString(Convert.FromBase64String(e.Args[3])) : "");
-            
+
             UpdaterWindow updaterWindow = new UpdaterWindow(updateeFilePath, packageContentDirPath, restartUpdatee, routedArgs);
             updaterWindow.Show();
             updaterWindow.RunUpdate();
