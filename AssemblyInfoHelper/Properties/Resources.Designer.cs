@@ -19,10 +19,10 @@ namespace AssemblyInfoHelper.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace AssemblyInfoHelper.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AssemblyInfoHelper.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,210 @@ namespace AssemblyInfoHelper.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show App infos and releases ähnelt.
+        /// </summary>
+        public static string AppInfoButtonToolTipString {
+            get {
+                return ResourceManager.GetString("AppInfoButtonToolTipString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Company ähnelt.
+        /// </summary>
+        public static string AssemblyCompanyString {
+            get {
+                return ResourceManager.GetString("AssemblyCompanyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copyright ähnelt.
+        /// </summary>
+        public static string AssemblyCopyrightString {
+            get {
+                return ResourceManager.GetString("AssemblyCopyrightString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Culture ähnelt.
+        /// </summary>
+        public static string AssemblyCultureString {
+            get {
+                return ResourceManager.GetString("AssemblyCultureString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
+        /// </summary>
+        public static string AssemblyDescriptionString {
+            get {
+                return ResourceManager.GetString("AssemblyDescriptionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File Version ähnelt.
+        /// </summary>
+        public static string AssemblyFileVersionString {
+            get {
+                return ResourceManager.GetString("AssemblyFileVersionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last Build ähnelt.
+        /// </summary>
+        public static string AssemblyLastBuildString {
+            get {
+                return ResourceManager.GetString("AssemblyLastBuildString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Product ähnelt.
+        /// </summary>
+        public static string AssemblyProductString {
+            get {
+                return ResourceManager.GetString("AssemblyProductString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Title ähnelt.
+        /// </summary>
+        public static string AssemblyTitleString {
+            get {
+                return ResourceManager.GetString("AssemblyTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Trademark ähnelt.
+        /// </summary>
+        public static string AssemblyTrademarkString {
+            get {
+                return ResourceManager.GetString("AssemblyTrademarkString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Version ähnelt.
+        /// </summary>
+        public static string AssemblyVersionString {
+            get {
+                return ResourceManager.GetString("AssemblyVersionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Changelog ähnelt.
+        /// </summary>
+        public static string ChangelogString {
+            get {
+                return ResourceManager.GetString("ChangelogString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General Infos ähnelt.
+        /// </summary>
+        public static string GeneralInfosString {
+            get {
+                return ResourceManager.GetString("GeneralInfosString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Binary release is available for this version ähnelt.
+        /// </summary>
+        public static string GitHubBinaryReleaseAvailableString {
+            get {
+                return ResourceManager.GetString("GitHubBinaryReleaseAvailableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Installer release is available for this version ähnelt.
+        /// </summary>
+        public static string GitHubInstallerReleaseAvailableString {
+            get {
+                return ResourceManager.GetString("GitHubInstallerReleaseAvailableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No releases available ähnelt.
+        /// </summary>
+        public static string GitHubNoReleasesAvailableString {
+            get {
+                return ResourceManager.GetString("GitHubNoReleasesAvailableString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Published ähnelt.
+        /// </summary>
+        public static string GitHubPublishedString {
+            get {
+                return ResourceManager.GetString("GitHubPublishedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Release Notes ähnelt.
+        /// </summary>
+        public static string GitHubReleaseNotesString {
+            get {
+                return ResourceManager.GetString("GitHubReleaseNotesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GitHub Releases ähnelt.
+        /// </summary>
+        public static string GitHubReleasesString {
+            get {
+                return ResourceManager.GetString("GitHubReleasesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Don&apos;t notify about new releases ähnelt.
+        /// </summary>
+        public static string GitHubVersionNotificationDisabledString {
+            get {
+                return ResourceManager.GetString("GitHubVersionNotificationDisabledString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Notify about new releases ähnelt.
+        /// </summary>
+        public static string GitHubVersionNotificationEnabledString {
+            get {
+                return ResourceManager.GetString("GitHubVersionNotificationEnabledString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Readme ähnelt.
+        /// </summary>
+        public static string ReadmeString {
+            get {
+                return ResourceManager.GetString("ReadmeString", resourceCulture);
             }
         }
     }

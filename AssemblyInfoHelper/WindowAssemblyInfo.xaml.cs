@@ -17,7 +17,6 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
 
-using Markdig;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.IO;

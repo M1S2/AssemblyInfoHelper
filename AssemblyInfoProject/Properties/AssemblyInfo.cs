@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("Config")]
 [assembly: AssemblyCompany("Markus Scheich")]
 [assembly: AssemblyProduct("AssemblyInfoProject")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("TM")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]

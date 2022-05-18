@@ -8,6 +8,7 @@
              xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
+             xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="90">
 
@@ -16,7 +17,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <Button Command="{Binding InfoCommand}" ToolTip="Show App infos and releases">
+        <Button Command="{Binding InfoCommand}" ToolTip="{x:Static properties:Resources.AppInfoButtonToolTipString}">
             <ContentControl>
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">

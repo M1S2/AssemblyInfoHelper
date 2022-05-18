@@ -8,6 +8,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
              xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
+             xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -69,7 +70,7 @@
 
         <!-- ########## Switch on/off new version notification ######################################################################################################################################################################################## -->
 
-        <MetroControls:ToggleSwitch DockPanel.Dock="Bottom" Margin="10" OnContent="Notify about new releases" OffContent="Don't notify about new releases" IsOn="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UserEnableDisableReleaseNotification}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=AppEnableDisableReleaseNotification, Converter={StaticResource BoolVisibilityConverter}}"/>
+        <MetroControls:ToggleSwitch DockPanel.Dock="Bottom" Margin="10" OnContent="{x:Static properties:Resources.GitHubVersionNotificationEnabledString}" OffContent="{x:Static properties:Resources.GitHubVersionNotificationDisabledString}" IsOn="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UserEnableDisableReleaseNotification}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=AppEnableDisableReleaseNotification, Converter={StaticResource BoolVisibilityConverter}}"/>
 
         <!-- ########## Releases List ######################################################################################################################################################################################## -->
 
@@ -127,15 +128,22 @@
                         </TextBlock>
 
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding ReleaseTime, StringFormat='Published: {0:dd.MM.yyyy HH:mm}'}" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource MahApps.Brushes.Gray3}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource MahApps.Brushes.Gray3}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}: {1:dd.MM.yyyy HH:mm}">
+                                    <Binding Source="{x:Static properties:Resources.GitHubPublishedString}"/>
+                                    <Binding Path="ReleaseTime"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                         <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource MahApps.Brushes.AccentBase}" BorderThickness="0" Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}"/>
-                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="Release Notes" MetroControls:HeaderedControlHelper.HeaderBackground="{DynamicResource MahApps.Brushes.ThemeBackground}" BorderBrush="Transparent">
+                        <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="{x:Static properties:Resources.GitHubReleaseNotesString}" MetroControls:HeaderedControlHelper.HeaderBackground="{DynamicResource MahApps.Brushes.ThemeBackground}" BorderBrush="Transparent">
                             <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>
 
                         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
-                            <iconPacks:PackIconOcticons Width="18" Height="Auto" VerticalAlignment="Top" Kind="FileZip" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding BinAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="Binary release is available for this version"/>
-                            <iconPacks:PackIconMaterial Width="18" Height="Auto" Margin="30,3,0,0" VerticalAlignment="Top" Kind="ApplicationImport" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding InstallerAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="Installer release is available for this version"/>
+                            <iconPacks:PackIconOcticons Width="18" Height="Auto" VerticalAlignment="Top" Kind="FileZip" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding BinAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubBinaryReleaseAvailableString}"/>
+                            <iconPacks:PackIconMaterial Width="18" Height="Auto" Margin="30,3,0,0" VerticalAlignment="Top" Kind="ApplicationImport" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding InstallerAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubInstallerReleaseAvailableString}"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -170,7 +178,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Text="No releases available" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource MahApps.Brushes.Gray3}" FontSize="30"/>
+                                        <TextBlock Text="{x:Static properties:Resources.GitHubNoReleasesAvailableString}" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource MahApps.Brushes.Gray3}" FontSize="30"/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>

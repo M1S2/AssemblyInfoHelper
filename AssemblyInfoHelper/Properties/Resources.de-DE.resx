@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppInfoButtonToolTipString" xml:space="preserve">
-    <value>Show App infos and releases</value>
+    <value>App Infos und Releases anzeigen</value>
   </data>
   <data name="AssemblyCompanyString" xml:space="preserve">
-    <value>Company</value>
+    <value>Firma</value>
   </data>
   <data name="AssemblyCopyrightString" xml:space="preserve">
     <value>Copyright</value>
   </data>
   <data name="AssemblyCultureString" xml:space="preserve">
-    <value>Culture</value>
+    <value>Kultur</value>
   </data>
   <data name="AssemblyDescriptionString" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>File Version</value>
+    <value>Datei Version</value>
   </data>
   <data name="AssemblyLastBuildString" xml:space="preserve">
-    <value>Last Build</value>
+    <value>Letzter Build</value>
   </data>
   <data name="AssemblyProductString" xml:space="preserve">
-    <value>Product</value>
+    <value>Produkt</value>
   </data>
   <data name="AssemblyTitleString" xml:space="preserve">
-    <value>Title</value>
+    <value>Titel</value>
   </data>
   <data name="AssemblyTrademarkString" xml:space="preserve">
     <value>Trademark</value>
@@ -154,31 +154,31 @@
     <value>Changelog</value>
   </data>
   <data name="GeneralInfosString" xml:space="preserve">
-    <value>General Infos</value>
+    <value>Allgemeine Infos</value>
   </data>
   <data name="GitHubBinaryReleaseAvailableString" xml:space="preserve">
-    <value>Binary release is available for this version</value>
+    <value>Binary Release ist für diese Version verfügbar</value>
   </data>
   <data name="GitHubInstallerReleaseAvailableString" xml:space="preserve">
-    <value>Installer release is available for this version</value>
+    <value>Installer Release ist für diese Version verfügbar</value>
   </data>
   <data name="GitHubNoReleasesAvailableString" xml:space="preserve">
-    <value>No releases available</value>
+    <value>Keine Releases verfügbar</value>
   </data>
   <data name="GitHubPublishedString" xml:space="preserve">
-    <value>Published</value>
+    <value>Veröffentlicht</value>
   </data>
   <data name="GitHubReleaseNotesString" xml:space="preserve">
-    <value>Release Notes</value>
+    <value>Release Beschreibung</value>
   </data>
   <data name="GitHubReleasesString" xml:space="preserve">
     <value>GitHub Releases</value>
   </data>
   <data name="GitHubVersionNotificationDisabledString" xml:space="preserve">
-    <value>Don't notify about new releases</value>
+    <value>Nicht bei neuen Releases benachrichtigen</value>
   </data>
   <data name="GitHubVersionNotificationEnabledString" xml:space="preserve">
-    <value>Notify about new releases</value>
+    <value>Bei neuen Releases benachrichtigen</value>
   </data>
   <data name="ReadmeString" xml:space="preserve">
     <value>Readme</value>
