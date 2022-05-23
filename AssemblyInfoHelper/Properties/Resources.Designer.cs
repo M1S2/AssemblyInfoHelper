@@ -61,6 +61,15 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
+        /// </summary>
+        public static string AboutString {
+            get {
+                return ResourceManager.GetString("AboutString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show App infos and releases ähnelt.
         /// </summary>
         public static string AppInfoButtonToolTipString {
@@ -169,6 +178,15 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Downgrade ähnelt.
+        /// </summary>
+        public static string DowngradeString {
+            get {
+                return ResourceManager.GetString("DowngradeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die General Infos ähnelt.
         /// </summary>
         public static string GeneralInfosString {
@@ -250,11 +268,56 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number new releases ähnelt.
+        /// </summary>
+        public static string NumberNewReleasesString {
+            get {
+                return ResourceManager.GetString("NumberNewReleasesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Number total releases ähnelt.
+        /// </summary>
+        public static string NumberReleasesTotalString {
+            get {
+                return ResourceManager.GetString("NumberReleasesTotalString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Readme ähnelt.
         /// </summary>
         public static string ReadmeString {
             get {
                 return ResourceManager.GetString("ReadmeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Repair ähnelt.
+        /// </summary>
+        public static string RepairString {
+            get {
+                return ResourceManager.GetString("RepairString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Repository URL ähnelt.
+        /// </summary>
+        public static string RepositoryURLString {
+            get {
+                return ResourceManager.GetString("RepositoryURLString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Upgrade ähnelt.
+        /// </summary>
+        public static string UpgradeString {
+            get {
+                return ResourceManager.GetString("UpgradeString", resourceCulture);
             }
         }
     }

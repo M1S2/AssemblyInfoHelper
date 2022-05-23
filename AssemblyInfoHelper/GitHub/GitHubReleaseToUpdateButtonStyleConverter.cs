@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using MahApps.Metro.IconPacks;
 using AssemblyInfoHelper.GitHub;
 using System.Windows.Documents;
+using System.Resources;
 
 namespace AssemblyInfoHelper.GitHub
 {
@@ -19,21 +20,23 @@ namespace AssemblyInfoHelper.GitHub
             PackIconBase icon = null;
             string text = "";
 
+            ResourceManager resourceManager = new ResourceManager(typeof(Properties.Resources));
+
             GitHubRelease release = (GitHubRelease)value;
             
             switch (release.ReleaseTimeType)
             {
                 case GitHubReleaseTimeTypes.OLD:
                     icon = new PackIconMaterial() { Kind = PackIconMaterialKind.History };
-                    text = "Downgrade";
+                    text = resourceManager.GetString("DowngradeString");
                     break;
                 case GitHubReleaseTimeTypes.CURRENT:
                     icon = new PackIconOcticons() { Kind = PackIconOcticonsKind.Tools };
-                    text = "Repair";
+                    text = resourceManager.GetString("RepairString");
                     break;
                 case GitHubReleaseTimeTypes.NEW:
                     icon = new PackIconOcticons() { Kind = PackIconOcticonsKind.DesktopDownload };
-                    text = "Upgrade";
+                    text = resourceManager.GetString("UpgradeString");
                     break;
             }
 

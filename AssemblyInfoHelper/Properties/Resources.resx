@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutString" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="AppInfoButtonToolTipString" xml:space="preserve">
     <value>Show App infos and releases</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="ChangelogString" xml:space="preserve">
     <value>Changelog</value>
   </data>
+  <data name="DowngradeString" xml:space="preserve">
+    <value>Downgrade</value>
+  </data>
   <data name="GeneralInfosString" xml:space="preserve">
     <value>General Infos</value>
   </data>
@@ -180,7 +186,22 @@
   <data name="GitHubVersionNotificationEnabledString" xml:space="preserve">
     <value>Notify about new releases</value>
   </data>
+  <data name="NumberNewReleasesString" xml:space="preserve">
+    <value>Number new releases</value>
+  </data>
+  <data name="NumberReleasesTotalString" xml:space="preserve">
+    <value>Number total releases</value>
+  </data>
   <data name="ReadmeString" xml:space="preserve">
     <value>Readme</value>
+  </data>
+  <data name="RepairString" xml:space="preserve">
+    <value>Repair</value>
+  </data>
+  <data name="RepositoryURLString" xml:space="preserve">
+    <value>Repository URL</value>
+  </data>
+  <data name="UpgradeString" xml:space="preserve">
+    <value>Upgrade</value>
   </data>
 </root>

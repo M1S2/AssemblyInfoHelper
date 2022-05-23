@@ -9,13 +9,14 @@
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
              xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
              xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
+             xmlns:converters="clr-namespace:AssemblyInfoHelper.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
-            <local:ReleaseTypeToBadgeTextConverter x:Key="ReleaseTypeBadgeTextConverter"/>
+            <converters:EnumToLocalizedStringConverter x:Key="EnumLocalizedStringConverter"/>
             <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
             <local:GitHubReleaseToUpdateButtonStyleConverter x:Key="GitHubReleaseUpdateButtonConverter"/>
         </ResourceDictionary>
@@ -33,7 +34,8 @@
         <!-- ########## Project URL ######################################################################################################################################################################################## -->
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
-            <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="Repository URL" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+            <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="{x:Static properties:Resources.RepositoryURLString}" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+            <TextBlock Margin="30,0,0,0" Text="{Binding Source={x:Static properties:Resources.RepositoryURLString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}">
                     <local:ExternalBrowserHyperlinkControl.Inlines>
@@ -46,16 +48,18 @@
         <!-- ########## Number of releases (New, Total), Update progress ######################################################################################################################################################################################## -->
 
         <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,10,0,10">
-            <Grid ToolTip="Number new releases">
+            <Grid ToolTip="{x:Static properties:Resources.NumberNewReleasesString}">
                 <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                 <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberNewReleasesString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=NumberNewReleases}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
-            <Grid Margin="50,0,0,0" ToolTip="Number total releases">
+            <Grid Margin="50,0,0,0" ToolTip="{x:Static properties:Resources.NumberReleasesTotalString}">
                 <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                 <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberReleasesTotalString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=IsUpdateRunning, Converter={StaticResource BoolVisibilityConverter} }">
@@ -93,7 +97,7 @@
                         <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ToolTip="{Binding ReleaseURL}">
                             <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding ReleaseURL}" Foreground="Transparent" Background="Transparent">
                                 <local:ExternalBrowserHyperlinkControl.Inlines>
-                                    <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeBackground="OrangeRed" BadgeForeground="White" Badge="{Binding ReleaseTimeType}">      <!--, Converter={StaticResource ReleaseTypeBadgeTextConverter}-->
+                                    <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeFontSize="14" BadgeBackground="OrangeRed" BadgeForeground="White" Badge="{Binding ReleaseTimeType, Converter={StaticResource EnumLocalizedStringConverter}}">
                                         <Grid>
                                             <iconPacks:PackIconMaterial Kind="Tag" Margin="5,5,20,5" Width="60" Height="Auto">
                                                 <iconPacks:PackIconMaterial.Style>
@@ -113,7 +117,7 @@
                                                 </iconPacks:PackIconMaterial.Style>
                                             </iconPacks:PackIconMaterial>
                                                         
-                                            <TextBlock Text="{Binding ReleaseType}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                            <TextBlock Text="{Binding ReleaseType, Converter={StaticResource EnumLocalizedStringConverter}}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" VerticalAlignment="Center" FontSize="14" RenderTransformOrigin="0.5,0.5">
                                                 <TextBlock.RenderTransform>
                                                     <TransformGroup>
                                                         <RotateTransform Angle="45"/>
@@ -137,6 +141,7 @@
                             </TextBlock.Text>
                         </TextBlock>
                         <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource MahApps.Brushes.AccentBase}" BorderThickness="0" Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}"/>
+
                         <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="{x:Static properties:Resources.GitHubReleaseNotesString}" MetroControls:HeaderedControlHelper.HeaderBackground="{DynamicResource MahApps.Brushes.ThemeBackground}" BorderBrush="Transparent">
                             <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
                         </Expander>

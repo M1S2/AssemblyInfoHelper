@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,91 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutString" xml:space="preserve">
-    <value>Über</value>
+  <data name="GitHubReleaseTimeTypes_CURRENT" xml:space="preserve">
+    <value>Current</value>
   </data>
-  <data name="AppInfoButtonToolTipString" xml:space="preserve">
-    <value>App Infos und Releases anzeigen</value>
+  <data name="GitHubReleaseTimeTypes_NEW" xml:space="preserve">
+    <value>New</value>
   </data>
-  <data name="AssemblyCompanyString" xml:space="preserve">
-    <value>Firma</value>
+  <data name="GitHubReleaseTimeTypes_OLD" xml:space="preserve">
+    <value>Old</value>
   </data>
-  <data name="AssemblyCopyrightString" xml:space="preserve">
-    <value>Copyright</value>
+  <data name="GitHubReleaseTypes_MAJOR" xml:space="preserve">
+    <value>Major</value>
   </data>
-  <data name="AssemblyCultureString" xml:space="preserve">
-    <value>Kultur</value>
+  <data name="GitHubReleaseTypes_MINOR" xml:space="preserve">
+    <value>Minor</value>
   </data>
-  <data name="AssemblyDescriptionString" xml:space="preserve">
-    <value>Beschreibung</value>
+  <data name="GitHubReleaseTypes_NONE" xml:space="preserve">
+    <value>None</value>
   </data>
-  <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>Datei Version</value>
-  </data>
-  <data name="AssemblyLastBuildString" xml:space="preserve">
-    <value>Letzter Build</value>
-  </data>
-  <data name="AssemblyProductString" xml:space="preserve">
-    <value>Produkt</value>
-  </data>
-  <data name="AssemblyTitleString" xml:space="preserve">
-    <value>Titel</value>
-  </data>
-  <data name="AssemblyTrademarkString" xml:space="preserve">
-    <value>Trademark</value>
-  </data>
-  <data name="AssemblyVersionString" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="ChangelogString" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="DowngradeString" xml:space="preserve">
-    <value>Downgrade</value>
-  </data>
-  <data name="GeneralInfosString" xml:space="preserve">
-    <value>Allgemeine Infos</value>
-  </data>
-  <data name="GitHubBinaryReleaseAvailableString" xml:space="preserve">
-    <value>Binary Release ist für diese Version verfügbar</value>
-  </data>
-  <data name="GitHubInstallerReleaseAvailableString" xml:space="preserve">
-    <value>Installer Release ist für diese Version verfügbar</value>
-  </data>
-  <data name="GitHubNoReleasesAvailableString" xml:space="preserve">
-    <value>Keine Releases verfügbar</value>
-  </data>
-  <data name="GitHubPublishedString" xml:space="preserve">
-    <value>Veröffentlicht</value>
-  </data>
-  <data name="GitHubReleaseNotesString" xml:space="preserve">
-    <value>Release Beschreibung</value>
-  </data>
-  <data name="GitHubReleasesString" xml:space="preserve">
-    <value>GitHub Releases</value>
-  </data>
-  <data name="GitHubVersionNotificationDisabledString" xml:space="preserve">
-    <value>Nicht bei neuen Releases benachrichtigen</value>
-  </data>
-  <data name="GitHubVersionNotificationEnabledString" xml:space="preserve">
-    <value>Bei neuen Releases benachrichtigen</value>
-  </data>
-  <data name="NumberNewReleasesString" xml:space="preserve">
-    <value>Anzahl neuer Releases</value>
-  </data>
-  <data name="NumberReleasesTotalString" xml:space="preserve">
-    <value>Anzahl Releases</value>
-  </data>
-  <data name="ReadmeString" xml:space="preserve">
-    <value>Readme</value>
-  </data>
-  <data name="RepairString" xml:space="preserve">
-    <value>Reparieren</value>
-  </data>
-  <data name="RepositoryURLString" xml:space="preserve">
-    <value>Repository URL</value>
-  </data>
-  <data name="UpgradeString" xml:space="preserve">
-    <value>Aktualisieren</value>
+  <data name="GitHubReleaseTypes_PATCH" xml:space="preserve">
+    <value>Patch</value>
   </data>
 </root>

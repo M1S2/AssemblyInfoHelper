@@ -132,8 +132,6 @@ namespace AssemblyInfoHelper
             _changeLogPath = startupPath + @"CHANGELOG.md";
             SelectedTabIndex = (int)startTab;
             this.DataContext = this;
-
-            this.Title = "Assembly info     v" + AssemblyInfoHelperVersion;
         }
 
         //********************************************************************************************************************************************************************
