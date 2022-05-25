@@ -129,10 +129,18 @@ namespace AssemblyInfoHelper.GitHub
         //see: https://github.com/Tyrrrz/Onova/blob/master/Onova/UpdateManager.cs
         public static async void LaunchUpdater(string downloadFolder, bool restart)
         {
-            string updaterFilePath = Path.Combine(Directory.GetParent(downloadFolder).FullName, $"{AssemblyInfoHelperClass.AssemblyTitle}.Updater.exe");
+            string updaterFileExePath = Path.Combine(Directory.GetParent(downloadFolder).FullName, $"{AssemblyInfoHelperClass.AssemblyTitle}.Updater.exe");
+            string updaterFileDllPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.dll");
+            string updaterFileRuntimeConfigPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.runtimeconfig.json");
 
             // Extract updater exe
-            await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.exe", updaterFilePath);
+            await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.exe", updaterFileExePath);
+
+            // Extract updater dll
+            await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.dll", updaterFileDllPath);
+
+            // Extract updater runtime config
+            await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.runtimeconfig.json", updaterFileRuntimeConfigPath);
 
             // Get original command line arguments and encode them to avoid issues with quotes
             string routedArgs = Convert.ToBase64String(Encoding.UTF8.GetBytes(GetCommandLineWithoutExecutable()));
@@ -143,7 +151,7 @@ namespace AssemblyInfoHelper.GitHub
             // Create updater process start info
             var updaterStartInfo = new ProcessStartInfo
             {
-                FileName = updaterFilePath,
+                FileName = updaterFileExePath,
                 Arguments = updaterArgs,
                 CreateNoWindow = true,
                 UseShellExecute = false

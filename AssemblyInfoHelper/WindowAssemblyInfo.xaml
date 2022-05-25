@@ -35,47 +35,51 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <DockPanel LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Bottom" Margin="20" HorizontalAlignment="Right" Text="{Binding AssemblyInfoHelperVersion, StringFormat=AssemblyInfoHelper Version: {0}}"/>
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTitleString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="1" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyDescriptionString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCompanyString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyProductString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="4" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCopyrightString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="5" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="6" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCultureString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="7" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="8" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center"/>
-                    <Label Grid.Row="9" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyLastBuildString}" VerticalContentAlignment="Center"/>
+                    <Grid Margin="10" DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCulture}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="7" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="8" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}"/>
-                    <TextBox Grid.Row="9" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyLinkerTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTitleString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyDescriptionString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCompanyString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyProductString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCopyrightString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCultureString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="8" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center"/>
+                        <Label Grid.Row="9" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyLastBuildString}" VerticalContentAlignment="Center"/>
 
-                </Grid>
+                        <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCulture}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyLinkerTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
+
+                    </Grid>
+                </DockPanel>
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
