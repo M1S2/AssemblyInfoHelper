@@ -130,17 +130,20 @@ namespace AssemblyInfoHelper.GitHub
         public static async void LaunchUpdater(string downloadFolder, bool restart)
         {
             string updaterFileExePath = Path.Combine(Directory.GetParent(downloadFolder).FullName, $"{AssemblyInfoHelperClass.AssemblyTitle}.Updater.exe");
-            string updaterFileDllPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.dll");
-            string updaterFileRuntimeConfigPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.runtimeconfig.json");
-
+           
             // Extract updater exe
             await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.exe", updaterFileExePath);
+
+#if NETCOREAPP || NET
+            string updaterFileDllPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.dll");
+            string updaterFileRuntimeConfigPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.runtimeconfig.json");
 
             // Extract updater dll
             await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.dll", updaterFileDllPath);
 
             // Extract updater runtime config
             await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.runtimeconfig.json", updaterFileRuntimeConfigPath);
+#endif
 
             // Get original command line arguments and encode them to avoid issues with quotes
             string routedArgs = Convert.ToBase64String(Encoding.UTF8.GetBytes(GetCommandLineWithoutExecutable()));

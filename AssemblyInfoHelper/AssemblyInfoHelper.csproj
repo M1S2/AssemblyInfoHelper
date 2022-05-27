@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<Version>0.0.0</Version>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFrameworks>net452;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -15,15 +15,17 @@
 		<RepositoryUrl>https://github.com/M1S2/AssemblyInfoHelper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Assemlby;Version;Update;Info</PackageTags>
+		<PackageIcon>Update.png</PackageIcon>
+		<PackageReleaseNotes>Use this release with Metro styled WPF apps (using MahApps.Metro). It is suitable for .NET 6.0 apps.</PackageReleaseNotes>
+		<Authors>M1S2</Authors>
+		<Copyright>Copyright 2022</Copyright>
+	    <Description>Display informations gathered from the assembly info.</Description>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PostBuildEvent>
 			copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
 			copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
 		</PostBuildEvent>
-	</PropertyGroup>
-	<PropertyGroup>
-	  <PackageIcon>Update.png</PackageIcon>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="AppIcon\**" />
@@ -32,21 +34,17 @@
 	  <Page Remove="AppIcon\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="System.IO.Compression" />
-		<Reference Include="System.Windows" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/net6.0-windows/AssemblyInfoHelper.Updater.exe">
+		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/AssemblyInfoHelper.Updater.exe">
 			<Link>Updater.exe</Link>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<Visible>False</Visible>
 		</EmbeddedResource>
-		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/net6.0-windows/AssemblyInfoHelper.Updater.dll">
+		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/AssemblyInfoHelper.Updater.dll" Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net6.0-windows'">
 			<Link>Updater.dll</Link>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<Visible>False</Visible>
 		</EmbeddedResource>
-		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/net6.0-windows/AssemblyInfoHelper.Updater.runtimeconfig.json">
+		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/AssemblyInfoHelper.Updater.runtimeconfig.json" Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net6.0-windows'">
 			<Link>Updater.runtimeconfig.json</Link>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<Visible>False</Visible>
@@ -75,18 +73,14 @@
 		<PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.326103">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Neo.Markdig.Xaml" Version="1.0.10" />
+		<PackageReference Include="Neo.Markdig.Xaml" Version="1.0.5" Condition="'$(TargetFramework)' == 'net452' or '$(TargetFramework)' == 'net472'" />
+		<PackageReference Include="Neo.Markdig.Xaml" Version="1.0.10" Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net6.0-windows'" />
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="MahApps.Metro" Version="2.0.1" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.2.0" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Octicons" Version="4.2.0" />
 		<PackageReference Include="Octokit" Version="0.32.0" />
 		<PackageReference Include="Semver" Version="2.0.4" />
-	</ItemGroup>
-	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="..\AppIcon\Update.png">
