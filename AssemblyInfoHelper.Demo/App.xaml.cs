@@ -1,5 +1,4 @@
-﻿using AssemblyInfoProject;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,14 +8,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace AssemblyInfoProject_WPF
+namespace AssemblyInfoHelper.Demo
 {
     /// <summary>
     /// Interaktionslogik für "App.xaml"
     /// </summary>
     public partial class App : Application
     {
-        private async void OnStartup(object sender, StartupEventArgs e)
+        private void OnStartup(object sender, StartupEventArgs e)
         {
             // Set the language for all FrameworkElements to the current culture
             // see: https://serialseb.com/blog/2007/04/03/wpf-tips-1-have-all-your-dates-times/

@@ -1,7 +1,7 @@
-﻿<Application x:Class="AssemblyInfoProject_WPF.App"
+﻿<Application x:Class="AssemblyInfoHelper.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AssemblyInfoProject_WPF"
+             xmlns:local="clr-namespace:AssemblyInfoHelper.Demo"
              Startup="OnStartup">
     <Application.Resources>
         <ResourceDictionary>

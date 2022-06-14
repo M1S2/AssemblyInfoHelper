@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
-namespace AssemblyInfoProject
+namespace AssemblyInfoHelper.Demo
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml

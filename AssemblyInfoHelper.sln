@@ -9,9 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyInfoProject", "AssemblyInfoProject\AssemblyInfoProject.csproj", "{55BB509D-1B63-45C3-B1B7-7CA9915B2B19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyInfoHelper.Demo", "AssemblyInfoHelper.Demo\AssemblyInfoHelper.Demo.csproj", "{55BB509D-1B63-45C3-B1B7-7CA9915B2B19}"
 	ProjectSection(ProjectDependencies) = postProject
 		{97B2DB9C-A5B5-42A9-8616-A9CDC8052D25} = {97B2DB9C-A5B5-42A9-8616-A9CDC8052D25}
+		{990DCB9E-80BE-4884-8C28-945990E6EDCC} = {990DCB9E-80BE-4884-8C28-945990E6EDCC}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyInfoHelper", "AssemblyInfoHelper\AssemblyInfoHelper.csproj", "{97B2DB9C-A5B5-42A9-8616-A9CDC8052D25}"
