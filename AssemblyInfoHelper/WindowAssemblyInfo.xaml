@@ -85,7 +85,7 @@
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
 
-            <TabItem>
+            <TabItem Visibility="{Binding ReadmeFound, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
                         <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="File" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
@@ -99,7 +99,7 @@
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
 
-            <TabItem>
+            <TabItem Visibility="{Binding ChangelogFound, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
                         <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="Diff" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />

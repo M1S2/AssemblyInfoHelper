@@ -71,7 +71,17 @@ namespace AssemblyInfoHelper
             get { return _readmeMarkdown; }
             set { _readmeMarkdown = value; OnPropertyChanged(); }
         }
-        
+
+        private bool _readmeFound = true;
+        /// <summary>
+        /// True if the Readme file was found
+        /// </summary>
+        public bool ReadmeFound
+        {
+            get { return _readmeFound; }
+            set { _readmeFound = value; OnPropertyChanged(); }
+        }
+
         //********************************************************************************************************************************************************************
 
         private string _changelogMarkdown;
@@ -82,6 +92,16 @@ namespace AssemblyInfoHelper
         {
             get { return _changelogMarkdown; }
             set { _changelogMarkdown = value; OnPropertyChanged(); }
+        }
+
+        private bool _changelogFound = true;
+        /// <summary>
+        /// True if the Changelog file was found
+        /// </summary>
+        public bool ChangelogFound
+        {
+            get { return _changelogFound; }
+            set { _changelogFound = value; OnPropertyChanged(); }
         }
 
         //********************************************************************************************************************************************************************
@@ -165,7 +185,8 @@ namespace AssemblyInfoHelper
 
             await Task.Run(() =>
             {
-                if (File.Exists(_readmePath))
+                ReadmeFound = File.Exists(_readmePath);
+                if (ReadmeFound)
                 {
                     ReadmeMarkdown = File.ReadAllText(_readmePath);
                 }
@@ -174,7 +195,8 @@ namespace AssemblyInfoHelper
                     ReadmeMarkdown = "No readme file found in: " + Environment.NewLine + Environment.NewLine + _readmePath;
                 }
 
-                if (File.Exists(_changeLogPath))
+                ChangelogFound = File.Exists(_changeLogPath);
+                if (ChangelogFound)
                 {
                     ChangelogMarkdown = File.ReadAllText(_changeLogPath);
                 }
