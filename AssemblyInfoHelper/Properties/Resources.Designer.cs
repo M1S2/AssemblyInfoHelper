@@ -124,6 +124,15 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Informational Version ähnelt.
+        /// </summary>
+        public static string AssemblyInformationalVersionString {
+            get {
+                return ResourceManager.GetString("AssemblyInformationalVersionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Last Build ähnelt.
         /// </summary>
         public static string AssemblyLastBuildString {

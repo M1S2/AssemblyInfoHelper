@@ -29,6 +29,7 @@ namespace AssemblyInfoHelper
             CULTURE,
             FILEVERSION,
             VERSION,
+            INFORMATIONALVERSION,
             GITHUB_URL
         }
 
@@ -109,6 +110,15 @@ namespace AssemblyInfoHelper
                 {
                     attributeValue = Assembly.GetEntryAssembly().GetName().Version.ToString();
                     attributeValue = attributeValue.Substring(0, attributeValue.LastIndexOf("."));
+                    break;
+                }
+                case AssemblyAttributeTypes.INFORMATIONALVERSION:
+                {
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true);
+                    if (assemblyObjects.Length > 0)
+                    {
+                        attributeValue = ((AssemblyInformationalVersionAttribute)assemblyObjects[0]).InformationalVersion;
+                    }
                     break;
                 }
                 case AssemblyAttributeTypes.GITHUB_URL:
@@ -221,6 +231,13 @@ namespace AssemblyInfoHelper
         /// Assembly file version attribute
         /// </summary>
         public static string AssemblyFileVersion => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.FILEVERSION);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// Assembly informational version attribute
+        /// </summary>
+        public static string AssemblyInformationalVersion => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.INFORMATIONALVERSION);
 
         //********************************************************************************************************************************************************************
 

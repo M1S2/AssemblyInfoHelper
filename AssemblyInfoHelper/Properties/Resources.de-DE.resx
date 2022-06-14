@@ -138,6 +138,9 @@
   <data name="AssemblyFileVersionString" xml:space="preserve">
     <value>Datei Version</value>
   </data>
+  <data name="AssemblyInformationalVersionString" xml:space="preserve">
+    <value>Detaillierte Version</value>
+  </data>
   <data name="AssemblyLastBuildString" xml:space="preserve">
     <value>Letzter Build</value>
   </data>
