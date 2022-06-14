@@ -7,9 +7,10 @@
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
-             xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
+             xmlns:markdown="clr-namespace:AssemblyInfoHelper.MarkdownControls"
              xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
              xmlns:converters="clr-namespace:AssemblyInfoHelper.Converters"
+             xmlns:mdxaml="clr-namespace:MdXaml;assembly=MdXaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -143,7 +144,7 @@
                         <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource MahApps.Brushes.AccentBase}" BorderThickness="0" Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}"/>
 
                         <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="{x:Static properties:Resources.GitHubReleaseNotesString}" MetroControls:HeaderedControlHelper.HeaderBackground="{DynamicResource MahApps.Brushes.ThemeBackground}" BorderBrush="Transparent">
-                            <markdown:MarkdownViewer MarkdownString="{Binding ReleaseNotes}" BorderBrush="Transparent" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}, Path=ActualWidth, Converter={StaticResource multiplyConverter}, ConverterParameter=0.95}"/>
+                            <mdxaml:MarkdownScrollViewer Markdown="{Binding ReleaseNotes}" MarkdownStyleName="SasabuneStandard" VerticalScrollBarVisibility="Hidden"/>
                         </Expander>
 
                         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">

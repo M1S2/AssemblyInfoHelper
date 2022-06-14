@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Markdig;
 using System.IO;
 
-namespace AssemblyInfoHelper.Markdown
+namespace AssemblyInfoHelper.MarkdownControls
 {
     /// <summary>
     /// Interaktionslogik für WebBrowserMarkdown.xaml

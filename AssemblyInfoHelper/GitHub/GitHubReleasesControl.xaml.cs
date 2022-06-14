@@ -20,6 +20,8 @@ namespace AssemblyInfoHelper.GitHub
     /// </summary>
     public partial class GitHubReleasesControl : UserControl
     {
+        MdXaml.Markdown md;             // Dummy object from MdXaml library to force output of DLL to build directory.
+
         public GitHubReleasesControl()
         {
             InitializeComponent();

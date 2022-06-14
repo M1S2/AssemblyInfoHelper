@@ -8,7 +8,8 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
-        xmlns:markdown="clr-namespace:AssemblyInfoHelper.Markdown"
+        xmlns:markdown="clr-namespace:AssemblyInfoHelper.MarkdownControls"
+        xmlns:mdxaml="clr-namespace:MdXaml;assembly=MdXaml"
         xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
         mc:Ignorable="d"
         Height="700" Width="1000" MinHeight="400" Loaded="Window_Loaded">
@@ -92,8 +93,8 @@
                     </DockPanel>
                 </TabItem.Header>
 
+                <!--<mdxaml:MarkdownScrollViewer Margin="15,15,0,15" Markdown="{Binding ReadmeMarkdown}" MarkdownStyleName="SasabuneStandard"/>-->
                 <markdown:WebBrowserMarkdown MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent"/>
-                <!--<markdown:MarkdownViewer MarkdownString="{Binding ReadmeMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->
@@ -106,8 +107,7 @@
                     </DockPanel>
                 </TabItem.Header>
 
-                <markdown:WebBrowserMarkdown MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent"/>
-                <!--<markdown:MarkdownViewer MarkdownString="{Binding ChangelogMarkdown}" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+                <mdxaml:MarkdownScrollViewer Margin="15,15,0,15" Markdown="{Binding ChangelogMarkdown}" MarkdownStyleName="SasabuneStandard"/>
             </TabItem>
 
             <!-- ************************************************************************************************************************************************************************************************************************ -->

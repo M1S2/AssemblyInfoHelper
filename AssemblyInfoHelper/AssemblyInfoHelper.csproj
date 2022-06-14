@@ -67,14 +67,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Markdig" Version="0.30.0" />
+		<PackageReference Include="MdXaml" Version="1.15.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 		<PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.326103">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Neo.Markdig.Xaml" Version="1.0.5" Condition="'$(TargetFramework)' == 'net452' or '$(TargetFramework)' == 'net472'" />
-		<PackageReference Include="Neo.Markdig.Xaml" Version="1.0.10" Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net6.0-windows'" />
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
 		<PackageReference Include="MahApps.Metro" Version="2.0.1" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.2.0" />
