@@ -1,7 +1,10 @@
 # AssemblyInfoHelper
 
-## [%version%] - %date%
+## [v5.0.0]
 
+- Added localization for UI
+- The library can now target net452, net472, netcoreapp3.1 and net6.0
+- Improved markdown visualization of Changelog and GitHub release notes
 
 ## [v4.3.1] - 19.06.2020 19:24
 

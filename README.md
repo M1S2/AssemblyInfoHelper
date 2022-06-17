@@ -17,6 +17,7 @@ This contains the following informations:
 - AssemblyCulture
 - AssemblyVersion
 - AssemblyFileVersion
+- AssemblyInformationalVersion
 - AssemblyLinkerTime
 
 The description is get from the README.md file in the path given when creating the WindowAssemblyInfo.

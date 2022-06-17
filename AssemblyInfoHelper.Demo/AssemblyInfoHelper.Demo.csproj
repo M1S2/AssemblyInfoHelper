@@ -26,6 +26,10 @@
 		<Content Include="Update.ico" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="MahApps.Metro" Version="2.0.1" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.2.0" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Octicons" Version="4.2.0" />
@@ -37,6 +41,10 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
 	</ItemGroup>
+	<PropertyGroup>
+		<!-- WPF workaround: GitVersion and .NET SDK between v5.0.200 and v6.0.0-preview.2  -->
+		<IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
+	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'net452'">
 			<HintPath>..\AssemblyInfoHelper\bin\Debug\net452\AssemblyInfoHelper.dll</HintPath>

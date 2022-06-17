@@ -66,6 +66,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Markdig" Version="0.30.0" />
 		<PackageReference Include="MdXaml" Version="1.15.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -81,6 +85,11 @@
 		<PackageReference Include="Octokit" Version="0.32.0" />
 		<PackageReference Include="Semver" Version="2.0.4" />
 	</ItemGroup>
+	<PropertyGroup>
+		<!-- WPF workaround: GitVersion and .NET SDK between v5.0.200 and v6.0.0-preview.2  -->
+		<IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
+	</PropertyGroup>
+	
 	<ItemGroup>
 	  <None Include="..\AppIcon\Update.png">
 	    <Pack>True</Pack>
