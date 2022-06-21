@@ -129,6 +129,9 @@
   <data name="AssemblyCopyrightString" xml:space="preserve">
     <value>Copyright</value>
   </data>
+  <data name="AssemblyCreationTime" xml:space="preserve">
+    <value>Creation Time</value>
+  </data>
   <data name="AssemblyCultureString" xml:space="preserve">
     <value>Culture</value>
   </data>
@@ -140,9 +143,6 @@
   </data>
   <data name="AssemblyInformationalVersionString" xml:space="preserve">
     <value>Informational Version</value>
-  </data>
-  <data name="AssemblyLastBuildString" xml:space="preserve">
-    <value>Last Build</value>
   </data>
   <data name="AssemblyProductString" xml:space="preserve">
     <value>Product</value>

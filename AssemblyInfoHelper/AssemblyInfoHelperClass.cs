@@ -215,7 +215,7 @@ namespace AssemblyInfoHelper
         /// Get the time of the last build of the assembly.
         /// </summary>
         /// <returns>last build time</returns>
-        public static DateTime AssemblyLinkerTime => File.GetCreationTime(Assembly.GetEntryAssembly().Location);
+        public static DateTime AssemblyCreationTime => File.GetCreationTime(Assembly.GetEntryAssembly().Location);
 
         //********************************************************************************************************************************************************************
 

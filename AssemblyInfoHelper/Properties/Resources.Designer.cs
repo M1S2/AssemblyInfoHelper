@@ -97,6 +97,15 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Creation Time ähnelt.
+        /// </summary>
+        public static string AssemblyCreationTime {
+            get {
+                return ResourceManager.GetString("AssemblyCreationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Culture ähnelt.
         /// </summary>
         public static string AssemblyCultureString {
@@ -129,15 +138,6 @@ namespace AssemblyInfoHelper.Properties {
         public static string AssemblyInformationalVersionString {
             get {
                 return ResourceManager.GetString("AssemblyInformationalVersionString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Last Build ähnelt.
-        /// </summary>
-        public static string AssemblyLastBuildString {
-            get {
-                return ResourceManager.GetString("AssemblyLastBuildString", resourceCulture);
             }
         }
         

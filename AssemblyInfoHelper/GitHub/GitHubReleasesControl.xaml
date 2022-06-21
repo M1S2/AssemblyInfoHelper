@@ -20,6 +20,10 @@
             <converters:EnumToLocalizedStringConverter x:Key="EnumLocalizedStringConverter"/>
             <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
             <local:GitHubReleaseToUpdateButtonStyleConverter x:Key="GitHubReleaseUpdateButtonConverter"/>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/_FontSizes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -29,18 +33,18 @@
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}">
             <iconPacks:PackIconMaterial Margin="10" Width="30" Height="30" Kind="Alert" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
-            <TextBlock Margin="10" FontSize="14" MaxHeight="100" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+            <TextBlock Margin="10"  FontSize="{StaticResource MediumFontSize}"  MaxHeight="100" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
         </StackPanel>
 
         <!-- ########## Project URL ######################################################################################################################################################################################## -->
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
             <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="{x:Static properties:Resources.RepositoryURLString}" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
-            <TextBlock Margin="30,0,0,0" Text="{Binding Source={x:Static properties:Resources.RepositoryURLString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+            <TextBlock Margin="30,0,0,0" Text="{Binding Source={x:Static properties:Resources.RepositoryURLString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}">
                     <local:ExternalBrowserHyperlinkControl.Inlines>
-                        <Run Text="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+                        <Run Text="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                     </local:ExternalBrowserHyperlinkControl.Inlines>
                 </local:ExternalBrowserHyperlinkControl>
             </TextBlock>
@@ -53,23 +57,23 @@
                 <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                 <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
-            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberNewReleasesString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
-            <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=NumberNewReleases}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberNewReleasesString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+            <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=NumberNewReleases}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
             <Grid Margin="50,0,0,0" ToolTip="{x:Static properties:Resources.NumberReleasesTotalString}">
                 <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                 <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
-            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberReleasesTotalString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
-            <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberReleasesTotalString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+            <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=IsUpdateRunning, Converter={StaticResource BoolVisibilityConverter} }">
                 <Grid>
                     <MetroControls:ProgressRing/>
-                    <TextBlock Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateProgress, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                    <TextBlock Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateProgress, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource MediumFontSize}"/>
                 </Grid>
 
-                <TextBlock Margin="15,0,10,0" VerticalAlignment="Center" FontSize="16" Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateText}"/>
+                <TextBlock Margin="15,0,10,0" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" Text="{Binding Source={x:Static local:UpdateUtils.UpdateStatus}, Path=UpdateText}"/>
             </StackPanel>
         </DockPanel>
 
@@ -118,7 +122,7 @@
                                                 </iconPacks:PackIconMaterial.Style>
                                             </iconPacks:PackIconMaterial>
                                                         
-                                            <TextBlock Text="{Binding ReleaseType, Converter={StaticResource EnumLocalizedStringConverter}}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" VerticalAlignment="Center" FontSize="14" RenderTransformOrigin="0.5,0.5">
+                                            <TextBlock Text="{Binding ReleaseType, Converter={StaticResource EnumLocalizedStringConverter}}" Foreground="Black" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" RenderTransformOrigin="0.5,0.5">
                                                 <TextBlock.RenderTransform>
                                                     <TransformGroup>
                                                         <RotateTransform Angle="45"/>
@@ -132,8 +136,8 @@
                             </local:ExternalBrowserHyperlinkControl>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="20" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource MahApps.Brushes.Gray3}">
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" Foreground="{DynamicResource MahApps.Brushes.Gray3}">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}: {1:dd.MM.yyyy HH:mm}">
                                     <Binding Source="{x:Static properties:Resources.GitHubPublishedString}"/>
@@ -184,7 +188,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Text="{x:Static properties:Resources.GitHubNoReleasesAvailableString}" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource MahApps.Brushes.Gray3}" FontSize="30"/>
+                                        <TextBlock Text="{x:Static properties:Resources.GitHubNoReleasesAvailableString}" HorizontalAlignment="Center" Margin="20" Foreground="{DynamicResource MahApps.Brushes.Gray3}" FontSize="{StaticResource XLargeFontSize}"/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>

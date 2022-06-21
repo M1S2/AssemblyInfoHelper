@@ -22,8 +22,14 @@
     </MetroControls:MetroWindow.Title>
 
     <MetroControls:MetroWindow.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
-        <local:MultiplyConverter x:Key="multiplyConverter"/>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+            <local:MultiplyConverter x:Key="multiplyConverter"/>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/_FontSizes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </MetroControls:MetroWindow.Resources>
 
     <Grid>
@@ -41,47 +47,67 @@
 
                     <Grid Margin="10" DockPanel.Dock="Top">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="190"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTitleString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyDescriptionString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCompanyString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyProductString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="4" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCopyrightString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="5" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="6" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyCultureString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="7" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="8" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyInformationalVersionString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="9" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center"/>
-                        <Label Grid.Row="10" Grid.Column="0" Content="{x:Static properties:Resources.AssemblyLastBuildString}" VerticalContentAlignment="Center"/>
+                        <iconPacks:PackIconMaterial Grid.Row="0" Grid.Column="0" Width="25" Height="25" Kind="FormatTitle" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="0" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyTitleString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="0" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
-                        <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCulture}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="9" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}"/>
-                        <TextBox Grid.Row="10" Grid.Column="1" IsReadOnly="true" VerticalContentAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyLinkerTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
+                        <iconPacks:PackIconMaterial Grid.Row="1" Grid.Column="0" Width="25" Height="25" Kind="InformationVariant" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="1" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyDescriptionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
+                        <iconPacks:PackIconMaterial Grid.Row="2" Grid.Column="0" Width="25" Height="25" Kind="Domain" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="2" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCompanyString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconOcticons Grid.Row="3" Grid.Column="0" Width="25" Height="25" Kind="Package" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="3" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyProductString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="3" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconMaterial Grid.Row="4" Grid.Column="0" Width="25" Height="25" Kind="Copyright" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="4" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCopyrightString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconMaterial Grid.Row="5" Grid.Column="0" Width="25" Height="25" Kind="Trademark" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="5" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="5" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconMaterial Grid.Row="6" Grid.Column="0" Width="25" Height="25" Kind="Translate" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="6" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCultureString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCulture}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconOcticons Grid.Row="7" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="7" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="7" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconOcticons Grid.Row="8" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="8" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconOcticons Grid.Row="9" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="9" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyInformationalVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="9" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+
+                        <iconPacks:PackIconMaterial Grid.Row="10" Grid.Column="0" Width="25" Height="25" Kind="ClockOutline" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="10" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCreationTime}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="10" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCreationTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}" FontSize="{StaticResource LargeFontSize}" />
                     </Grid>
                 </DockPanel>
             </TabItem>
