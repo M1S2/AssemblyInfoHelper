@@ -189,6 +189,12 @@
   <data name="GitHubVersionNotificationEnabledString" xml:space="preserve">
     <value>Bei neuen Releases benachrichtigen</value>
   </data>
+  <data name="MessageDialogCancelString" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="MessageDialogOKString" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="NumberNewReleasesString" xml:space="preserve">
     <value>Anzahl neuer Releases</value>
   </data>
@@ -203,6 +209,54 @@
   </data>
   <data name="RepositoryURLString" xml:space="preserve">
     <value>Repository URL</value>
+  </data>
+  <data name="UpdateStatusInfoDowngradeString" xml:space="preserve">
+    <value>Downgraden von v0.0.0 auf v1.0.0</value>
+  </data>
+  <data name="UpdateStatusInfoRepairString" xml:space="preserve">
+    <value>v0.0.0 reparieren</value>
+  </data>
+  <data name="UpdateStatusInfoUpdateString" xml:space="preserve">
+    <value>Updaten von v0.0.0 auf v1.0.0</value>
+  </data>
+  <data name="UpdateUtilChooseSourceString" xml:space="preserve">
+    <value>Es gibt mehrere Optionen, diese Version zu updaten. Wählen Sie eine der untenstehenden Optionen.</value>
+  </data>
+  <data name="UpdateUtilChooseSourceTitleString" xml:space="preserve">
+    <value>Update Quelle wählen</value>
+  </data>
+  <data name="UpdateUtilConfirmUpdateTitleString" xml:space="preserve">
+    <value>Update bestätigen</value>
+  </data>
+  <data name="UpdateUtilDowngradeWarningString" xml:space="preserve">
+    <value>Bei Downgrades auf kleinere Versionen könnte es sein, dass die Updatefunktion nicht mehr verfügbar ist. Eine neue Version muss dann manuell heruntergeladen werden!</value>
+  </data>
+  <data name="UpdateUtilDownloadFailedString" xml:space="preserve">
+    <value>Download von &lt;Path&gt; fehlgeschlagen.</value>
+  </data>
+  <data name="UpdateUtilDownloadFailedTitleString" xml:space="preserve">
+    <value>Download fehlgeschlagen</value>
+  </data>
+  <data name="UpdateUtilDoYouReallyWantToString" xml:space="preserve">
+    <value>Wollen Sie wirklich </value>
+  </data>
+  <data name="UpdateUtilErrorString" xml:space="preserve">
+    <value>Fehler während Update</value>
+  </data>
+  <data name="UpdateUtilReleaseAssetNotFoundString" xml:space="preserve">
+    <value>Dateien für Release v0.0.0 wurden nicht auf GitHub gefunden.</value>
+  </data>
+  <data name="UpdateUtilReleaseAssetNotFoundTitleString" xml:space="preserve">
+    <value>Release Dateien nicht gefunden</value>
+  </data>
+  <data name="UpdateUtilSetupExeFailureString" xml:space="preserve">
+    <value>Der Installer muss eine Setup.exe Datei enthalten!</value>
+  </data>
+  <data name="UpdateUtilUpdateFinishedBinariesString" xml:space="preserve">
+    <value>Um das Update abzuschließen wird die Anwendung jetzt geschlossen. Das benötigt einige Augenblicke. Nachdem das Update abgeschlossen ist, wird die Anwendung neu geöffnet.</value>
+  </data>
+  <data name="UpdateUtilUpdateFinishedInstallerString" xml:space="preserve">
+    <value>Um das Update abzuschließen wird die Anwendung jetzt geschlossen. Bitte verwenden Sie den gestarteten Installer, um die Anwendung neu zu installieren.</value>
   </data>
   <data name="UpgradeString" xml:space="preserve">
     <value>Aktualisieren</value>

@@ -277,6 +277,24 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string MessageDialogCancelString {
+            get {
+                return ResourceManager.GetString("MessageDialogCancelString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
+        /// </summary>
+        public static string MessageDialogOKString {
+            get {
+                return ResourceManager.GetString("MessageDialogOKString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Number new releases ähnelt.
         /// </summary>
         public static string NumberNewReleasesString {
@@ -318,6 +336,150 @@ namespace AssemblyInfoHelper.Properties {
         public static string RepositoryURLString {
             get {
                 return ResourceManager.GetString("RepositoryURLString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Downgrade from v0.0.0 to v1.0.0 ähnelt.
+        /// </summary>
+        public static string UpdateStatusInfoDowngradeString {
+            get {
+                return ResourceManager.GetString("UpdateStatusInfoDowngradeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Repair v0.0.0 ähnelt.
+        /// </summary>
+        public static string UpdateStatusInfoRepairString {
+            get {
+                return ResourceManager.GetString("UpdateStatusInfoRepairString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update from v0.0.0 to v1.0.0 ähnelt.
+        /// </summary>
+        public static string UpdateStatusInfoUpdateString {
+            get {
+                return ResourceManager.GetString("UpdateStatusInfoUpdateString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are multiple options to update this version. Choose one of the options below. ähnelt.
+        /// </summary>
+        public static string UpdateUtilChooseSourceString {
+            get {
+                return ResourceManager.GetString("UpdateUtilChooseSourceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Choose update source ähnelt.
+        /// </summary>
+        public static string UpdateUtilChooseSourceTitleString {
+            get {
+                return ResourceManager.GetString("UpdateUtilChooseSourceTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm update ähnelt.
+        /// </summary>
+        public static string UpdateUtilConfirmUpdateTitleString {
+            get {
+                return ResourceManager.GetString("UpdateUtilConfirmUpdateTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die For downgrades to lower versions, this update feature may not be available anymore! You have to download manually then! ähnelt.
+        /// </summary>
+        public static string UpdateUtilDowngradeWarningString {
+            get {
+                return ResourceManager.GetString("UpdateUtilDowngradeWarningString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Download from &lt;Path&gt; failed. ähnelt.
+        /// </summary>
+        public static string UpdateUtilDownloadFailedString {
+            get {
+                return ResourceManager.GetString("UpdateUtilDownloadFailedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Download failed ähnelt.
+        /// </summary>
+        public static string UpdateUtilDownloadFailedTitleString {
+            get {
+                return ResourceManager.GetString("UpdateUtilDownloadFailedTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to ähnelt.
+        /// </summary>
+        public static string UpdateUtilDoYouReallyWantToString {
+            get {
+                return ResourceManager.GetString("UpdateUtilDoYouReallyWantToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while update ähnelt.
+        /// </summary>
+        public static string UpdateUtilErrorString {
+            get {
+                return ResourceManager.GetString("UpdateUtilErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Asset for Release v0.0.0 not found on GitHub. ähnelt.
+        /// </summary>
+        public static string UpdateUtilReleaseAssetNotFoundString {
+            get {
+                return ResourceManager.GetString("UpdateUtilReleaseAssetNotFoundString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Release asset not found ähnelt.
+        /// </summary>
+        public static string UpdateUtilReleaseAssetNotFoundTitleString {
+            get {
+                return ResourceManager.GetString("UpdateUtilReleaseAssetNotFoundTitleString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Installer must contain a Setup.exe file! ähnelt.
+        /// </summary>
+        public static string UpdateUtilSetupExeFailureString {
+            get {
+                return ResourceManager.GetString("UpdateUtilSetupExeFailureString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To finish the update, the application is closed now. This may take some time. After the update is finished, the application is restarted. ähnelt.
+        /// </summary>
+        public static string UpdateUtilUpdateFinishedBinariesString {
+            get {
+                return ResourceManager.GetString("UpdateUtilUpdateFinishedBinariesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To finish the update, the application is closed now. Please use the started installer to reinstall the application. ähnelt.
+        /// </summary>
+        public static string UpdateUtilUpdateFinishedInstallerString {
+            get {
+                return ResourceManager.GetString("UpdateUtilUpdateFinishedInstallerString", resourceCulture);
             }
         }
         

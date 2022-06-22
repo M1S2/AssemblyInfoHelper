@@ -94,28 +94,28 @@ namespace AssemblyInfoHelper.Updater
 
         public UpdaterWindow()
         {
-            this.DataContext = this;
             InitializeComponent();
+            this.DataContext = this;
         }
 
         public async void RunUpdate()
         {
             UpdateProgressIndeterminate = true;
             IProgress<double> _updateProgress = new Progress<double>(progress => { UpdateProgress = Math.Round(progress * 100, 0); });
-            
+
             // Wait until updatee is writable to ensure all running instances have exited
-            UpdateStatus = "Waiting for all running application instances to exit...";
+            UpdateStatus = Properties.Resources.UpdateStatusWaitForExit;
             while (!FileDirectoryExtensions.CheckFileWriteAccess(_updateeFilePath))
                 await Task.Delay(100);
 
             UpdateProgressIndeterminate = false;
             string updateeDirPath = Path.GetDirectoryName(_updateeFilePath);
 
-            UpdateStatus = "Delete application's directory...";
+            UpdateStatus = Properties.Resources.UpdateStatusDeleteAppDirectory;
             await FileDirectoryExtensions.DeleteDirectory(updateeDirPath, true, true, _updateProgress);
 
             // Copy over the package contents
-            UpdateStatus = "Copying package contents...";
+            UpdateStatus = Properties.Resources.UpdateStatusCopyContents;
             await FileDirectoryExtensions.CopyDirectory(_packageContentDirPath, updateeDirPath, _updateProgress);
 
             // Restart updatee if requested
@@ -134,7 +134,7 @@ namespace AssemblyInfoHelper.Updater
                     startInfo.FileName = _updateeFilePath;
                 }
 
-                UpdateStatus = $"Restarting application [{startInfo.FileName} {startInfo.Arguments}]...";
+                UpdateStatus = Properties.Resources.UpdateStatusRestartApplication + $" [{startInfo.FileName} {startInfo.Arguments}]...";
                 
                 if (File.Exists(startInfo.FileName))
                 {
@@ -143,7 +143,7 @@ namespace AssemblyInfoHelper.Updater
             }
             
             // Delete package content directory
-            UpdateStatus = "Delete package content directory...";
+            UpdateStatus = Properties.Resources.UpdateStatusDeletePackageDirectory;
             await FileDirectoryExtensions.DeleteDirectory(_packageContentDirPath, false, true, _updateProgress);
             await FileDirectoryExtensions.DeleteEmptyFolders(Directory.GetParent(_packageContentDirPath).FullName);
             Environment.Exit(0);

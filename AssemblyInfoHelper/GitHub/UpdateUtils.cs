@@ -38,7 +38,7 @@ namespace AssemblyInfoHelper.GitHub
                 UpdateStatus.ToVersion = targetRelease.Version;
                 UpdateStatus.IsUpdateRunning = true;
 
-                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync("Confirm update", "Do you really want to " + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion > UpdateStatus.ToVersion) ? Environment.NewLine + Environment.NewLine + "For downgrades to lower versions, this update feature may not be available anymore! You have to download manually then!" : ""), MessageDialogStyle.AffirmativeAndNegative);
+                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilConfirmUpdateTitleString, Properties.Resources.UpdateUtilDoYouReallyWantToString + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion > UpdateStatus.ToVersion) ? Environment.NewLine + Environment.NewLine + Properties.Resources.UpdateUtilDowngradeWarningString : ""), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.MessageDialogOKString, NegativeButtonText = Properties.Resources.MessageDialogCancelString });
                 if (messageResult == MessageDialogResult.Negative) { UpdateStatus.IsUpdateRunning = false; return; }
 
                 bool useBinaries = false, useInstaller = false;
@@ -47,7 +47,7 @@ namespace AssemblyInfoHelper.GitHub
                 else if (targetRelease.BinAsset == null && targetRelease.InstallerAsset != null) { useInstaller = true; }   // If only installer asset exists, use the installer for update
                 else if (targetRelease.BinAsset != null && targetRelease.InstallerAsset != null)                            // If both bin asset and installer asset exist, let the user choose the update source
                 {
-                    messageResult = await windowAssemblyInfo.ShowMessageAsync("Choose update source", "There are multiple options to update this version. Choose one of the options below.", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = "Use binaries", NegativeButtonText = "Use installer", DefaultButtonFocus = MessageDialogResult.Affirmative });
+                    messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilChooseSourceTitleString, Properties.Resources.UpdateUtilChooseSourceString, MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = "Binaries", NegativeButtonText = "Installer", DefaultButtonFocus = MessageDialogResult.Affirmative });
                     if (messageResult == MessageDialogResult.Affirmative) { useBinaries = true; }
                     else { useInstaller = true; }
                 }
@@ -56,7 +56,7 @@ namespace AssemblyInfoHelper.GitHub
                 ReleaseAsset downloadAsset = (useBinaries ? targetRelease.BinAsset : (useInstaller ? targetRelease.InstallerAsset : null));
                 if (downloadAsset == null)
                 {
-                    await windowAssemblyInfo.ShowMessageAsync("Release asset not found", "Asset for Release v" + targetVersion.ToString() + " not found on GitHub.");
+                    await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilReleaseAssetNotFoundTitleString, Properties.Resources.UpdateUtilReleaseAssetNotFoundString.Replace("0.0.0", targetVersion.ToString()));
                     UpdateStatus.IsUpdateRunning = false;
                     return;
                 }
@@ -85,7 +85,7 @@ namespace AssemblyInfoHelper.GitHub
 
                 if (failedDownloads != -1)
                 {
-                    await windowAssemblyInfo.ShowMessageAsync("Download failed", "Download from \"" + downloadAsset.BrowserDownloadUrl + "\" failed.");
+                    await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilDownloadFailedTitleString, Properties.Resources.UpdateUtilDownloadFailedString.Replace("<Path>", "\"" + downloadAsset.BrowserDownloadUrl + "\""));
                     UpdateStatus.IsUpdateRunning = false;
                     return;
                 }
@@ -105,21 +105,21 @@ namespace AssemblyInfoHelper.GitHub
                 {
                     if (!File.Exists(Path.Combine(downloadFolder, "Setup.exe")))
                     {
-                        await windowAssemblyInfo.ShowMessageAsync("Setup.exe not found", "Installer must contain a Setup.exe file!");
+                        await windowAssemblyInfo.ShowMessageAsync("Setup.exe", Properties.Resources.UpdateUtilSetupExeFailureString);
                         UpdateStatus.IsUpdateRunning = false;
                         return;
                     }
                     Process.Start(Path.Combine(downloadFolder, "Setup.exe"));
                 }
 
-                if (useInstaller) { await windowAssemblyInfo.ShowMessageAsync("Update", "To finish the update, the application is closed now. Please use the started installer to reinstall the application.", MessageDialogStyle.Affirmative); }
-                else if (useBinaries) { await windowAssemblyInfo.ShowMessageAsync("Update", "To finish the update, the application is closed now. This may take some time. After the update is finished, the application is restarted.", MessageDialogStyle.Affirmative); }
+                if (useInstaller) { await windowAssemblyInfo.ShowMessageAsync("Update", Properties.Resources.UpdateUtilUpdateFinishedInstallerString, MessageDialogStyle.Affirmative); }
+                else if (useBinaries) { await windowAssemblyInfo.ShowMessageAsync("Update", Properties.Resources.UpdateUtilUpdateFinishedBinariesString, MessageDialogStyle.Affirmative); }
 
                 Environment.Exit(0);                            // Terminate the running application so that the updater/installer can overwrite files
             }
             catch (Exception ex)
             {
-                await windowAssemblyInfo?.ShowMessageAsync("Error while update", ex.Message);
+                await windowAssemblyInfo?.ShowMessageAsync(Properties.Resources.UpdateUtilErrorString, ex.Message);
                 UpdateStatus.IsUpdateRunning = false;
             }
         }

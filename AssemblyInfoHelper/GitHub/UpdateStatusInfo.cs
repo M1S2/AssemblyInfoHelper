@@ -78,9 +78,9 @@ namespace AssemblyInfoHelper.GitHub
         {
             get
             {
-                if (FromVersion < ToVersion) { return "Update from v" + FromVersion?.ToString() + " to v" + ToVersion?.ToString(); }
-                else if(FromVersion > ToVersion) { return "Downgrade from v" + FromVersion?.ToString() + " to v" + ToVersion?.ToString(); }
-                else { return "Repair v" + FromVersion?.ToString(); }
+                if (FromVersion < ToVersion) { return Properties.Resources.UpdateStatusInfoUpdateString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
+                else if(FromVersion > ToVersion) { return Properties.Resources.UpdateStatusInfoDowngradeString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
+                else { return Properties.Resources.UpdateStatusInfoRepairString.Replace("0.0.0", FromVersion?.ToString()); }
             }
         }
     }

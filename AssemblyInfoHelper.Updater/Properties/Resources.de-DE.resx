@@ -117,148 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutString" xml:space="preserve">
-    <value>About</value>
+  <data name="UpdateStatusCopyContents" xml:space="preserve">
+    <value>Paketinhalt kopieren...</value>
   </data>
-  <data name="AppInfoButtonToolTipString" xml:space="preserve">
-    <value>Show App infos and releases</value>
+  <data name="UpdateStatusDeleteAppDirectory" xml:space="preserve">
+    <value>Anwendungsverzeichnis löschen...</value>
   </data>
-  <data name="AssemblyCompanyString" xml:space="preserve">
-    <value>Company</value>
+  <data name="UpdateStatusDeletePackageDirectory" xml:space="preserve">
+    <value>Paketinhaltverzeichnis löschen...</value>
   </data>
-  <data name="AssemblyCopyrightString" xml:space="preserve">
-    <value>Copyright</value>
+  <data name="UpdateStatusRestartApplication" xml:space="preserve">
+    <value>Anwendung neu starten</value>
   </data>
-  <data name="AssemblyCreationTime" xml:space="preserve">
-    <value>Creation Time</value>
-  </data>
-  <data name="AssemblyCultureString" xml:space="preserve">
-    <value>Culture</value>
-  </data>
-  <data name="AssemblyDescriptionString" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>File Version</value>
-  </data>
-  <data name="AssemblyInformationalVersionString" xml:space="preserve">
-    <value>Informational Version</value>
-  </data>
-  <data name="AssemblyProductString" xml:space="preserve">
-    <value>Product</value>
-  </data>
-  <data name="AssemblyTitleString" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="AssemblyTrademarkString" xml:space="preserve">
-    <value>Trademark</value>
-  </data>
-  <data name="AssemblyVersionString" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="ChangelogString" xml:space="preserve">
-    <value>Changelog</value>
-  </data>
-  <data name="DowngradeString" xml:space="preserve">
-    <value>Downgrade</value>
-  </data>
-  <data name="GeneralInfosString" xml:space="preserve">
-    <value>General Infos</value>
-  </data>
-  <data name="GitHubBinaryReleaseAvailableString" xml:space="preserve">
-    <value>Binary release is available for this version</value>
-  </data>
-  <data name="GitHubInstallerReleaseAvailableString" xml:space="preserve">
-    <value>Installer release is available for this version</value>
-  </data>
-  <data name="GitHubNoReleasesAvailableString" xml:space="preserve">
-    <value>No releases available</value>
-  </data>
-  <data name="GitHubPublishedString" xml:space="preserve">
-    <value>Published</value>
-  </data>
-  <data name="GitHubReleaseNotesString" xml:space="preserve">
-    <value>Release Notes</value>
-  </data>
-  <data name="GitHubReleasesString" xml:space="preserve">
-    <value>GitHub Releases</value>
-  </data>
-  <data name="GitHubVersionNotificationDisabledString" xml:space="preserve">
-    <value>Don't notify about new releases</value>
-  </data>
-  <data name="GitHubVersionNotificationEnabledString" xml:space="preserve">
-    <value>Notify about new releases</value>
-  </data>
-  <data name="MessageDialogCancelString" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="MessageDialogOKString" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="NumberNewReleasesString" xml:space="preserve">
-    <value>Number new releases</value>
-  </data>
-  <data name="NumberReleasesTotalString" xml:space="preserve">
-    <value>Number total releases</value>
-  </data>
-  <data name="ReadmeString" xml:space="preserve">
-    <value>Readme</value>
-  </data>
-  <data name="RepairString" xml:space="preserve">
-    <value>Repair</value>
-  </data>
-  <data name="RepositoryURLString" xml:space="preserve">
-    <value>Repository URL</value>
-  </data>
-  <data name="UpdateStatusInfoDowngradeString" xml:space="preserve">
-    <value>Downgrade from v0.0.0 to v1.0.0</value>
-  </data>
-  <data name="UpdateStatusInfoRepairString" xml:space="preserve">
-    <value>Repair v0.0.0</value>
-  </data>
-  <data name="UpdateStatusInfoUpdateString" xml:space="preserve">
-    <value>Update from v0.0.0 to v1.0.0</value>
-  </data>
-  <data name="UpdateUtilChooseSourceString" xml:space="preserve">
-    <value>There are multiple options to update this version. Choose one of the options below.</value>
-  </data>
-  <data name="UpdateUtilChooseSourceTitleString" xml:space="preserve">
-    <value>Choose update source</value>
-  </data>
-  <data name="UpdateUtilConfirmUpdateTitleString" xml:space="preserve">
-    <value>Confirm update</value>
-  </data>
-  <data name="UpdateUtilDowngradeWarningString" xml:space="preserve">
-    <value>For downgrades to lower versions, this update feature may not be available anymore! You have to download manually then!</value>
-  </data>
-  <data name="UpdateUtilDownloadFailedString" xml:space="preserve">
-    <value>Download from &lt;Path&gt; failed.</value>
-  </data>
-  <data name="UpdateUtilDownloadFailedTitleString" xml:space="preserve">
-    <value>Download failed</value>
-  </data>
-  <data name="UpdateUtilDoYouReallyWantToString" xml:space="preserve">
-    <value>Do you really want to</value>
-  </data>
-  <data name="UpdateUtilErrorString" xml:space="preserve">
-    <value>Error while update</value>
-  </data>
-  <data name="UpdateUtilReleaseAssetNotFoundString" xml:space="preserve">
-    <value>Asset for Release v0.0.0 not found on GitHub.</value>
-  </data>
-  <data name="UpdateUtilReleaseAssetNotFoundTitleString" xml:space="preserve">
-    <value>Release asset not found</value>
-  </data>
-  <data name="UpdateUtilSetupExeFailureString" xml:space="preserve">
-    <value>Installer must contain a Setup.exe file!</value>
-  </data>
-  <data name="UpdateUtilUpdateFinishedBinariesString" xml:space="preserve">
-    <value>To finish the update, the application is closed now. This may take some time. After the update is finished, the application is restarted.</value>
-  </data>
-  <data name="UpdateUtilUpdateFinishedInstallerString" xml:space="preserve">
-    <value>To finish the update, the application is closed now. Please use the started installer to reinstall the application.</value>
-  </data>
-  <data name="UpgradeString" xml:space="preserve">
-    <value>Upgrade</value>
+  <data name="UpdateStatusWaitForExit" xml:space="preserve">
+    <value>Warten, bis alle Anwendungsinstanzen geschlossen sind...</value>
   </data>
 </root>

@@ -11,6 +11,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/M1S2/AssemblyInfoHelper</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/M1S2/AssemblyInfoHelper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -96,6 +97,10 @@
 	    <PackagePath>\</PackagePath>
 	  </None>
 	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\LICENSE.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>

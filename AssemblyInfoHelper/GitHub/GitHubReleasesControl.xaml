@@ -39,7 +39,7 @@
         <!-- ########## Project URL ######################################################################################################################################################################################## -->
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
-            <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="{x:Static properties:Resources.RepositoryURLString}" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+            <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="{x:Static properties:Resources.RepositoryURLString}" />
             <TextBlock Margin="30,0,0,0" Text="{Binding Source={x:Static properties:Resources.RepositoryURLString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}">
@@ -54,15 +54,15 @@
 
         <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,10,0,10">
             <Grid ToolTip="{x:Static properties:Resources.NumberNewReleasesString}">
-                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
-                <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" />
+                <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
             </Grid>
             <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberNewReleasesString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=NumberNewReleases}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
             <Grid Margin="50,0,0,0" ToolTip="{x:Static properties:Resources.NumberReleasesTotalString}">
-                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
-                <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" />
+                <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" />
             </Grid>
             <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberReleasesTotalString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>

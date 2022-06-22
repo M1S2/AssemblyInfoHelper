@@ -19,10 +19,10 @@ namespace AssemblyInfoHelper.Updater.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace AssemblyInfoHelper.Updater.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AssemblyInfoHelper.Updater.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,57 @@ namespace AssemblyInfoHelper.Updater.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copying package contents... ähnelt.
+        /// </summary>
+        public static string UpdateStatusCopyContents {
+            get {
+                return ResourceManager.GetString("UpdateStatusCopyContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete application&apos;s directory... ähnelt.
+        /// </summary>
+        public static string UpdateStatusDeleteAppDirectory {
+            get {
+                return ResourceManager.GetString("UpdateStatusDeleteAppDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete package content directory... ähnelt.
+        /// </summary>
+        public static string UpdateStatusDeletePackageDirectory {
+            get {
+                return ResourceManager.GetString("UpdateStatusDeletePackageDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Restarting application ähnelt.
+        /// </summary>
+        public static string UpdateStatusRestartApplication {
+            get {
+                return ResourceManager.GetString("UpdateStatusRestartApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Waiting for all running application instances to exit... ähnelt.
+        /// </summary>
+        public static string UpdateStatusWaitForExit {
+            get {
+                return ResourceManager.GetString("UpdateStatusWaitForExit", resourceCulture);
             }
         }
     }

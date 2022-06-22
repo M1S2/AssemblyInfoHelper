@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="UpdateStatusCopyContents" xml:space="preserve">
+    <value>Copying package contents...</value>
+  </data>
+  <data name="UpdateStatusDeleteAppDirectory" xml:space="preserve">
+    <value>Delete application's directory...</value>
+  </data>
+  <data name="UpdateStatusDeletePackageDirectory" xml:space="preserve">
+    <value>Delete package content directory...</value>
+  </data>
+  <data name="UpdateStatusRestartApplication" xml:space="preserve">
+    <value>Restarting application</value>
+  </data>
+  <data name="UpdateStatusWaitForExit" xml:space="preserve">
+    <value>Waiting for all running application instances to exit...</value>
+  </data>
 </root>
