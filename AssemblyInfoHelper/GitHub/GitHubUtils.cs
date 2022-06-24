@@ -250,9 +250,7 @@ namespace AssemblyInfoHelper.GitHub
                            For binaries: %ProjectName%_Binaries.zip, %ProjectName%.zip, %ProjectName%_v1.0.0.zip, bin.zip
                            For installer: %ProjectName%_Installer.zip, Installer.zip, Setup.zip, Setup.exe 
                         */
-#warning OnlyTesting!!!
-                        BinAsset = release.Assets.FirstOrDefault(),
-                        //BinAsset = release.Assets.Where(a => a.Name.ToLower().Contains("bin") || (a.Name.ToLower().StartsWith(AssemblyInfoHelperClass.AssemblyTitle.ToLower()) && !a.Name.ToLower().Contains("inst") && !a.Name.ToLower().Contains("setup"))).FirstOrDefault(),
+                        BinAsset = release.Assets.Where(a => a.Name.ToLower().Contains("bin") || (a.Name.ToLower().StartsWith(AssemblyInfoHelperClass.AssemblyTitle.ToLower()) && !a.Name.ToLower().Contains("inst") && !a.Name.ToLower().Contains("setup"))).FirstOrDefault(),
                         InstallerAsset = release.Assets.Where(a => a.Name.ToLower().Contains("inst") || a.Name.ToLower().Contains("setup")).FirstOrDefault()
                     });
 

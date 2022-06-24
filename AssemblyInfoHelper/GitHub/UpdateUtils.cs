@@ -134,6 +134,12 @@ namespace AssemblyInfoHelper.GitHub
             // Extract updater exe
             await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.exe", updaterFileExePath);
 
+            string updaterFileResourcesPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, $"de-DE\\AssemblyInfoHelper.Updater.resources.dll");
+
+            // Extract updater resources dll
+            if (!Directory.Exists(Path.GetDirectoryName(updaterFileResourcesPath))) { Directory.CreateDirectory(Path.GetDirectoryName(updaterFileResourcesPath)); }
+            await ExtractManifestResourceAsync(Assembly.GetExecutingAssembly(), "AssemblyInfoHelper.Updater.resources.dll", updaterFileResourcesPath);
+
 #if NETCOREAPP || NET
             string updaterFileDllPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.dll");
             string updaterFileRuntimeConfigPath = Path.Combine(Directory.GetParent(downloadFolder).FullName, "AssemblyInfoHelper.Updater.runtimeconfig.json");

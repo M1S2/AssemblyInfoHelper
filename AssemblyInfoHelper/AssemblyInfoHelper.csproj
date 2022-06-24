@@ -7,7 +7,6 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -40,6 +39,11 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<Visible>False</Visible>
 		</EmbeddedResource>
+    <EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/de-DE/AssemblyInfoHelper.Updater.resources.dll">
+      <Link>Updater.resources.dll</Link>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </EmbeddedResource>
 		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/AssemblyInfoHelper.Updater.dll" Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net6.0-windows'">
 			<Link>Updater.dll</Link>
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>

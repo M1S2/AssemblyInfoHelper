@@ -1,5 +1,9 @@
 # AssemblyInfoHelper
 
+## [v5.0.1]
+
+- Added some missing localizations
+
 ## [v5.0.0]
 
 - Added localization for UI
