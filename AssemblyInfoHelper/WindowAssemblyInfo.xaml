@@ -57,7 +57,6 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
@@ -89,25 +88,21 @@
                         <Label Grid.Row="5" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                         <Label Grid.Row="5" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
-                        <iconPacks:PackIconMaterial Grid.Row="6" Grid.Column="0" Width="25" Height="25" Kind="Translate" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Label Grid.Row="6" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCultureString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
-                        <Label Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCulture}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+                        <iconPacks:PackIconOcticons Grid.Row="6" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="6" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
                         <iconPacks:PackIconOcticons Grid.Row="7" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Label Grid.Row="7" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
-                        <Label Grid.Row="7" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="7" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="7" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
                         <iconPacks:PackIconOcticons Grid.Row="8" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Label Grid.Row="8" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
-                        <Label Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="8" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyInformationalVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="8" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
 
-                        <iconPacks:PackIconOcticons Grid.Row="9" Grid.Column="0" Width="25" Height="25" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Label Grid.Row="9" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyInformationalVersionString}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
-                        <Label Grid.Row="9" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
-
-                        <iconPacks:PackIconMaterial Grid.Row="10" Grid.Column="0" Width="25" Height="25" Kind="ClockOutline" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Label Grid.Row="10" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCreationTime}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
-                        <Label Grid.Row="10" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCreationTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}" FontSize="{StaticResource LargeFontSize}" />
+                        <iconPacks:PackIconMaterial Grid.Row="9" Grid.Column="0" Width="25" Height="25" Kind="ClockOutline" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Label Grid.Row="9" Grid.Column="1" Content="{x:Static properties:Resources.AssemblyCreationTime}" VerticalContentAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
+                        <Label Grid.Row="9" Grid.Column="2" VerticalContentAlignment="Center" Content="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCreationTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}" FontSize="{StaticResource LargeFontSize}" />
                     </Grid>
                 </DockPanel>
             </TabItem>

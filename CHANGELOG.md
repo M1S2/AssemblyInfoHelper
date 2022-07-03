@@ -1,5 +1,7 @@
 # AssemblyInfoHelper
 
+- Removed support for AssemblyCulture attribute
+
 ## [v5.0.1]
 
 - Added some missing localizations

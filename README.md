@@ -14,7 +14,6 @@ This contains the following informations:
 - AssemblyProduct
 - AssemblyCopyright
 - AssemblyTrademark
-- AssemblyCulture
 - AssemblyVersion
 - AssemblyFileVersion
 - AssemblyInformationalVersion

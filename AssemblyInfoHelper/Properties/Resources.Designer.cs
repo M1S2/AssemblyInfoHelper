@@ -106,15 +106,6 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Culture ähnelt.
-        /// </summary>
-        public static string AssemblyCultureString {
-            get {
-                return ResourceManager.GetString("AssemblyCultureString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
         public static string AssemblyDescriptionString {

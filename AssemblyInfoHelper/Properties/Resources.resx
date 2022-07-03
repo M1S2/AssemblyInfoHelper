@@ -132,9 +132,6 @@
   <data name="AssemblyCreationTime" xml:space="preserve">
     <value>Creation Time</value>
   </data>
-  <data name="AssemblyCultureString" xml:space="preserve">
-    <value>Culture</value>
-  </data>
   <data name="AssemblyDescriptionString" xml:space="preserve">
     <value>Description</value>
   </data>

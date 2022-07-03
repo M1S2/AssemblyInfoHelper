@@ -26,7 +26,6 @@ namespace AssemblyInfoHelper
             PRODUCT,
             COPYRIGHT,
             TRADEMARK,
-            CULTURE,
             FILEVERSION,
             VERSION,
             INFORMATIONALVERSION,
@@ -88,12 +87,6 @@ namespace AssemblyInfoHelper
                 {
                     assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyTrademarkAttribute), true);
                     if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyTrademarkAttribute)assemblyObjects[0]).Trademark; }
-                    break;
-                }
-                case AssemblyAttributeTypes.CULTURE:
-                {
-                    assemblyObjects = assembly.GetCustomAttributes(typeof(AssemblyCultureAttribute), true);
-                    if (assemblyObjects.Length > 0) { attributeValue = ((AssemblyCultureAttribute)assemblyObjects[0]).Culture; }
                     break;
                 }
                 case AssemblyAttributeTypes.FILEVERSION:
@@ -180,13 +173,6 @@ namespace AssemblyInfoHelper
         /// Assembly trademark attribute
         /// </summary>
         public static string AssemblyTrademark => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.TRADEMARK);
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Assembly culture attribute
-        /// </summary>
-        public static string AssemblyCulture => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.CULTURE);
 
         //********************************************************************************************************************************************************************
 
