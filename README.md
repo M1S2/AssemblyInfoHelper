@@ -7,7 +7,7 @@
 
 ## Purpose
 
-The **AssemblyInfoHelper** gets and displays the assembly info of the assembly that calls this functions.
+The **AssemblyInfoHelper** gets and displays the assembly attributes of the assembly that calls this functions.
 This contains the following informations:
 - AssemblyTitle
 - AssemblyCompany
@@ -19,13 +19,13 @@ This contains the following informations:
 - AssemblyInformationalVersion
 - AssemblyLinkerTime
 
-The description is get from the README.md file in the path given when creating the WindowAssemblyInfo.
+The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo.
 
 The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo.
 
 GitHub releases are taken from repository at the url given by the `GitHubRepo` attribute (see usage below). 
 
-The **AssemblyInfoProject** is used to test the AssemblyInfoHelper.
+The **AssemblyInfoHelper.Demo** is used to test the AssemblyInfoHelper.
 
 ## Installation
 
@@ -37,14 +37,14 @@ You can also use the Package Manager console with: `PM> Install-Package Assembly
 
 To show all releases from GitHub add the `GitHubRepo` attribute to the AssemblyInfo.cs file: 
 
-```
+```csharp
 [assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 ```
 
 
 The simplest way to show the WindowAssemblyInfo is to add a `AppInfoButton` control to the application. Everything is done inside this control.
 
-```
+```csharp
 xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
 ...
 <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
@@ -53,9 +53,35 @@ xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfo
 
 Or you can open the info window with: 
 
-```
+```csharp
 AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAssemblyInfo();
 window.ShowDialog();
+```
+
+## Add assembly attributes
+
+### New style projects
+Add the following properties to a .csproj file to include assembly attributes:
+```csharp
+<PropertyGroup>
+	<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	<Title>TitleText</Title>
+	<Description>DescriptionText</Description>
+	<Company>CompanyText</Company>
+	<Product>ProductText</Product>
+	<Copyright>Copyright © 2022</Copyright>
+</PropertyGroup>
+```
+
+### Old style projects
+Add the following lines to the AssemblyInfo.cs file to include assembly attributes:
+```csharp
+[assembly: AssemblyTitle("TitleText")]
+[assembly: AssemblyDescription("DescriptionText")]
+[assembly: AssemblyCompany("CompanyText")]
+[assembly: AssemblyProduct("ProductText")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
+[assembly: AssemblyTrademark("TrademarkText")]
 ```
 
 ## Update Feature

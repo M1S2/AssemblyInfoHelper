@@ -3,9 +3,16 @@
 		<Version>0.0.0</Version>
 		<TargetFrameworks>net452;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
 		<OutputType>WinExe</OutputType>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	</PropertyGroup>
+	<PropertyGroup>
+		<Title>AssemblyInfoHelper.Demo</Title>
+		<Description>Demo project for AssemblyInfoHelper</Description>
+		<Company>Markus Scheich</Company>
+		<Product>AssemblyInfoHelper.Demo</Product>
+		<Copyright>Copyright © 2022</Copyright>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PostBuildEvent>
