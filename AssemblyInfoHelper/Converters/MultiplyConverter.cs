@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace AssemblyInfoHelper
+namespace AssemblyInfoHelper.Converters
 {
     /// <summary>
     /// Multiply the parameter and the value and return the result

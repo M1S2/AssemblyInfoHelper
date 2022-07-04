@@ -15,9 +15,9 @@ This contains the following informations:
 - AssemblyCopyright
 - AssemblyTrademark
 - AssemblyVersion
-- AssemblyFileVersion
+- AssemblyFileVersion (this attribute is only show if it differs from the AssemblyVersion)
 - AssemblyInformationalVersion
-- AssemblyLinkerTime
+- AssemblyCreationTime
 
 The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo.
 

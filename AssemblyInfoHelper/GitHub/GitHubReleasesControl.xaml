@@ -18,7 +18,7 @@
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
             <converters:EnumToLocalizedStringConverter x:Key="EnumLocalizedStringConverter"/>
-            <assemblyInfoHelper:MultiplyConverter x:Key="multiplyConverter"/>
+            <converters:MultiplyConverter x:Key="multiplyConverter"/>
             <local:GitHubReleaseToUpdateButtonStyleConverter x:Key="GitHubReleaseUpdateButtonConverter"/>
             
             <ResourceDictionary.MergedDictionaries>
