@@ -1,6 +1,10 @@
 # AssemblyInfoHelper
 
+## [v5.1.0]
+
 - Removed support for AssemblyCulture attribute
+- Hide empty attribute values
+- Extended Readme
 
 ## [v5.0.1]
 

@@ -10,6 +10,7 @@
 The **AssemblyInfoHelper** gets and displays the assembly attributes of the assembly that calls this functions.
 This contains the following informations:
 - AssemblyTitle
+- AssemblyDescription
 - AssemblyCompany
 - AssemblyProduct
 - AssemblyCopyright
@@ -19,11 +20,19 @@ This contains the following informations:
 - AssemblyInformationalVersion
 - AssemblyCreationTime
 
-The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo.
+![General Infos](Screenshots/AssemblyInfoWindow_GeneralInfos.PNG)
 
-The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo.
+The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+
+![Readme](Screenshots/AssemblyInfoWindow_Readme.PNG)
+
+The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+
+![Changelog](Screenshots/AssemblyInfoWindow_Changelog.PNG)
 
 GitHub releases are taken from repository at the url given by the `GitHubRepo` attribute (see usage below). 
+
+![GitHub Releases](Screenshots/AssemblyInfoWindow_GitHubReleases.PNG)
 
 The **AssemblyInfoHelper.Demo** is used to test the AssemblyInfoHelper.
 
@@ -50,6 +59,7 @@ xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfo
 <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
 ```
 
+![AppInfoButton](Screenshots/AppInfoButton.PNG)
 
 Or you can open the info window with: 
 
