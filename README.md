@@ -20,19 +20,19 @@ This contains the following informations:
 - AssemblyInformationalVersion
 - AssemblyCreationTime
 
-![General Infos](Screenshots/AssemblyInfoWindow_GeneralInfos.PNG)
+![General Infos](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_GeneralInfos.PNG)
 
 The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
 
-![Readme](Screenshots/AssemblyInfoWindow_Readme.PNG)
+![Readme](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_Readme.PNG)
 
 The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
 
-![Changelog](Screenshots/AssemblyInfoWindow_Changelog.PNG)
+![Changelog](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_Changelog.PNG)
 
 GitHub releases are taken from repository at the url given by the `GitHubRepo` attribute (see usage below). 
 
-![GitHub Releases](Screenshots/AssemblyInfoWindow_GitHubReleases.PNG)
+![GitHub Releases](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_GitHubReleases.PNG)
 
 The **AssemblyInfoHelper.Demo** is used to test the AssemblyInfoHelper.
 
@@ -59,7 +59,7 @@ xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfo
 <assemblyInfoHelper:AppInfoButton EnableNewVersionNotification="True"/>
 ```
 
-![AppInfoButton](Screenshots/AppInfoButton.PNG)
+![AppInfoButton](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AppInfoButton.PNG)
 
 Or you can open the info window with: 
 

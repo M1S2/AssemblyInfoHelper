@@ -42,7 +42,7 @@ namespace AssemblyInfoHelper.MarkdownControls
             if (markdownString == null) { return; }
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             string htmlString = "<font face = \"calibri\">" + Markdig.Markdown.ToHtml(markdownString, pipeline);
-            Stream htmlStream = new MemoryStream(System.Text.Encoding.Default.GetBytes(htmlString));            // Convert to stream to show german ä,ö,ü correctly
+            Stream htmlStream = new MemoryStream(System.Text.Encoding.GetEncoding("iso-8859-1").GetBytes(htmlString));      // Convert to stream with encoding ISO-8859-1 (Latin1) to show german ä,ö,ü correctly
             ((WebBrowserMarkdown)sender).webBrowserMarkdown.NavigateToStream(htmlStream);       //NavigateToString(htmlString);
         }
             
