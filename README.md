@@ -98,3 +98,17 @@ Add the following lines to the AssemblyInfo.cs file to include assembly attribut
 
 You can see and download all releases available on GitHub on the GitHub releases tab.
 To Upgrade/Repair/Downgrade click on the button beside the corresponding release. The release is downloaded from GitHub and installed automatically depending if an installer or binaries are available.
+
+The release binaries must be added to a GitHub release as asset. The following naming conventions are used to detect, what type of asset it is:
+
+*For binaries:*
+- %ProjectName%_Binaries.zip
+- %ProjectName%.zip
+- %ProjectName%_v1.0.0.zip
+- bin.zip
+
+*For installer:*
+- %ProjectName%_Installer.zip
+- Installer.zip
+- Setup.zip
+- Setup.exe
