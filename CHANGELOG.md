@@ -1,5 +1,10 @@
 # AssemblyInfoHelper
 
+## [v5.2.0]
+
+- Corrected encoding for WebBrowserMarkdown control to show german special characters
+- Fixed non-working links in WebBrowserMarkdown control
+
 ## [v5.1.0]
 
 - Removed support for AssemblyCulture attribute

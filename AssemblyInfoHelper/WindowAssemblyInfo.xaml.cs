@@ -24,6 +24,7 @@ using Octokit;
 using AssemblyInfoHelper.GitHub;
 using Semver;
 using System.Net;
+using System.Diagnostics;
 
 namespace AssemblyInfoHelper
 {
@@ -173,6 +174,17 @@ namespace AssemblyInfoHelper
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Enable navigation to link URLs for MdXAML MarkdownScrollViewer (taken from https://github.com/whistyun/MdXaml/blob/master/samples/MdXaml.Demo/MainWindow.xaml.cs)
+            CommandBindings.Add(new CommandBinding(
+                NavigationCommands.GoToPage,
+                (sender, e) =>
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.FileName = (string)e.Parameter;
+                    proc.Start();
+                }));
+
             setWebBrowserVersion();
 
             this.Icon = System.Windows.Application.Current.MainWindow.Icon;

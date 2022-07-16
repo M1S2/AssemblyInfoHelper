@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
 using System.IO;
+using System.Diagnostics;
 
 namespace AssemblyInfoHelper.MarkdownControls
 {
@@ -51,13 +52,17 @@ namespace AssemblyInfoHelper.MarkdownControls
         /// <summary>
         /// Open links in the users default browser
         /// </summary>
-        /// see: https://stackoverflow.com/questions/15847822/opening-web-browser-click-in-default-browser
         private void webBrowserMarkdown_Navigating(object sender, NavigatingCancelEventArgs e)
         {
             if (e.Uri != null)
             {
                 e.Cancel = true;
-                System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+
+                // https://brockallen.com/2016/09/24/process-start-for-urls-on-net-core/
+                // hack because of this: https://github.com/dotnet/corefx/issues/10361
+                string url = e.Uri.AbsoluteUri;
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             }
         }
     }
