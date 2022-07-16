@@ -1,9 +1,9 @@
 # AssemblyInfoHelper
 
-[![Nuget Version](https://img.shields.io/nuget/v/AssemblyInfoHelper.svg)](https://www.nuget.org/packages/AssemblyInfoHelper/)
-![GitHub Release Version](https://img.shields.io/github/v/release/M1S2/AssemblyInfoHelper)
+[![GitHub Release Version](https://img.shields.io/github/v/release/M1S2/AssemblyInfoHelper)](https://github.com/M1S2/AssemblyInfoHelper/releases/latest)
 [![GitHub License](https://img.shields.io/github/license/M1S2/AssemblyInfoHelper)](LICENSE.md)
-![Nuget Downloads](https://img.shields.io/nuget/dt/AssemblyInfoHelper)
+[![Nuget Version](https://img.shields.io/nuget/v/AssemblyInfoHelper.svg)](https://www.nuget.org/packages/AssemblyInfoHelper/)
+[![Nuget Downloads](https://img.shields.io/nuget/dt/AssemblyInfoHelper)](https://www.nuget.org/packages/AssemblyInfoHelper/)
 
 ## Purpose
 
