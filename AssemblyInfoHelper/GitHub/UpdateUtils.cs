@@ -115,7 +115,7 @@ namespace AssemblyInfoHelper.GitHub
                 if (useInstaller) { await windowAssemblyInfo.ShowMessageAsync("Update", Properties.Resources.UpdateUtilUpdateFinishedInstallerString, MessageDialogStyle.Affirmative); }
                 else if (useBinaries) { await windowAssemblyInfo.ShowMessageAsync("Update", Properties.Resources.UpdateUtilUpdateFinishedBinariesString, MessageDialogStyle.Affirmative); }
 
-                Environment.Exit(0);                            // Terminate the running application so that the updater/installer can overwrite files
+                System.Windows.Application.Current.Shutdown();      // Closes the running application so that the updater/installer can overwrite files
             }
             catch (Exception ex)
             {

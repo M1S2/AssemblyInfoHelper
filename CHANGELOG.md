@@ -1,5 +1,10 @@
 # AssemblyInfoHelper
 
+## [v5.2.1]
+
+- Fixed hanging application when closed during update (avoid Environment.Exit() call) (#12)
+- Fixed non-working links to repository URL and tags (#11)
+
 ## [v5.2.0]
 
 - Corrected encoding for WebBrowserMarkdown control to show german special characters
