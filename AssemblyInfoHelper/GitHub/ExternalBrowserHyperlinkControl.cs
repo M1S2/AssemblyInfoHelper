@@ -22,7 +22,12 @@ namespace AssemblyInfoHelper.GitHub
 
         private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            // https://brockallen.com/2016/09/24/process-start-for-urls-on-net-core/
+            // hack because of this: https://github.com/dotnet/corefx/issues/10361
+            string url = e.Uri.AbsoluteUri;
+            url = url.Replace("&", "^&");
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+
             e.Handled = true;
         }
     }
