@@ -7,7 +7,6 @@
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
-             xmlns:markdown="clr-namespace:AssemblyInfoHelper.MarkdownControls"
              xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
              xmlns:converters="clr-namespace:AssemblyInfoHelper.Converters"
              xmlns:mdxaml="clr-namespace:MdXaml;assembly=MdXaml"

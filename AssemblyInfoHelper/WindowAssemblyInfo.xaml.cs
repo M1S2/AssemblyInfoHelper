@@ -185,8 +185,6 @@ namespace AssemblyInfoHelper
                     proc.Start();
                 }));
 
-            setWebBrowserVersion();
-
             this.Icon = System.Windows.Application.Current.MainWindow.Icon;
 
             await GitHubUtils.Instance.GetAllGitHubReleases();
@@ -217,24 +215,6 @@ namespace AssemblyInfoHelper
                     ChangelogMarkdown = "No changelog file found in: " + Environment.NewLine + Environment.NewLine + _changeLogPath;
                 }
             });
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Set a registry key for the current user to use Internet Explorer 11 for rendering using the WebBrowser control
-        /// </summary>
-        //see: https://stackoverflow.com/questions/17922308/use-latest-version-of-internet-explorer-in-the-webbrowser-control
-        private void setWebBrowserVersion()
-        {
-            RegistryKey regKey = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", RegistryKeyPermissionCheck.ReadWriteSubTree);
-
-            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe";
-
-            if (regKey.GetValue(processName) == null)
-            {
-                regKey.SetValue(processName, 11001, RegistryValueKind.DWord);       //11001 = Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the !DOCTYPE directive.
-            }
         }
 
     }

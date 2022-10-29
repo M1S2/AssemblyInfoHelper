@@ -1,5 +1,9 @@
 # AssemblyInfoHelper
 
+## [v5.2.2]
+
+- Updated MdXaml to 1.16.1 to improve Readme viewer, added MdXaml.Plugins, MdXaml.Html and MdXaml.Svg
+
 ## [v5.2.1]
 
 - Fixed hanging application when closed during update (avoid Environment.Exit() call) (#12)
