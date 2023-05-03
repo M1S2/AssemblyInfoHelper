@@ -120,14 +120,23 @@
   <data name="UpdateStatusCopyContents" xml:space="preserve">
     <value>Paketinhalt kopieren...</value>
   </data>
+  <data name="UpdateStatusCopyPersistentFiles" xml:space="preserve">
+    <value>Zu behaltende Dateien kopieren...</value>
+  </data>
   <data name="UpdateStatusDeleteAppDirectory" xml:space="preserve">
     <value>Anwendungsverzeichnis löschen...</value>
   </data>
   <data name="UpdateStatusDeletePackageDirectory" xml:space="preserve">
     <value>Paketinhaltverzeichnis löschen...</value>
   </data>
+  <data name="UpdateStatusDeletePersistentFiles" xml:space="preserve">
+    <value>Behaltene Dateien löschen...</value>
+  </data>
   <data name="UpdateStatusRestartApplication" xml:space="preserve">
     <value>Anwendung neu starten</value>
+  </data>
+  <data name="UpdateStatusRestorePersistentFiles" xml:space="preserve">
+    <value>Behaltene Dateien wiederherstellen...</value>
   </data>
   <data name="UpdateStatusWaitForExit" xml:space="preserve">
     <value>Warten, bis alle Anwendungsinstanzen geschlossen sind...</value>

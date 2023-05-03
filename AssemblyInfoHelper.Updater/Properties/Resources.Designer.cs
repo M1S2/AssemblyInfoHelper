@@ -70,6 +70,15 @@ namespace AssemblyInfoHelper.Updater.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copying persistent files... ähnelt.
+        /// </summary>
+        public static string UpdateStatusCopyPersistentFiles {
+            get {
+                return ResourceManager.GetString("UpdateStatusCopyPersistentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete application&apos;s directory... ähnelt.
         /// </summary>
         public static string UpdateStatusDeleteAppDirectory {
@@ -88,11 +97,29 @@ namespace AssemblyInfoHelper.Updater.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deleting persistent files... ähnelt.
+        /// </summary>
+        public static string UpdateStatusDeletePersistentFiles {
+            get {
+                return ResourceManager.GetString("UpdateStatusDeletePersistentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Restarting application ähnelt.
         /// </summary>
         public static string UpdateStatusRestartApplication {
             get {
                 return ResourceManager.GetString("UpdateStatusRestartApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Restoring persistent files... ähnelt.
+        /// </summary>
+        public static string UpdateStatusRestorePersistentFiles {
+            get {
+                return ResourceManager.GetString("UpdateStatusRestorePersistentFiles", resourceCulture);
             }
         }
         

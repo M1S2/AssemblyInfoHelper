@@ -226,7 +226,7 @@ namespace AssemblyInfoHelper.GitHub
 
                 List<Release> originalReleases = new List<Release>(await gitHubClient.Repository.Release.GetAll(repoOwner, repoName));
 
-                SemVersion currentVersion = stripInitialV(AssemblyInfoHelperClass.AssemblyVersion);      
+                SemVersion currentVersion = SemVersion.Parse(AssemblyInfoHelperClass.AssemblyVersion, SemVersionStyles.Any);      
                 SemVersion previousVersion = new SemVersion(0, 0, 0);
                 originalReleases.Reverse();
 
@@ -234,14 +234,14 @@ namespace AssemblyInfoHelper.GitHub
 
                 foreach (Release release in originalReleases)
                 {
-                    SemVersion releaseVersion = stripInitialV(release.TagName);
+                    SemVersion releaseVersion = SemVersion.Parse(release.TagName, SemVersionStyles.Any);
 
                     tmpGitHubReleases.Add(new GitHubRelease()
                     {
                         Name = release.Name,
                         ReleaseTime = release.CreatedAt.ToLocalTime(),
                         Version = releaseVersion,
-                        ReleaseTimeType = (releaseVersion > currentVersion ? GitHubReleaseTimeTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTimeTypes.CURRENT : GitHubReleaseTimeTypes.OLD)),
+                        ReleaseTimeType = (releaseVersion.CompareSortOrderTo(currentVersion) > 0 ? GitHubReleaseTimeTypes.NEW : (releaseVersion == currentVersion ? GitHubReleaseTimeTypes.CURRENT : GitHubReleaseTimeTypes.OLD)),
                         ReleaseURL = release.HtmlUrl,
                         ReleaseNotes = release.Body,
                         ReleaseType = getReleaseTypeFromVersions(releaseVersion, previousVersion),
@@ -268,24 +268,6 @@ namespace AssemblyInfoHelper.GitHub
                 ErrorMessage = ex.Message + (ex.InnerException != null ? Environment.NewLine + ex.InnerException.Message : "");
                 if (SemaphoreGetReleases.CurrentCount == 0) { SemaphoreGetReleases.Release(); }
             }
-        }
-
-        //********************************************************************************************************************************************************************
-
-        /// <summary>
-        /// Strip the initial "v" from the version string if existing and parse the result to a SemVersion object.
-        /// </summary>
-        /// <param name="version">Version string</param>
-        /// <returns>SemVersion object</returns>
-        /// see: https://github.com/nixxquality/GitHubUpdate/blob/master/GitHubUpdate/Helper.cs
-        private SemVersion stripInitialV(string version)
-        {
-            if (version[0] == 'v')
-                version = version.Substring(1);
-
-            SemVersion result = SemVersion.Parse(version);
-
-            return result;
         }
 
         //********************************************************************************************************************************************************************

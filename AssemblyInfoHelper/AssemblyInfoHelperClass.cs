@@ -29,7 +29,8 @@ namespace AssemblyInfoHelper
             FILEVERSION,
             VERSION,
             INFORMATIONALVERSION,
-            GITHUB_URL
+            GITHUB_URL,
+            UPDATE_PERSISTENT_FILES
         }
 
         //********************************************************************************************************************************************************************
@@ -118,6 +119,16 @@ namespace AssemblyInfoHelper
                 {
                     assemblyObjects = assembly.GetCustomAttributes(typeof(GitHubRepoAttribute), true);
                     if (assemblyObjects.Length > 0) { attributeValue = ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl; }
+                    break;
+                }
+                case AssemblyAttributeTypes.UPDATE_PERSISTENT_FILES:
+                {
+                    assemblyObjects = assembly.GetCustomAttributes(typeof(UpdatePersistentFilesAttribute), true);
+                    foreach(UpdatePersistentFilesAttribute assemblyObject in assemblyObjects)
+                    {
+                            attributeValue += assemblyObject.FileName + ";";
+                    }
+                    attributeValue = attributeValue.TrimEnd(';');
                     break;
                 }
             }
@@ -209,6 +220,13 @@ namespace AssemblyInfoHelper
         /// GitHubRepo attribute
         /// </summary>
         public static string GitHubRepoUrl => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.GITHUB_URL);
+
+        //********************************************************************************************************************************************************************
+
+        /// <summary>
+        /// UpdatePersistentFiles attribute
+        /// </summary>
+        public static string UpdatePersistentFiles => GetAttributeFromAssembly(Assembly.GetEntryAssembly(), AssemblyAttributeTypes.UPDATE_PERSISTENT_FILES);
 
     }
 }

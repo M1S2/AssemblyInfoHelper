@@ -112,3 +112,22 @@ The release binaries must be added to a GitHub release as asset. The following n
 - Installer.zip
 - Setup.zip
 - Setup.exe
+
+### Persistent files during update
+
+If files should be preserved during the update process, the `UpdatePersistentFiles` attribute can be added to the `AssemblyInfo.cs` file:
+```csharp
+[assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Filename.txt")]
+```
+Adapt the "Filename.txt" to the file you want to keep. The filename is relative to the executing assembly. E.g. if you want to keep a database file named "Database.db" that is located beside the executable "DemoApp.exe", use "Database.db" with the `UpdateKeepFile` attribute.
+
+If multiple files should be kept, add one `UpdatePersistentFiles` attribute for each file.
+```csharp
+[assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Filename1.txt")]
+[assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Folder\\Filename2.txt")]
+```
+
+### Temporary folder used by the update feature
+
+The %AppData%\Local\%ProjectName% folder is used to temporary save the downloaded release. Also the files that should be persisted are saved here.
+Afer the update was finished, the folder content is deleted. Only the Updater.exe remains because it can't delete itself.

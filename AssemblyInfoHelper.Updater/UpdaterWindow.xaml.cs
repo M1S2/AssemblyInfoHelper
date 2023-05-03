@@ -80,15 +80,17 @@ namespace AssemblyInfoHelper.Updater
         private readonly string _updateeFilePath;
         private readonly string _packageContentDirPath;
         private readonly bool _restartUpdatee;
+        private readonly string _persistentFilesList;             // list with files relative to the _updateeFilePath that are persistent (kept) during updating. Files are separated by ; e.g. "File1.txt;File2.txt"
         private readonly string _routedArgs;
 
-        public UpdaterWindow(string updateeFilePath, string packageContentDirPath, bool restartUpdatee, string routedArgs)
+        public UpdaterWindow(string updateeFilePath, string packageContentDirPath, bool restartUpdatee, string persistentFilesList, string routedArgs)
         {
             this.DataContext = this;
             InitializeComponent();
             _updateeFilePath = updateeFilePath;
             _packageContentDirPath = packageContentDirPath;
             _restartUpdatee = restartUpdatee;
+            _persistentFilesList = persistentFilesList;
             _routedArgs = routedArgs;
         }
 
@@ -111,12 +113,46 @@ namespace AssemblyInfoHelper.Updater
             UpdateProgressIndeterminate = false;
             string updateeDirPath = Path.GetDirectoryName(_updateeFilePath);
 
+            List<string> persistentFiles = _persistentFilesList.Split(';').ToList();
+            string persistentFilesFolderName = Path.Combine(_packageContentDirPath, @"..\PersistentFiles");
+            // Create folder to store files to keep if available
+            if (persistentFiles.Count > 0)
+            {
+                UpdateStatus = Properties.Resources.UpdateStatusCopyPersistentFiles;
+                if (Directory.Exists(persistentFilesFolderName)) { Directory.Delete(persistentFilesFolderName, true); }
+                Directory.CreateDirectory(persistentFilesFolderName);
+            }
+            // Loop all files marked as persitent during the update and copy them
+            foreach (string persistentFile in persistentFiles)
+            {
+                string persistentFileSourcePath = Path.Combine(updateeDirPath, persistentFile);
+                string persistentFileDestPath = Path.Combine(persistentFilesFolderName, persistentFile);
+                if (File.Exists(persistentFileSourcePath)) 
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(persistentFileDestPath));
+                    File.Copy(persistentFileSourcePath, persistentFileDestPath, true); 
+                }
+            }
+            
             UpdateStatus = Properties.Resources.UpdateStatusDeleteAppDirectory;
             await FileDirectoryExtensions.DeleteDirectory(updateeDirPath, true, true, _updateProgress);
 
             // Copy over the package contents
             UpdateStatus = Properties.Resources.UpdateStatusCopyContents;
             await FileDirectoryExtensions.CopyDirectory(_packageContentDirPath, updateeDirPath, _updateProgress);
+
+            if (persistentFiles.Count > 0) { UpdateStatus = Properties.Resources.UpdateStatusRestorePersistentFiles; }
+            // Loop all files marked as persistent during the update and restore them
+            foreach (string persistentFile in persistentFiles)
+            {
+                string persistentFileSourcePath = Path.Combine(persistentFilesFolderName, persistentFile);
+                string persistentFileDestPath = Path.Combine(updateeDirPath, persistentFile);
+                if (File.Exists(persistentFileSourcePath)) 
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(persistentFileDestPath));
+                    File.Copy(persistentFileSourcePath, persistentFileDestPath, true); 
+                }
+            }
 
             // Restart updatee if requested
             if (_restartUpdatee)
@@ -141,11 +177,15 @@ namespace AssemblyInfoHelper.Updater
                     Process.Start(startInfo);
                 }
             }
-            
             // Delete package content directory
             UpdateStatus = Properties.Resources.UpdateStatusDeletePackageDirectory;
             await FileDirectoryExtensions.DeleteDirectory(_packageContentDirPath, false, true, _updateProgress);
             await FileDirectoryExtensions.DeleteEmptyFolders(Directory.GetParent(_packageContentDirPath).FullName);
+
+            // Delete persistent files directory
+            UpdateStatus = Properties.Resources.UpdateStatusDeletePersistentFiles;
+            await FileDirectoryExtensions.DeleteDirectory(persistentFilesFolderName, false, true, _updateProgress);
+            await FileDirectoryExtensions.DeleteEmptyFolders(Directory.GetParent(persistentFilesFolderName).FullName);
             Environment.Exit(0);
         }
     }

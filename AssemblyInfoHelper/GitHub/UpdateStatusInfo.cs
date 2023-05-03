@@ -78,8 +78,8 @@ namespace AssemblyInfoHelper.GitHub
         {
             get
             {
-                if (FromVersion < ToVersion) { return Properties.Resources.UpdateStatusInfoUpdateString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
-                else if(FromVersion > ToVersion) { return Properties.Resources.UpdateStatusInfoDowngradeString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
+                if (FromVersion != null && ToVersion != null && FromVersion.CompareSortOrderTo(ToVersion) < 0) { return Properties.Resources.UpdateStatusInfoUpdateString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
+                else if(FromVersion != null && ToVersion != null && FromVersion.CompareSortOrderTo(ToVersion) > 0) { return Properties.Resources.UpdateStatusInfoDowngradeString.Replace("0.0.0", FromVersion?.ToString()).Replace("1.0.0", ToVersion?.ToString()); }
                 else { return Properties.Resources.UpdateStatusInfoRepairString.Replace("0.0.0", FromVersion?.ToString()); }
             }
         }

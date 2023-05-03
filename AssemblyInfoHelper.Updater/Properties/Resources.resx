@@ -120,14 +120,23 @@
   <data name="UpdateStatusCopyContents" xml:space="preserve">
     <value>Copying package contents...</value>
   </data>
+  <data name="UpdateStatusCopyPersistentFiles" xml:space="preserve">
+    <value>Copying persistent files...</value>
+  </data>
   <data name="UpdateStatusDeleteAppDirectory" xml:space="preserve">
     <value>Delete application's directory...</value>
   </data>
   <data name="UpdateStatusDeletePackageDirectory" xml:space="preserve">
     <value>Delete package content directory...</value>
   </data>
+  <data name="UpdateStatusDeletePersistentFiles" xml:space="preserve">
+    <value>Deleting persistent files...</value>
+  </data>
   <data name="UpdateStatusRestartApplication" xml:space="preserve">
     <value>Restarting application</value>
+  </data>
+  <data name="UpdateStatusRestorePersistentFiles" xml:space="preserve">
+    <value>Restoring persistent files...</value>
   </data>
   <data name="UpdateStatusWaitForExit" xml:space="preserve">
     <value>Waiting for all running application instances to exit...</value>

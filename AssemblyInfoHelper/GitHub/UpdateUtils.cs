@@ -34,11 +34,11 @@ namespace AssemblyInfoHelper.GitHub
             Version targetVersion = new Version(targetRelease.Version.ToString());
             try
             {
-                UpdateStatus.FromVersion = new SemVersion(new Version(AssemblyInfoHelperClass.AssemblyVersion));
+                UpdateStatus.FromVersion = SemVersion.FromVersion(new Version(AssemblyInfoHelperClass.AssemblyVersion));
                 UpdateStatus.ToVersion = targetRelease.Version;
                 UpdateStatus.IsUpdateRunning = true;
 
-                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilConfirmUpdateTitleString, Properties.Resources.UpdateUtilDoYouReallyWantToString + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion > UpdateStatus.ToVersion) ? Environment.NewLine + Environment.NewLine + Properties.Resources.UpdateUtilDowngradeWarningString : ""), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.MessageDialogOKString, NegativeButtonText = Properties.Resources.MessageDialogCancelString });
+                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilConfirmUpdateTitleString, Properties.Resources.UpdateUtilDoYouReallyWantToString + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion.CompareSortOrderTo(UpdateStatus.ToVersion) > 0) ? Environment.NewLine + Environment.NewLine + Properties.Resources.UpdateUtilDowngradeWarningString : ""), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.MessageDialogOKString, NegativeButtonText = Properties.Resources.MessageDialogCancelString });
                 if (messageResult == MessageDialogResult.Negative) { UpdateStatus.IsUpdateRunning = false; return; }
 
                 bool useBinaries = false, useInstaller = false;
@@ -154,8 +154,11 @@ namespace AssemblyInfoHelper.GitHub
             // Get original command line arguments and encode them to avoid issues with quotes
             string routedArgs = Convert.ToBase64String(Encoding.UTF8.GetBytes(GetCommandLineWithoutExecutable()));
 
+            // Get the list of all files that should be persistent (kept) during the update from the assembly info
+            string persistentFilesList = AssemblyInfoHelperClass.UpdatePersistentFiles;
+
             // Prepare arguments
-            string updaterArgs = $"\"{Process.GetCurrentProcess().MainModule.FileName}\" \"{downloadFolder}\" \"{restart}\" \"{routedArgs}\"";
+            string updaterArgs = $"\"{Process.GetCurrentProcess().MainModule.FileName}\" \"{downloadFolder}\" \"{restart}\" \"{persistentFilesList}\" \"{routedArgs}\"";
 
             // Create updater process start info
             var updaterStartInfo = new ProcessStartInfo

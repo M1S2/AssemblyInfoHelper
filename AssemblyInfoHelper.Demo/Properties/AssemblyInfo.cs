@@ -9,6 +9,8 @@ using System.Windows;
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 
+[assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("__TEST.txt")]
+
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
 // für COM-Komponenten unsichtbar.  Wenn Sie auf einen Typ in dieser Assembly von
 // COM aus zugreifen müssen, sollten Sie das ComVisible-Attribut für diesen Typ auf "True" festlegen.
