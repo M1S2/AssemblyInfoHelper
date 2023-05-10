@@ -119,13 +119,20 @@ If files should be preserved during the update process, the `UpdatePersistentFil
 ```csharp
 [assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Filename.txt")]
 ```
-Adapt the "Filename.txt" to the file you want to keep. The filename is relative to the executing assembly. E.g. if you want to keep a database file named "Database.db" that is located beside the executable "DemoApp.exe", use "Database.db" with the `UpdateKeepFile` attribute.
+Adapt the "Filename.txt" to the file you want to keep. The filename is relative to the executing assembly. E.g. if you want to keep a database file named "Database.db" that is located beside the executable "DemoApp.exe", use "Database.db" with the `UpdatePersistentFiles` attribute.
 
-If multiple files should be kept, add one `UpdatePersistentFiles` attribute for each file.
+If multiple files should be kept, add one `UpdatePersistentFiles` attribute for each file. Files in subfolders can also be persisted.
 ```csharp
 [assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Filename1.txt")]
 [assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("Folder\\Filename2.txt")]
 ```
+
+It is also possible to persist all files matching a specific pattern. This can be used to persist e.g. all database files with the ".db" extension (see the following example). Use * as wildcard as placeholder.
+```csharp
+[assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("*.db")]
+```
+
+If the file doesn't exist, it is simply not persisted and no warning or error is shown.
 
 ### Temporary folder used by the update feature
 

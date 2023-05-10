@@ -1,5 +1,9 @@
 # AssemblyInfoHelper
 
+## [v5.3.0]
+
+- Added feature to persist files during update
+
 ## [v5.2.2]
 
 - Updated MdXaml to 1.16.1 to improve Readme viewer, added MdXaml.Plugins, MdXaml.Html and MdXaml.Svg
