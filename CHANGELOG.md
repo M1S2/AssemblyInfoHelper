@@ -1,5 +1,9 @@
 # AssemblyInfoHelper
 
+## [v5.3.1]
+
+- Bump Microsoft.Windows.Compatibility in AssemblyInfoHelper and AssemblyInfoHelper.Demo to fix a security vulnerability
+
 ## [v5.3.0]
 
 - Added feature to persist files during update
