@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AssemblyInfoHelper"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
@@ -13,7 +12,13 @@
              d:DesignHeight="30" d:DesignWidth="90">
 
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AssemblyInfoHelper;component/Icons/Icon_Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
     
     <Grid>
@@ -25,10 +30,10 @@
                             <Setter.Value>
                                 <StackPanel Orientation="Horizontal">
                                     <Grid>
-                                        <iconPacks:PackIconMaterial Width="35" Height="25" Kind="Triangle" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                        <MetroControls:FontIcon FontSize="30" Glyph="{StaticResource MDL2_StatusTriangleOuter}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
                                         <TextBlock Text="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
                                     </Grid>
-                                    <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                    <TextBlock Text="!" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
                                 </StackPanel>
                             </Setter.Value>
                         </Setter>
@@ -37,8 +42,8 @@
                                 <Setter Property="Content">
                                     <Setter.Value>
                                         <StackPanel Orientation="Horizontal">
-                                            <iconPacks:PackIconOcticons Width="22" Height="22" Kind="Info" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
-                                            <iconPacks:PackIconMaterial Width="10" Height="15" Kind="Exclamation" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
+                                            <MetroControls:FontIcon Glyph="{StaticResource MDL2_Info}" FontSize="{StaticResource DefaultIconFontSize}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                                            <TextBlock Text="!" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}" Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}"/>
                                         </StackPanel>
                                     </Setter.Value>
                                 </Setter>

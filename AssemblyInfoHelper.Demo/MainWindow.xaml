@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssemblyInfoHelper.Demo"
         xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper;assembly=AssemblyInfoHelper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <MetroControls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <iconPacks:PackIconMaterial Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="2" Padding="4" Foreground="{DynamicResource IdealForegroundColorBrush}" Kind="Information" />
+            <!-- Info icon -->
+            <MetroControls:FontIcon Glyph="&#xE946;" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="2" Padding="4" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
         </DataTemplate>
     </MetroControls:MetroWindow.IconTemplate>
 

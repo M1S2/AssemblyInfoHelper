@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssemblyInfoHelper"
         xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:MetroDialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:github="clr-namespace:AssemblyInfoHelper.GitHub"
         xmlns:mdxaml="clr-namespace:MdXaml;assembly=MdXaml"
@@ -36,7 +35,8 @@
             </mdplug:MdXamlPlugins>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/_FontSizes.xaml" />
+                <ResourceDictionary Source="Styles/_FontSizes.xaml"/>
+                <ResourceDictionary Source="/AssemblyInfoHelper;component/Icons/Icon_Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </MetroControls:MetroWindow.Resources>
@@ -46,7 +46,7 @@
             <TabItem>
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
-                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="Info" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <MetroControls:FontIcon DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Glyph="{StaticResource MDL2_Info}" FontSize="{StaticResource DefaultIconFontSize}" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
                         <TextBlock Text="{x:Static properties:Resources.GeneralInfosString}" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
                     </DockPanel>
                 </TabItem.Header>
@@ -57,49 +57,49 @@
                     <StackPanel Orientation="Vertical" Margin="20" DockPanel.Dock="Top">
                         <!-- Title -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="FormatTitle" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <MetroControls:FontIcon Margin="0,0,10,0" Glyph="{StaticResource MDL2_Message}" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyTitleString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTitle}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
                         
                         <!-- Description -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="InformationVariant" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <MetroControls:FontIcon Margin="0,0,10,0" Glyph="{StaticResource MDL2_Info}" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyDescriptionString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyDescription}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Company -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="Domain" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <MetroControls:FontIcon Margin="0,0,10,0" Glyph="{StaticResource MDL2_EMI_Company}" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyCompanyString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCompany}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Product -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconOcticons Width="25" Height="25" Margin="0,0,10,0" Kind="Package" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <MetroControls:FontIcon Margin="0,0,10,0" Glyph="{StaticResource MDL2_Paket}" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyProductString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyProduct}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Copyright -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="Copyright" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="©" FontSize="{StaticResource DefaultIconFontSize}" FontWeight="Bold" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyCopyrightString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCopyright}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Trademark -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="Trademark" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="™" FontSize="{StaticResource DefaultIconFontSize}" FontWeight="Bold" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyTrademarkString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyTrademark}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Version -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconOcticons Width="25" Height="25" Margin="0,0,10,0" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Image Source="{StaticResource Icon_Versions}" Width="{StaticResource DefaultIconFontSize}" Height="{StaticResource DefaultIconFontSize}" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyVersionString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
@@ -112,21 +112,21 @@
                                     <Binding Source="{x:Static local:AssemblyInfoHelperClass.AssemblyVersion}" Mode="OneWay"/>
                                 </MultiBinding>
                             </StackPanel.Visibility>
-                            <iconPacks:PackIconOcticons Width="25" Height="25" Margin="0,0,10,0" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Image Source="{StaticResource Icon_File_Questionmark}" Width="{StaticResource DefaultIconFontSize}" Height="{StaticResource DefaultIconFontSize}" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyFileVersionString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyFileVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Informational Version -->
                         <StackPanel Orientation="Horizontal" Margin="0,5" Visibility="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay, Converter={StaticResource AssemblyAttributeFilledVisiblityConverter}}">
-                            <iconPacks:PackIconOcticons Width="25" Height="25" Margin="0,0,10,0" Kind="Versions" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Image Source="{StaticResource Icon_File_Eye}" Width="{StaticResource DefaultIconFontSize}" Height="{StaticResource DefaultIconFontSize}" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyInformationalVersionString}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyInformationalVersion}, Mode=OneWay}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
 
                         <!-- Creation Time -->
                         <StackPanel Orientation="Horizontal" Margin="0,5">
-                            <iconPacks:PackIconMaterial Width="25" Height="25" Margin="0,0,10,0" Kind="ClockOutline" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <MetroControls:FontIcon Margin="0,0,10,0" Glyph="{StaticResource MDL2_EmojiTabFavorites_Clock}" FontSize="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Width="200" Text="{x:Static properties:Resources.AssemblyCreationTime}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:AssemblyInfoHelperClass.AssemblyCreationTime}, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}" FontSize="{StaticResource LargeFontSize}" />
                         </StackPanel>
@@ -139,7 +139,7 @@
             <TabItem Visibility="{Binding ReadmeFound, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
-                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="File" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <MetroControls:FontIcon DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Glyph="{StaticResource MDL2_ReadingMode}" FontSize="{StaticResource DefaultIconFontSize}" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
                         <TextBlock Text="{x:Static properties:Resources.ReadmeString}" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
                     </DockPanel>
                 </TabItem.Header>
@@ -152,7 +152,7 @@
             <TabItem Visibility="{Binding ChangelogFound, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
-                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="Diff" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <MetroControls:FontIcon DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Glyph="{StaticResource MDL2_CalculatorNegate}" FontSize="{StaticResource DefaultIconFontSize}" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
                         <TextBlock Text="{x:Static properties:Resources.ChangelogString}" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>
                     </DockPanel>
                 </TabItem.Header>
@@ -165,7 +165,16 @@
             <TabItem Visibility="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=IsGitHubRepoAssigned, Converter={StaticResource BoolVisibilityConverter}}">
                 <TabItem.Header>
                     <DockPanel LastChildFill="True">
-                        <iconPacks:PackIconOcticons DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Width="22" Height="22" Kind="MarkGithub" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" />
+                        <!-- GitHub Icon: https://pictogrammers.com/library/mdi/icon/github/ -->
+                        <Image DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,10,0" Height="{StaticResource DefaultIconFontSize}">
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" Geometry="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
 
                         <MetroControls:Badged Badge="{Binding Source={x:Static github:GitHubUtils.Instance}, Path=NumberNewReleasesString}" BadgePlacementMode="Right" Margin="0,0,20,0" BadgeBackground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}">
                             <TextBlock Text="{x:Static properties:Resources.GitHubReleasesString}" Margin="0,0,20,0" Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=Foreground}" FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type MetroControls:ContentControlEx}}, Path=FontSize}"/>

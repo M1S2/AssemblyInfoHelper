@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AssemblyInfoHelper.GitHub"
              xmlns:MetroControls="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:assemblyInfoHelper="clr-namespace:AssemblyInfoHelper"
              xmlns:properties="clr-namespace:AssemblyInfoHelper.Properties"
              xmlns:converters="clr-namespace:AssemblyInfoHelper.Converters"
@@ -18,27 +17,30 @@
             <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
             <converters:EnumToLocalizedStringConverter x:Key="EnumLocalizedStringConverter"/>
             <converters:MultiplyConverter x:Key="multiplyConverter"/>
-            <local:GitHubReleaseToUpdateButtonStyleConverter x:Key="GitHubReleaseUpdateButtonConverter"/>
-            
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Styles/_FontSizes.xaml" />
+                <ResourceDictionary Source="/AssemblyInfoHelper;component/Icons/Icon_Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True" Margin="10">
-
+        
         <!-- ########## Connection Error Banner ######################################################################################################################################################################################## -->
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorOccuredWhileLoadingReleases, Converter={StaticResource BoolVisibilityConverter}}">
-            <iconPacks:PackIconMaterial Margin="10" Width="30" Height="30" Kind="Alert" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+            <Grid Margin="10">
+                <MetroControls:FontIcon FontSize="30" Glyph="{StaticResource MDL2_StatusTriangleOuter}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
+                <TextBlock Text="!" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
+            </Grid>
             <TextBlock Margin="10"  FontSize="{StaticResource MediumFontSize}"  MaxHeight="100" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=ErrorMessage}" Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/>
         </StackPanel>
 
         <!-- ########## Project URL ######################################################################################################################################################################################## -->
 
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,10,0,10">
-            <iconPacks:PackIconMaterial Kind="Web" Margin="5,0,0,0" Width="35" Height="Auto" ToolTip="{x:Static properties:Resources.RepositoryURLString}" />
+            <MetroControls:FontIcon Glyph="{StaticResource MDL2_Globe}" FontSize="{StaticResource DefaultIconFontSize}" Margin="5,0,0,0" ToolTip="{x:Static properties:Resources.RepositoryURLString}" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" />
             <TextBlock Margin="30,0,0,0" Text="{Binding Source={x:Static properties:Resources.RepositoryURLString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <local:ExternalBrowserHyperlinkControl NavigateUri="{Binding Source={x:Static assemblyInfoHelper:AssemblyInfoHelperClass.GitHubRepoUrl}, Mode=OneWay}">
@@ -53,15 +55,15 @@
 
         <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,10,0,10">
             <Grid ToolTip="{x:Static properties:Resources.NumberNewReleasesString}">
-                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" />
-                <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                <Image Source="{StaticResource Icon_Tag_AccentBase}" Margin="5,10,0,0" Width="{StaticResource DefaultIconFontSize}" Height="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="*" FontSize="50" Margin="40,-20,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
             <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberNewReleasesString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=NumberNewReleases}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
 
             <Grid Margin="50,0,0,0" ToolTip="{x:Static properties:Resources.NumberReleasesTotalString}">
-                <iconPacks:PackIconMaterial Kind="Tag" Margin="5,10,0,0" Width="35" Height="Auto" />
-                <iconPacks:PackIconMaterial Kind="Sigma" Margin="40,0,0,0" HorizontalAlignment="Right" />
+                <Image Source="{StaticResource Icon_Tag_AccentBase}" Margin="5,10,0,0" Width="{StaticResource DefaultIconFontSize}" Height="{StaticResource DefaultIconFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Σ" FontSize="25" Margin="40,-10,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{DynamicResource MahApps.Brushes.AccentBase}"/>
             </Grid>
             <TextBlock Margin="10,0,0,0" Text="{Binding Source={x:Static properties:Resources.NumberReleasesTotalString}, StringFormat={}{0}:}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
             <TextBlock Margin="20,0,0,0" Text="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=GitHubReleases.Count}" VerticalAlignment="Center" FontSize="{StaticResource LargeFontSize}" Foreground="{DynamicResource MahApps.Brushes.Text}"/>
@@ -103,24 +105,24 @@
                                 <local:ExternalBrowserHyperlinkControl.Inlines>
                                     <MetroControls:Badged Margin="0,15,35,15" BadgePlacementMode="TopRight" BadgeFontSize="14" BadgeBackground="OrangeRed" BadgeForeground="White" Badge="{Binding ReleaseTimeType, Converter={StaticResource EnumLocalizedStringConverter}}">
                                         <Grid>
-                                            <iconPacks:PackIconMaterial Kind="Tag" Margin="5,5,20,5" Width="60" Height="Auto">
-                                                <iconPacks:PackIconMaterial.Style>
-                                                    <Style TargetType="iconPacks:PackIconMaterial">
+                                            <Image Margin="5,5,20,5" Width="60" Height="Auto">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding ReleaseType}" Value="MAJOR">
-                                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentBase}"/>
+                                                                <Setter Property="Source" Value="{StaticResource Icon_Tag_AccentBase}"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding ReleaseType}" Value="MINOR">
-                                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray3}"/>
+                                                                <Setter Property="Source" Value="{StaticResource Icon_Tag_Gray3}"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding ReleaseType}" Value="PATCH">
-                                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray6}"/>
+                                                                <Setter Property="Source" Value="{StaticResource Icon_Tag_Gray6}"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
-                                                </iconPacks:PackIconMaterial.Style>
-                                            </iconPacks:PackIconMaterial>
-                                                        
+                                                </Image.Style>
+                                            </Image>
+                                                                                                   
                                             <TextBlock Text="{Binding ReleaseType, Converter={StaticResource EnumLocalizedStringConverter}}" Foreground="Black" VerticalAlignment="Center" FontSize="{StaticResource MediumFontSize}" RenderTransformOrigin="0.5,0.5">
                                                 <TextBlock.RenderTransform>
                                                     <TransformGroup>
@@ -144,15 +146,54 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-                        <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource MahApps.Brushes.AccentBase}" BorderThickness="0" Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}"/>
+
+                        <!-- Content="{Binding ., Converter={StaticResource GitHubReleaseUpdateButtonConverter}}" -->
+                        <Button Grid.Row="0" Grid.Column="3" Width="150" Height="40" Margin="10,5" Command="{Binding Source={x:Static local:GitHubUtils.Instance}, Path=UpdateCommand}" CommandParameter="{Binding}" MetroControls:ControlsHelper.CornerRadius="20" Background="{DynamicResource MahApps.Brushes.AccentBase}" BorderThickness="0">
+                            <StackPanel Orientation="Horizontal">
+                                <MetroControls:FontIcon Width="20" Height="20" Margin="5,0,10,0" VerticalAlignment="Center">
+                                    <MetroControls:FontIcon.Style>
+                                        <Style TargetType="MetroControls:FontIcon">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="OLD">
+                                                    <Setter Property="Glyph" Value="{StaticResource MDL2_SetHistoryStatus}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="CURRENT">
+                                                    <Setter Property="Glyph" Value="{StaticResource MDL2_Reparatur}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="NEW">
+                                                    <Setter Property="Glyph" Value="{StaticResource MDL2_Download}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </MetroControls:FontIcon.Style>
+                                </MetroControls:FontIcon>
+                                <TextBlock FontSize="12" VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="OLD">
+                                                    <Setter Property="Text" Value="{x:Static properties:Resources.DowngradeString}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="CURRENT">
+                                                    <Setter Property="Text" Value="{x:Static properties:Resources.RepairString}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ReleaseTimeType}" Value="NEW">
+                                                    <Setter Property="Text" Value="{x:Static properties:Resources.UpgradeString}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
 
                         <Expander Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Header="{x:Static properties:Resources.GitHubReleaseNotesString}" MetroControls:HeaderedControlHelper.HeaderBackground="{DynamicResource MahApps.Brushes.ThemeBackground}" BorderBrush="Transparent">
                             <mdxaml:MarkdownScrollViewer Markdown="{Binding ReleaseNotes}" MarkdownStyleName="SasabuneStandard" VerticalScrollBarVisibility="Hidden"/>
                         </Expander>
 
                         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
-                            <iconPacks:PackIconOcticons Width="18" Height="Auto" VerticalAlignment="Top" Kind="FileZip" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding BinAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubBinaryReleaseAvailableString}"/>
-                            <iconPacks:PackIconMaterial Width="18" Height="Auto" Margin="30,3,0,0" VerticalAlignment="Top" Kind="ApplicationImport" Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Visibility="{Binding InstallerAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubInstallerReleaseAvailableString}"/>
+                            <Image Source="{StaticResource Icon_FileZip_AccentBase}" Width="18" Height="Auto" VerticalAlignment="Top" Visibility="{Binding BinAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubBinaryReleaseAvailableString}"/>
+                            <Image Source="{StaticResource Icon_ApplicationImport_AccentBase}" Width="18" Height="Auto" Margin="30,3,0,0" VerticalAlignment="Top" Visibility="{Binding InstallerAssetAvailable, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="{x:Static properties:Resources.GitHubInstallerReleaseAvailableString}"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

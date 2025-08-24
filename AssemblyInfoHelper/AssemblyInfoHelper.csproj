@@ -88,8 +88,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.6" />
 		<PackageReference Include="MahApps.Metro" Version="2.0.1" />
-		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
-		<PackageReference Include="MahApps.Metro.IconPacks.Octicons" Version="4.11.0" />
 		<PackageReference Include="Octokit" Version="0.40.0" />
 		<PackageReference Include="Semver" Version="2.2.0" />
 	</ItemGroup>

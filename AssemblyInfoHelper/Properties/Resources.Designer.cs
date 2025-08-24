@@ -412,20 +412,20 @@ namespace AssemblyInfoHelper.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to ähnelt.
-        /// </summary>
-        public static string UpdateUtilDoYouReallyWantToString {
-            get {
-                return ResourceManager.GetString("UpdateUtilDoYouReallyWantToString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error while update ähnelt.
         /// </summary>
         public static string UpdateUtilErrorString {
             get {
                 return ResourceManager.GetString("UpdateUtilErrorString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Really ähnelt.
+        /// </summary>
+        public static string UpdateUtilReallyString {
+            get {
+                return ResourceManager.GetString("UpdateUtilReallyString", resourceCulture);
             }
         }
         

@@ -234,8 +234,8 @@
   <data name="UpdateUtilDownloadFailedTitleString" xml:space="preserve">
     <value>Download failed</value>
   </data>
-  <data name="UpdateUtilDoYouReallyWantToString" xml:space="preserve">
-    <value>Do you really want to</value>
+  <data name="UpdateUtilReallyString" xml:space="preserve">
+    <value>Really</value>
   </data>
   <data name="UpdateUtilErrorString" xml:space="preserve">
     <value>Error while update</value>

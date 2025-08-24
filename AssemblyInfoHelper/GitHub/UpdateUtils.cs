@@ -38,7 +38,7 @@ namespace AssemblyInfoHelper.GitHub
                 UpdateStatus.ToVersion = targetRelease.Version;
                 UpdateStatus.IsUpdateRunning = true;
 
-                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilConfirmUpdateTitleString, Properties.Resources.UpdateUtilDoYouReallyWantToString + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion.CompareSortOrderTo(UpdateStatus.ToVersion) > 0) ? Environment.NewLine + Environment.NewLine + Properties.Resources.UpdateUtilDowngradeWarningString : ""), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.MessageDialogOKString, NegativeButtonText = Properties.Resources.MessageDialogCancelString });
+                MessageDialogResult messageResult = await windowAssemblyInfo.ShowMessageAsync(Properties.Resources.UpdateUtilConfirmUpdateTitleString, Properties.Resources.UpdateUtilReallyString + " " + UpdateStatus.UpdateText + "?" + ((UpdateStatus.FromVersion.CompareSortOrderTo(UpdateStatus.ToVersion) > 0) ? Environment.NewLine + Environment.NewLine + Properties.Resources.UpdateUtilDowngradeWarningString : ""), MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings() { AffirmativeButtonText = Properties.Resources.MessageDialogOKString, NegativeButtonText = Properties.Resources.MessageDialogCancelString });
                 if (messageResult == MessageDialogResult.Negative) { UpdateStatus.IsUpdateRunning = false; return; }
 
                 bool useBinaries = false, useInstaller = false;
