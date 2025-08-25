@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<Version>0.0.0</Version>
-		<TargetFrameworks>net452;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net452;net472;net6.0-windows</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -18,13 +18,13 @@
 		<PackageIcon>Update.png</PackageIcon>
 		<PackageReleaseNotes>Use this release with Metro styled WPF apps (using MahApps.Metro). It is suitable for .NET 6.0 apps.</PackageReleaseNotes>
 		<Authors>M1S2</Authors>
-		<Copyright>Copyright 2022</Copyright>
+		<Copyright>Copyright 2025</Copyright>
 	    <Description>Display informations gathered from the assembly info.</Description>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PostBuildEvent>
-			copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
-			copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
+copy "$(SolutionDir)README.md" "$(TargetDir)README.md"
+copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
 		</PostBuildEvent>
 	</PropertyGroup>
 	<ItemGroup>

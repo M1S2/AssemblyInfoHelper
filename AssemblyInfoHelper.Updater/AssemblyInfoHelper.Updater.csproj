@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net452;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net452;net472;net6.0-windows</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<OutputType>WinExe</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
