@@ -7,7 +7,9 @@
 
 ## Purpose
 
-The **AssemblyInfoHelper** gets and displays the assembly attributes of the assembly that calls this functions.
+### Version Info Display
+
+Displays the assembly attributes of the assembly that calls this functions.
 This contains the following informations:
 - AssemblyTitle
 - AssemblyDescription
@@ -22,15 +24,27 @@ This contains the following informations:
 
 ![General Infos](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_GeneralInfos.PNG)
 
-The readme is get from the README.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+### Readme Viewer
+
+The Readme is get from the README.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+
+This page is hidden if not file is found.
 
 ![Readme](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_Readme.PNG)
 
-The changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+### Changelog Viewer
+
+The Changelog is get from the CHANGELOG.md file in the path given when creating the WindowAssemblyInfo or the application startup path.
+
+This page is hidden if not file is found.
 
 ![Changelog](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_Changelog.PNG)
 
-GitHub releases are taken from repository at the url given by the `GitHubRepo` attribute (see usage below). 
+### GitHub Release Viewer
+
+GitHub releases are taken from repository at the given URL (see usage below). 
+
+This page is hidden if not repository URL is assigned. This also disabled the complete update feature (see below).
 
 ![GitHub Releases](https://github.com/M1S2/AssemblyInfoHelper/raw/master/Screenshots/AssemblyInfoWindow_GitHubReleases.PNG)
 
@@ -44,12 +58,7 @@ You can also use the Package Manager console with: `PM> Install-Package Assembly
 
 ## Usage
 
-To show all releases from GitHub add the `GitHubRepo` attribute to the AssemblyInfo.cs file: 
-
-```csharp
-[assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
-```
-
+### Show WindowAssemblyInfo
 
 The simplest way to show the WindowAssemblyInfo is to add a `AppInfoButton` control to the application. Everything is done inside this control.
 
@@ -68,6 +77,15 @@ AssemblyInfoHelper.WindowAssemblyInfo window = new AssemblyInfoHelper.WindowAsse
 window.ShowDialog();
 ```
 
+### GitHub Releases and Update Feature
+
+To show all releases from GitHub, the repository URL must be assigned.
+
+The easiest way is to set the `RepositoryUrl` in the .csproj file (see Add assembly attributes > New style Projects below).
+An embedded Nuget build target will make this setting available to the AssemblyInfoHelper.
+
+The older alternative is to add the `GitHubRepo` attribute to the AssemblyInfo.cs file or anywhere else in your application (see Add assembly attributes > Old style Projects below).
+
 ## Add assembly attributes
 
 ### New style projects
@@ -80,6 +98,7 @@ Add the following properties to a .csproj file to include assembly attributes:
 	<Company>CompanyText</Company>
 	<Product>ProductText</Product>
 	<Copyright>Copyright © 2022</Copyright>
+	<RepositoryUrl>https://github.com/M1S2/AssemblyInfoHelper</RepositoryUrl>
 </PropertyGroup>
 ```
 
@@ -92,6 +111,7 @@ Add the following lines to the AssemblyInfo.cs file to include assembly attribut
 [assembly: AssemblyProduct("ProductText")]
 [assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTrademark("TrademarkText")]
+[assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 ```
 
 ## Update Feature
@@ -104,7 +124,7 @@ The release binaries must be added to a GitHub release as asset. The following n
 *For binaries:*
 - %ProjectName%_Binaries.zip
 - %ProjectName%.zip
-- %ProjectName%_v1.0.0.zip
+- %ProjectName%_%Version%.zip (e.g. %ProjectName%_v1.0.0.zip)
 - bin.zip
 
 *For installer:*
@@ -136,5 +156,5 @@ If the file doesn't exist, it is simply not persisted and no warning or error is
 
 ### Temporary folder used by the update feature
 
-The %AppData%\Local\%ProjectName% folder is used to temporary save the downloaded release. Also the files that should be persisted are saved here.
+The %AppData%\Local\\%ProjectName% folder is used to temporary save the downloaded release. Also the files that should be persisted are saved here.
 Afer the update was finished, the folder content is deleted. Only the Updater.exe remains because it can't delete itself.
