@@ -117,8 +117,19 @@ namespace AssemblyInfoHelper
                 }
                 case AssemblyAttributeTypes.GITHUB_URL:
                 {
-                    assemblyObjects = assembly.GetCustomAttributes(typeof(GitHubRepoAttribute), true);
-                    if (assemblyObjects.Length > 0) { attributeValue = ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl; }
+                    // Try to get the repository url from the AssemblyMetadata attribute first (new way).
+                    // This is added automatically by the build/EmbedRepositoryUrl.targets build action
+                    string repoUrl = assembly.GetCustomAttributes<AssemblyMetadataAttribute>().FirstOrDefault(a => a.Key == "RepositoryUrl")?.Value;
+                    if (!string.IsNullOrEmpty(repoUrl))
+                    {
+                        attributeValue = repoUrl;
+                    }
+                    else
+                    {
+                        // Fallback to the GitHubRepo attribute (old way)
+                        assemblyObjects = assembly.GetCustomAttributes(typeof(GitHubRepoAttribute), true);
+                        if (assemblyObjects.Length > 0) { attributeValue = ((GitHubRepoAttribute)assemblyObjects[0]).RepoUrl; }
+                    }
                     break;
                 }
                 case AssemblyAttributeTypes.UPDATE_PERSISTENT_FILES:

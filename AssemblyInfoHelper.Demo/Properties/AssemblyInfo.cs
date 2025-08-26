@@ -7,7 +7,9 @@ using System.Windows;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
+
+// New way is used in AssemblyInfoHelper.Demo.csproj (RepositoryUrl)
+//[assembly: AssemblyInfoHelper.GitHub.GitHubRepo("https://github.com/M1S2/AssemblyInfoHelper")]
 
 [assembly: AssemblyInfoHelper.GitHub.UpdatePersistentFiles("__TEST.txt")]
 

@@ -13,6 +13,7 @@
 		<Company>Markus Scheich</Company>
 		<Product>AssemblyInfoHelper.Demo</Product>
 		<Copyright>Copyright © 2025</Copyright>
+		<RepositoryUrl>https://github.com/M1S2/AssemblyInfoHelper</RepositoryUrl>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PostBuildEvent>
@@ -52,16 +53,16 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'net452'">
-			<HintPath>..\AssemblyInfoHelper\bin\Debug\net452\AssemblyInfoHelper.dll</HintPath>
+			<HintPath>..\AssemblyInfoHelper\bin\$(Configuration)\net452\AssemblyInfoHelper.dll</HintPath>
 		</Reference>
-			<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'net472'">
-			<HintPath>..\AssemblyInfoHelper\bin\Debug\net472\AssemblyInfoHelper.dll</HintPath>
+		<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'net472'">
+			<HintPath>..\AssemblyInfoHelper\bin\$(Configuration)\net472\AssemblyInfoHelper.dll</HintPath>
 		</Reference>
 		<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'net6.0-windows'">
-			<HintPath>..\AssemblyInfoHelper\bin\Debug\net6.0-windows\AssemblyInfoHelper.dll</HintPath>
+			<HintPath>..\AssemblyInfoHelper\bin\$(Configuration)\net6.0-windows\AssemblyInfoHelper.dll</HintPath>
 		</Reference>
 		<Reference Include="AssemblyInfoHelper" Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-			<HintPath>..\AssemblyInfoHelper\bin\Debug\netcoreapp3.1\AssemblyInfoHelper.dll</HintPath>
+			<HintPath>..\AssemblyInfoHelper\bin\$(Configuration)\netcoreapp3.1\AssemblyInfoHelper.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>

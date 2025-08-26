@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<Version>0.0.0</Version>
 		<TargetFrameworks>net452;net472;net6.0-windows</TargetFrameworks>
@@ -32,6 +32,10 @@ copy "$(SolutionDir)CHANGELOG.md" "$(TargetDir)CHANGELOG.md"
 	  <EmbeddedResource Remove="AppIcon\**" />
 	  <None Remove="AppIcon\**" />
 	  <Page Remove="AppIcon\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- include the targets into NuGet-Packet -->
+		<None Include="build\*.targets" Pack="true" PackagePath="build\" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="../AssemblyInfoHelper.Updater/bin/$(Configuration)/$(TargetFramework)/AssemblyInfoHelper.Updater.exe">
